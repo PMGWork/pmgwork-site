@@ -11,7 +11,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
-    "nuxt-webfontloader": "^1.1.0"
+    "nuxt-webfontloader": "^1.1.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "node-sass": "^5.0.0",
