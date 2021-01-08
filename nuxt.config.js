@@ -15,6 +15,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans+JP:wght@500;700&display=swap' },
       { rel: 'stylesheet', href: 'https://use.typekit.net/vqq6vsv.css' },
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css' }
     ],
@@ -25,12 +27,6 @@ export default {
       { src: '/js/butter.js', body: true },
       { src: '/js/main.js', body: true }
     ]
-  },
-
-  webfontloader: {
-    google: {
-      families: ['Noto+Sans+JP:500,700','Inter:wght@500']
-    }
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
