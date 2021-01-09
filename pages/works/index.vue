@@ -11,7 +11,10 @@
             <li class="works-article" v-for="content in contents" :key="content.id">
                 <div class="works-image scroll">
                     <nuxt-link @click.native="bg_add" :to="`/works/${content.id}`">
-                        <img :src="content.image.url">
+                        <picture>
+                            <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
+                            <img :src="content.image.url">
+                        </picture>
                     </nuxt-link>
                 </div>
                 <div class="works-title">

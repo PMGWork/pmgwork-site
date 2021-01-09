@@ -5,7 +5,10 @@
             <div :style="gradation" id="bg-item1"></div>
             <div id="pages-wrapper">
                 <div class="pages-image scroll">
-                    <img :src="image.url">
+                    <picture>
+                        <source :srcset="`${ image.url }?fm=webp`" type="image/webp">
+                        <img :src="image.url">
+                    </picture>
                 </div>
                 <div class="pages-title">
                     <h2 class="delay-scroll2 ts">{{ title }}</h2>
