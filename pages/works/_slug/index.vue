@@ -76,35 +76,31 @@ export default {
                 wrapperDamper: 0.12,
                 cancelOnTouch: true
             })
-        }, 50);
+            //headercolor
+            const bg_height = document.getElementById("pages-wrapper").clientHeight;
+            const scrollheight = bg_height - 200;
+            const linksCol = document.querySelectorAll("header a,#lottie-logo");
+
+            window.addEventListener('scroll', _.throttle(scroll, 300))
+            function scroll(){
+                if(window.scrollY > scrollheight) {
+                    linksCol.forEach(linkCol => {
+                        linkCol.classList.add('hd-color');
+                    });
+                } else {
+                    linksCol.forEach(linkCol => {
+                        linkCol.classList.remove('hd-color');
+                    });
+                }
+            };
+
+            //background
+            const bg_item = document.getElementById("bg-item1");
+            bg_item.style.height = bg_height + 'px';
+
+        }, 100);
 
         document.getElementById("lottie-logo").style.opacity = '';
-
-        //headercolor
-        const bg_height = document.getElementById("pages-wrapper").clientHeight;
-        const scrollheight = bg_height - 200;
-        const linksCol = document.querySelectorAll("header a");
-        const logoCol = document.getElementById("lottie-logo");
-
-        window.addEventListener('scroll', _.throttle(scroll, 200))
-        function scroll(){
-            if(window.scrollY > scrollheight) {
-                linksCol.forEach(linkCol => {
-                    linkCol.style.color = '#181818';
-                });
-                logoCol.style.filter = 'brightness(0.1)';
-
-            } else {
-                linksCol.forEach(linkCol => {
-                    linkCol.style.color = '#ffffff';
-                });
-                logoCol.style.filter = 'brightness(1)';
-            }
-        };
-
-        //background
-        const bg_item = document.getElementById("bg-item1");
-        bg_item.style.height = bg_height + 'px';
 
         //textsplit
         const container = document.querySelectorAll('.ts');

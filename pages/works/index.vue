@@ -71,29 +71,25 @@ export default {
                 wrapperDamper: 0.12,
                 cancelOnTouch: true
             })
-        }, 50);
+        }, 100);
 
         document.getElementById("lottie-logo").style.opacity = '';
 
         //headercolor
         const bg_height = document.getElementById("bg-item").clientHeight;
         const scrollheight = bg_height - 200;
-        const linksCol = document.querySelectorAll("header a");
-        const logoCol = document.getElementById("lottie-logo");
+        const linksCol = document.querySelectorAll("header a,#lottie-logo");
 
-        window.addEventListener('scroll', _.throttle(scroll, 200))
+        window.addEventListener('scroll', _.throttle(scroll, 300))
         function scroll(){
             if(window.scrollY > scrollheight) {
                 linksCol.forEach(linkCol => {
-                    linkCol.style.color = '#181818';
+                    linkCol.classList.add('hd-color');
                 });
-                logoCol.style.filter = 'brightness(0.1)';
-
             } else {
                 linksCol.forEach(linkCol => {
-                    linkCol.style.color = '#ffffff';
+                    linkCol.classList.remove('hd-color');
                 });
-                logoCol.style.filter = 'brightness(1)';
             }
         };
 
