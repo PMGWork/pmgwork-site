@@ -4,22 +4,6 @@ $media-sm: 560px;
 
 $main-color: #202020;
 
-@font-face {
-    font-family: 'Noto Sans JP';
-    src: url('../font/NotoSansJP-Medium.otf') format("opentype");
-    font-weight: 500;
-}
-@font-face {
-    font-family: 'Noto Sans JP';
-    src: url('../font/NotoSansJP-Bold.otf') format("opentype");
-    font-weight: 700;
-}
-@font-face {
-    font-family: 'inter';
-    src: url('../font/Inter-Medium.ttf') format("truetype");
-    font-weight: 500;
-}
-
 @mixin pc {
     @media only screen and (min-width: $media-pc) {
         @content;
