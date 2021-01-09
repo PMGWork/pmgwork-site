@@ -6,7 +6,10 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    htmlAttrs: { dir: 'ltr' },
+    htmlAttrs: {
+      dir: 'ltr',
+      lang: 'ja'
+    },
     title: 'ぴくせる',
     meta: [
       { charset: 'utf-8' },
