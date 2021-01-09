@@ -70,16 +70,16 @@
             <p class="copyright">© 2020 Pixel</p>
             <div class="footer-link">
                 <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-twitter"></i>
+                    <span class="icon-twitter"></span>
                 </a>
                 <a href="https://instagram.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-instagram"></i>
+                    <span class="icon-instagram"></span>
                 </a>
                 <a href="https://youtube.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-youtube"></i>
+                    <span class="icon-youtube-play"></span>
                 </a>
                 <a href="mailto:mail@pmgwork.com" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-envelope"></i>
+                    <span class="icon-envelope"></span>
                 </a>
             </div>
         </footer>

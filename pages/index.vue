@@ -16,10 +16,10 @@
         </div>
         <div class="main-link">
             <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-twitter"></i>
+                <span class="icon-twitter"></span>
             </a>
             <a href="mailto:mail@pmgwork.com" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-envelope"></i>
+                <span class="icon-envelope"></span>
             </a>
         </div>
         <div id="butter"></div>
