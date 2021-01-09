@@ -2,21 +2,21 @@
 <div class="about">
     <div class="bg-white"></div>
     <div id="butter">
-        <div class="bg-item"></div>
+        <div id="bg-item"></div>
         <div class="heading">
-            <h1 class="delay-title">About</h1>
-            <p class="delay-title1">自分について</p>
+            <h1 class="delay-title ts">About</h1>
+            <p class="delay-title1 ts">自分について</p>
         </div>
         <div class="about-wrapper">
             <div class="about-logo">
                 <img src="~/assets/img/newlogo.svg">
             </div>
             <div class="about-title">
-                <h2 class="delay-scroll">ぴくせる</h2>
-                <h4 class="delay-scroll1 in-view">Motion Graphics Designer</h4>
+                <h2 class="delay-scroll ts">ぴくせる</h2>
+                <h4 class="delay-scroll1 ts in-view">Motion Graphics Designer</h4>
             </div>
             <div class="about-content">
-                <h2 class="delay-scroll2">Hello!</h2>
+                <h2 class="delay-scroll2 ts">Hello!</h2>
                 <div class="delay-scroll3 font">
                     <p>主にモーショングラフィックスや3DCG、グラフィックデザイン等を制作しています。</p>
                     <p>Zarusoba DesignWorks (@Z_D_W_) 所属</p>
@@ -25,7 +25,7 @@
             </div>
             <div class="about-block">
                 <div class="about-tools">
-                    <h2 class="delay-scroll2">Tools</h2>
+                    <h2 class="delay-scroll2 ts">Tools</h2>
                     <ul class="delay-scroll3">
                         <li>AfterEffects</li>
                         <li>Blender</li>
@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div class="about-tools">
-                    <h2 class="delay-scroll2">Skills</h2>
+                    <h2 class="delay-scroll2 ts">Skills</h2>
                     <ul class="delay-scroll3">
                         <li>Motion Graphics</li>
                         <li>3DCG</li>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="contact">
-                <h2 class="delay-scroll2">Contact</h2>
+                <h2 class="delay-scroll2 ts">Contact</h2>
                 <client-only>
                 <form name="contact" method="POST" data-netlify="true">
                     <p class="required">お名前</p>
@@ -97,64 +97,70 @@ export default {
     mounted(){
         //butter
         butter.cancel()
-        setTimeout(function(){
+        window.setTimeout(function(){
             butter.init({
                 wrapperId: 'butter',
                 wrapperDamper: 0.12,
                 cancelOnTouch: true
             })
-        },50);
+        }, 50);
 
-        $("header #lottie-logo").css({'opacity':''});
+        document.getElementById("lottie-logo").style.opacity = '';
 
         //headercolor
-        var bg_height = $('.bg-item').innerHeight();
-        var scrollheight = bg_height - 400;
+        const bg_height = document.getElementById("bg-item").clientHeight;
+        const scrollheight = bg_height - 200;
+        const linksCol = document.querySelectorAll("header a");
+        const logoCol = document.getElementById("lottie-logo");
 
-        $(window).scroll(function() {
-            if($(this).scrollTop() > scrollheight) {
-                $("header a").css({'color':'#181818'});
-                $("header #lottie-logo").css({'filter':'brightness(0.1)'});
+        window.addEventListener('scroll', _.throttle(scroll, 200))
+        function scroll(){
+            if(window.scrollY > scrollheight) {
+                linksCol.forEach(linkCol => {
+                    linkCol.style.color = '#181818';
+                });
+                logoCol.style.filter = 'brightness(0.1)';
+
             } else {
-                $("header a").css({'color':''});
-                $("header #lottie-logo").css({'filter':''});
+                linksCol.forEach(linkCol => {
+                    linkCol.style.color = '#ffffff';
+                });
+                logoCol.style.filter = 'brightness(1)';
             }
+        };
+
+        //textsplit
+        const container = document.querySelectorAll('.ts');
+        container.forEach(item => {
+            const content = item.textContent;
+            const text = content.trim();
+            let newHtml = "";
+            text.split("").forEach(function(v) {
+                newHtml += "<span>" + v + "</span>";
+            });
+            item.innerHTML = newHtml
         });
 
-        //transition
-        $('header a').click(function() {
-            $(".background").removeClass("bg-color");
-        })
-
         //Animation
-        $(".delay-title").letterSpan();
-        $(".delay-title1").letterSpan();
-        $(".delay-scroll").letterSpan();
-        $(".delay-scroll1").letterSpan();
-        $(".delay-scroll2").letterSpan();
-        $(".delay-scroll4").letterSpan();
-
-        var observeTargets = document.querySelectorAll('.scroll,.delay-scroll,.delay-scroll1,.delay-scroll2,.delay-scroll3,.delay-scroll4,.delay-title,.delay-title1');
-
-        var options = {
+        const options = {
             root: null,
             rootMargin: "-10% 0px",
             threshold: 0
-        };
-
-        var observer = new IntersectionObserver(observeCallback, options);
-
-        $(observeTargets).each(function (index,observeTarget) {
-            observer.observe(observeTarget);
-        });
-
-        function observeCallback(entries) {
-            $(entries).each(function (index,entry) {
-                if (entry.isIntersecting)
-                    {
-                    $(entry.target).addClass('in-view');
+        }
+        const scrollio = document.querySelectorAll('.scroll,.delay-scroll,.delay-scroll1,.delay-scroll2,.delay-scroll3')
+        scrollio.forEach((target) => this.onIntersect(target, options))
+    },
+    methods: {
+        onIntersect(target, options = {}) {
+            const observer = new IntersectionObserver(this.addShowClass, options)
+            observer.observe(target)
+        },
+        addShowClass(entries) {
+            for(const e of entries) {
+                if (e.isIntersecting) {
+                    e.target.classList.add("in-view")
                 }
-            })
+            }
         }
     }
 }

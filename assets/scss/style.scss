@@ -43,7 +43,7 @@ body {
         display:none;
     }
 }
-.background {
+#background {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -249,7 +249,7 @@ img {
 .main {
     position: relative;
     overflow: hidden;
-    .background {
+    #background {
         height: calc(var(--vh, 1vh) * 100);
     }
     #scene {
@@ -337,7 +337,7 @@ img {
     background: #f6f6f6;
     z-index: -10;
 }
-.bg-item {
+#bg-item {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -679,7 +679,7 @@ img {
     }
 }
 
-.bg-item1 {
+#bg-item1 {
     position: absolute;
     width: 100%;
     z-index: -2;
@@ -706,7 +706,7 @@ img {
     }
 }
 
-.pages-wrapper {
+#pages-wrapper {
     padding: 160px 60px 500px;
     margin: 0 auto;
     max-width: 1366px;
@@ -802,7 +802,7 @@ img {
         }
     }
 }
-.pages-wrapper1 {
+#pages-wrapper1 {
     color: $main-color;
     padding: 60px;
     margin: -150px auto 0;

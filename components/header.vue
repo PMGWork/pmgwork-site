@@ -1,12 +1,28 @@
 <template>
     <div>
-        <div class="background"></div>
+        <div id="background"></div>
         <header class="header">
-            <nuxt-link to="/"><div id="lottie-logo"></div></nuxt-link>
+            <nuxt-link @click.native="bg_remove" to="/"><div id="lottie-logo"></div></nuxt-link>
             <ul>
-                <li><nuxt-link to="/works">Works</nuxt-link></li>
-                <li><nuxt-link to="/About">About</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" to="/works">Works</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" to="/About">About</nuxt-link></li>
             </ul>
         </header>
     </div>
 </template>
+
+<script>
+export default {
+    mounted(){
+        //lottie
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-logo'),path: '/animation/logomotion.json',renderer: 'svg',loop: true,autoplay: true
+        })
+    },
+    methods: {
+        bg_remove() {
+            document.getElementById("background").classList.remove('bg-color');
+        }
+    }
+}
+</script>

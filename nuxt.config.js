@@ -25,11 +25,10 @@ export default {
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.6.1/css/all.css' }
     ],
     script: [
-      { src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'},
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js', body: true },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js', body: true },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js', body: true },
-      { src: '/js/butter.js', body: true },
-      { src: '/js/main.js', body: true }
+      { src: '/js/butter.js', body: true }
     ]
   },
 
