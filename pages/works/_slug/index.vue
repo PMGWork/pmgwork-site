@@ -1,53 +1,54 @@
 <template>
-    <div class="pages">
-        <div class="bg-white"></div>
-        <div id="butter">
-            <div :style="gradation" id="bg-item1"></div>
-            <div id="pages-wrapper">
-                <div class="pages-image scroll">
-                    <picture>
-                        <source :srcset="`${ image.url }?fm=webp`" type="image/webp">
-                        <img :src="image.url">
-                    </picture>
-                </div>
-                <div class="pages-title">
-                    <h2 class="delay-scroll2 ts">{{ title }}</h2>
-                    <h5 class="delay-scroll4 ts">{{ date }}</h5>
-                </div>
-                <div class="pages-info scroll">
-                    <div class="info-item" v-if="movie">
-                        <h5>Movie</h5>
-                        <p>{{ movie }}</p>
-                    </div>
-                    <div class="info-item" v-if="music">
-                        <h5>Music</h5>
-                        <p>{{ music }}</p>
-                    </div>
-                    <div class="info-item">
-                        <h5>Use Tools</h5>
-                        <p>{{ tools }}</p>
-                    </div>
-                    <a :href="link" target="_blank" rel="noopener noreferrer" class="info-play">
-                        <h5>Play</h5>
-                    </a>
-                </div>
+<div class="pages">
+    <div class="bg-white"></div>
+    <div id="butter">
+        <div :style="gradation" id="bg-item1"></div>
+        <div id="pages-wrapper">
+            <div class="pages-image scroll">
+                <picture>
+                    <source :srcset="`${ image.url }?fm=webp`" type="image/webp">
+                    <img :src="image.url">
+                </picture>
             </div>
-
-            <div id="pages-wrapper1">
-                <div class="pages-about" v-if="body">
-                    <h2 class="delay-scroll2 ts">About</h2>
-                    <div class="delay-scroll3 font" v-html="( body )"></div>
-                </div>
-                <div class="pages-block" v-html="( bodyimage )"></div>
+            <div class="pages-title">
+                <h2 class="delay-scroll2 ts">{{ title }}</h2>
+                <h5 class="delay-scroll4 ts">{{ date }}</h5>
             </div>
-            <nuxt-link class="next-link" @click.native="bg_add" :to="`/works/${works.id}`">
-                <div :style="works.gradation" class="next">
-                    <h5 class="delay-scroll4 ts">Next Project</h5>
-                    <h2 class="delay-scroll ts">{{ works.title }}</h2>
+            <div class="pages-info scroll">
+                <div class="info-item" v-if="movie">
+                    <h5>Movie</h5>
+                    <p>{{ movie }}</p>
                 </div>
-            </nuxt-link>
+                <div class="info-item" v-if="music">
+                    <h5>Music</h5>
+                    <p>{{ music }}</p>
+                </div>
+                <div class="info-item">
+                    <h5>Use Tools</h5>
+                    <p>{{ tools }}</p>
+                </div>
+                <a :href="link" target="_blank" rel="noopener noreferrer" class="info-play">
+                    <h5>Play</h5>
+                </a>
+            </div>
         </div>
+
+        <div id="pages-wrapper1">
+            <div class="pages-about" v-if="body">
+                <h2 class="delay-scroll2 ts">About</h2>
+                <div class="delay-scroll3 font" v-html="( body )"></div>
+            </div>
+            <div class="pages-block" v-html="( bodyimage )"></div>
+        </div>
+        <nuxt-link class="next-link" @click.native="bg_add" :to="`/works/${works.id}`">
+            <div :style="works.gradation" class="next">
+                <h5 class="delay-scroll4 ts">Next Project</h5>
+                <h2 class="delay-scroll ts">{{ works.title }}</h2>
+            </div>
+        </nuxt-link>
     </div>
+    <img class="loaded" src="/loaded.png" @load="loaded">
+</div>
 </template>
 
 <script>
@@ -68,37 +69,7 @@ export default {
         }
     },
     mounted(){
-        //butter
         butter.cancel()
-        window.setTimeout(function(){
-            butter.init({
-                wrapperId: 'butter',
-                wrapperDamper: 0.12,
-                cancelOnTouch: true
-            })
-            //headercolor
-            const bg_height = document.getElementById("pages-wrapper").clientHeight;
-            const scrollheight = bg_height - 200;
-            const linksCol = document.querySelectorAll("header a,#lottie-logo");
-
-            window.addEventListener('scroll', _.throttle(scroll, 300))
-            function scroll(){
-                if(window.scrollY > scrollheight) {
-                    linksCol.forEach(linkCol => {
-                        linkCol.classList.add('hd-color');
-                    });
-                } else {
-                    linksCol.forEach(linkCol => {
-                        linkCol.classList.remove('hd-color');
-                    });
-                }
-            };
-
-            //background
-            const bg_item = document.getElementById("bg-item1");
-            bg_item.style.height = bg_height + 'px';
-
-        }, 100);
 
         document.getElementById("lottie-logo").style.opacity = '';
 
@@ -124,6 +95,33 @@ export default {
         scrollio.forEach((target) => this.onIntersect(target, options))
     },
     methods: {
+        loaded: function() {
+            setTimeout(function(){
+                butter.init()
+
+                //headercolor
+                const bg_height = document.getElementById("pages-wrapper").clientHeight;
+                const scrollheight = bg_height - 200;
+                const linksCol = document.querySelectorAll("header a,#lottie-logo");
+
+                window.addEventListener('scroll', _.throttle(scroll, 300))
+                function scroll(){
+                    if(window.scrollY > scrollheight) {
+                        linksCol.forEach(linkCol => {
+                            linkCol.classList.add('hd-color');
+                        });
+                    } else {
+                        linksCol.forEach(linkCol => {
+                            linkCol.classList.remove('hd-color');
+                        });
+                    }
+                };
+
+                //background
+                const bg_item = document.getElementById("bg-item1");
+                bg_item.style.height = bg_height + 'px';
+            }, 50);
+        },
         bg_add() {
             document.getElementById("background").classList.add('bg-color');
         },

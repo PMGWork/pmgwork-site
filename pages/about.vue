@@ -102,11 +102,7 @@ export default {
         //butter
         butter.cancel()
         window.setTimeout(function(){
-            butter.init({
-                wrapperId: 'butter',
-                wrapperDamper: 0.12,
-                cancelOnTouch: true
-            })
+            butter.init()
         }, 100);
 
         document.getElementById("lottie-logo").style.opacity = '';

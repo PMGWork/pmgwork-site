@@ -14,7 +14,7 @@
                         <picture>
                             <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
                             <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
-                            <img :src="content.image.url" loading="lazy">
+                            <img :src="content.image.url">
                         </picture>
                     </nuxt-link>
                 </div>
@@ -42,6 +42,7 @@
             </div>
         </footer>
     </div>
+    <img class="loaded" src="/loaded.png" @load="loaded">
 </div>
 </template>
 
@@ -63,35 +64,9 @@ export default {
         }
     },
     mounted(){
-        //butter
         butter.cancel()
-        window.setTimeout(function(){
-            butter.init({
-                wrapperId: 'butter',
-                wrapperDamper: 0.12,
-                cancelOnTouch: true
-            })
-        }, 100);
 
         document.getElementById("lottie-logo").style.opacity = '';
-
-        //headercolor
-        const bg_height = document.getElementById("bg-item").clientHeight;
-        const scrollheight = bg_height - 200;
-        const linksCol = document.querySelectorAll("header a,#lottie-logo");
-
-        window.addEventListener('scroll', _.throttle(scroll, 300))
-        function scroll(){
-            if(window.scrollY > scrollheight) {
-                linksCol.forEach(linkCol => {
-                    linkCol.classList.add('hd-color');
-                });
-            } else {
-                linksCol.forEach(linkCol => {
-                    linkCol.classList.remove('hd-color');
-                });
-            }
-        };
 
         //textsplit
         const container = document.querySelectorAll('.ts');
@@ -115,6 +90,29 @@ export default {
         scrollio.forEach((target) => this.onIntersect(target, options))
     },
     methods: {
+        loaded: function() {
+            setTimeout(function(){
+                butter.init()
+
+                //headercolor
+                const bg_height = document.getElementById("bg-item").clientHeight;
+                const scrollheight = bg_height - 200;
+                const linksCol = document.querySelectorAll("header a,#lottie-logo");
+
+                window.addEventListener('scroll', _.throttle(scroll, 300))
+                function scroll(){
+                    if(window.scrollY > scrollheight) {
+                        linksCol.forEach(linkCol => {
+                            linkCol.classList.add('hd-color');
+                        });
+                    } else {
+                        linksCol.forEach(linkCol => {
+                            linkCol.classList.remove('hd-color');
+                        });
+                    }
+                };
+            }, 50);
+        },
         bg_add() {
             document.getElementById("background").classList.add('bg-color');
         },

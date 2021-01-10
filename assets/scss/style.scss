@@ -20,6 +20,9 @@ $main-color: #202020;
     }
 }
 
+* {
+    scrollbar-width: none;
+}
 body {
     position: relative;
     margin: 0 auto;
@@ -37,7 +40,7 @@ body {
 
     -webkit-user-select: none;
     user-select: none;
-    scrollbar-width: none;
+    -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
         display:none;
@@ -882,6 +885,12 @@ img {
     height: 100vh;
     text-align: center;
 }
+.loaded {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
 
 .delay-title span {
     animation: delay-animation cubic-bezier(0, 0.7, 0.3, 1) .8s both;
