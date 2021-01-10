@@ -104,7 +104,7 @@ export default {
         butter.cancel()
         window.setTimeout(function(){
             butter.init()
-        }, 100);
+        }, 10);
 
         document.getElementById("lottie-logo").style.opacity = '';
 

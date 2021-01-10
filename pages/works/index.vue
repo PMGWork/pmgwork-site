@@ -14,7 +14,7 @@
                         <picture>
                             <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
                             <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
-                            <img :src="content.image.url">
+                            <img :src="content.image.url" width="1280" height="720">
                         </picture>
                     </nuxt-link>
                 </div>
@@ -42,7 +42,6 @@
             </div>
         </footer>
     </div>
-    <img class="loaded" src="/loaded.png" @load="loaded">
 </div>
 </template>
 
@@ -65,6 +64,28 @@ export default {
     },
     mounted(){
         butter.cancel()
+
+        setTimeout(function(){
+            butter.init()
+        }, 10);
+
+        //headercolor
+        const bg_height = document.getElementById("bg-item").clientHeight;
+        const scrollheight = bg_height - 200;
+        const linksCol = document.querySelectorAll("header a,#lottie-logo");
+
+        window.addEventListener('scroll', _.throttle(scroll, 300))
+        function scroll(){
+            if(window.scrollY > scrollheight) {
+                linksCol.forEach(linkCol => {
+                    linkCol.classList.add('hd-color');
+                });
+            } else {
+                linksCol.forEach(linkCol => {
+                    linkCol.classList.remove('hd-color');
+                });
+            }
+        };
 
         document.getElementById("lottie-logo").style.opacity = '';
 
@@ -90,29 +111,6 @@ export default {
         scrollio.forEach((target) => this.onIntersect(target, options))
     },
     methods: {
-        loaded: function() {
-            setTimeout(function(){
-                butter.init()
-
-                //headercolor
-                const bg_height = document.getElementById("bg-item").clientHeight;
-                const scrollheight = bg_height - 200;
-                const linksCol = document.querySelectorAll("header a,#lottie-logo");
-
-                window.addEventListener('scroll', _.throttle(scroll, 300))
-                function scroll(){
-                    if(window.scrollY > scrollheight) {
-                        linksCol.forEach(linkCol => {
-                            linkCol.classList.add('hd-color');
-                        });
-                    } else {
-                        linksCol.forEach(linkCol => {
-                            linkCol.classList.remove('hd-color');
-                        });
-                    }
-                };
-            }, 50);
-        },
         bg_add() {
             document.getElementById("background").classList.add('bg-color');
         },

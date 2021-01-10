@@ -7,7 +7,7 @@
             <div class="pages-image scroll">
                 <picture>
                     <source :srcset="`${ image.url }?fm=webp`" type="image/webp">
-                    <img :src="image.url">
+                    <img :src="image.url" width="1280" height="720">
                 </picture>
             </div>
             <div class="pages-title">
@@ -71,6 +71,33 @@ export default {
     mounted(){
         butter.cancel()
 
+        setTimeout(function(){
+            butter.init()
+        }, 100);
+
+        //headercolor
+        const bg_height = document.getElementById("pages-wrapper").clientHeight;
+        const scrollheight = bg_height - 200;
+        const linksCol = document.querySelectorAll("header a,#lottie-logo");
+
+        window.addEventListener('scroll', _.throttle(scroll, 300))
+        function scroll(){
+            if(window.scrollY > scrollheight) {
+                linksCol.forEach(linkCol => {
+                    linkCol.classList.add('hd-color');
+                });
+            } else {
+                linksCol.forEach(linkCol => {
+                    linkCol.classList.remove('hd-color');
+                });
+            }
+        };
+
+        //background
+        const bg_item = document.getElementById("bg-item1");
+        bg_item.style.height = bg_height + 'px';
+
+
         document.getElementById("lottie-logo").style.opacity = '';
 
         //textsplit
@@ -95,33 +122,6 @@ export default {
         scrollio.forEach((target) => this.onIntersect(target, options))
     },
     methods: {
-        loaded: function() {
-            setTimeout(function(){
-                butter.init()
-
-                //headercolor
-                const bg_height = document.getElementById("pages-wrapper").clientHeight;
-                const scrollheight = bg_height - 200;
-                const linksCol = document.querySelectorAll("header a,#lottie-logo");
-
-                window.addEventListener('scroll', _.throttle(scroll, 300))
-                function scroll(){
-                    if(window.scrollY > scrollheight) {
-                        linksCol.forEach(linkCol => {
-                            linkCol.classList.add('hd-color');
-                        });
-                    } else {
-                        linksCol.forEach(linkCol => {
-                            linkCol.classList.remove('hd-color');
-                        });
-                    }
-                };
-
-                //background
-                const bg_item = document.getElementById("bg-item1");
-                bg_item.style.height = bg_height + 'px';
-            }, 50);
-        },
         bg_add() {
             document.getElementById("background").classList.add('bg-color');
         },
