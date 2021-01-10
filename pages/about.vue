@@ -51,8 +51,7 @@
             </div>
             <div class="contact">
                 <h2 class="delay-scroll2 ts">Contact</h2>
-                <client-only>
-                <form name="contact" method="POST" data-netlify="true">
+                <form class="delay-scroll3" name="contact" method="POST" data-netlify="true">
                     <p class="required">お名前</p>
                     <input type="text" name="name" autocomplete="name" required>
                     <p>会社名/団体名</p>
@@ -67,7 +66,6 @@
                         <button type="submit" name="button" value="送信">送信</button>
                     </p>
                 </form>
-                </client-only>
             </div>
         </div>
         <footer class="footer">

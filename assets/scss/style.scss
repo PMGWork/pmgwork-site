@@ -22,6 +22,7 @@ $main-color: #202020;
 
 * {
     scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 body {
     position: relative;
@@ -40,7 +41,6 @@ body {
 
     -webkit-user-select: none;
     user-select: none;
-    -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
         display:none;
@@ -818,6 +818,10 @@ img {
             padding: 15px 30px;
             background: rgba(255,255,255,0.1);
             border-radius: 100px;
+            transition: all .3s;
+            &:hover {
+                background: rgba(255,255,255,0.2);
+            }
             @include sm {
                 position: absolute;
                 right: 20px;
@@ -887,8 +891,7 @@ img {
 }
 .loaded {
     position: absolute;
-    opacity: 0;
-    pointer-events: none;
+    display: none;
 }
 
 
