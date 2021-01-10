@@ -52,6 +52,7 @@
             <div class="contact">
                 <h2 class="delay-scroll2 ts">Contact</h2>
                 <form class="delay-scroll3" name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" :value="contact" />
                     <p class="required">お名前</p>
                     <input type="text" name="name" autocomplete="name" required>
                     <p>会社名/団体名</p>
