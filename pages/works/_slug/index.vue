@@ -41,16 +41,16 @@
             <div class="pages-block" v-html="( bodyimage )"></div>
             <div class="pages-share">
                 <h2 class="delay-scroll ts">Share!</h2>
-                <div class="share-link">
-                    <a class="twi" :href="`https://twiter.com/share?text=${ title }%20%23pmgwork&url=https://pmgwork.com/works/${ id }`" rel="nofollow" target="_blank">
+                <div class="share-link delay-scroll3">
+                    <a class="twi dl" :href="`https://twiter.com/share?text=${ title }%20%23pmgwork&url=https://pmgwork.com/works/${ id }`" rel="nofollow" target="_blank">
                         <span class="icon-twitter"></span>
                         <h5>Twitter</h5>
                     </a>
-                    <a class="face" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }&t=${ title }%20%23pmgwork`" rel="nofollow" target="_blank">
+                    <a class="face dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }&t=${ title }%20%23pmgwork`" rel="nofollow" target="_blank">
                         <span class="icon-facebook"></span>
                         <h5>Facebook</h5>
                     </a>
-                    <a class="line" :href="`http://line.me/R/msg/text/${ title }%20https://pmgwork.com/works/${ id }`" rel="nofollow" target="_blank">
+                    <a class="line dl" :href="`http://line.me/R/msg/text/${ title }%20https://pmgwork.com/works/${ id }`" rel="nofollow" target="_blank">
                         <span class="icon-line"></span>
                         <h5>LINE</h5>
                     </a>
@@ -84,7 +84,7 @@ export default {
         return {
             title: `${ this.title } | ぴくせる`,
             meta: [
-                { property: 'og:title', content: `ぴくせる | ${ this.title }`},
+                { property: 'og:title', content: `${ this.title } | ぴくせる`},
                 { property: 'og:image', content: `${ this.image.url }`},
             ],
         }
@@ -94,7 +94,7 @@ export default {
 
         setTimeout(function(){
             butter.init()
-        }, 100);
+        }, 200);
 
         //headercolor
         const bg_height = document.getElementById("pages-wrapper").clientHeight;

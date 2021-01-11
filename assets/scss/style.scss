@@ -906,9 +906,38 @@ img {
                 padding: 18px 24px;
                 margin: 15px;
                 border-radius: 100px;
+                transition: all .3s;
                 @include sm {
                     padding: 10px;
                     margin: 10px;
+                }
+
+                $twi: #1DA1F2;
+                $face: #1778F2;
+                $line: #2CCF6F;
+                &.twi {
+                    background: $twi;
+                    border: solid 2px $twi;
+                    &:hover {
+                        color: $twi;
+                    }
+                }
+                &.face {
+                    background: $face;
+                    border: solid 2px $face;
+                    &:hover {
+                        color: $face;
+                    }
+                }
+                &.line {
+                    background: $line;
+                    border: solid 2px $line;
+                    &:hover {
+                        color: $line;
+                    }
+                }
+                &:hover {
+                    background: rgba(255,255,255,0);
                 }
                 span {
                     font-size: 28px;
@@ -924,15 +953,6 @@ img {
                     @include sm {
                         display: none;
                     }
-                }
-                &.twi {
-                    background: #1DA1F2;
-                }
-                &.face {
-                    background: #1778F2;
-                }
-                &.line {
-                    background: #2CCF6F;
                 }
             }
         }
@@ -1002,12 +1022,12 @@ img {
     }
 }
 .delay-scroll3 {
-    p,li,input,textarea,h5 {
+    p,li,.dl {
         opacity: 0;
     }
 }
 .delay-scroll3.in-view {
-    p,li,input,textarea,h5 {
+    p,li,.dl {
         opacity: 0;
         animation: delay-animation1 cubic-bezier(0, 0.7, 0.3, 1) .8s both;
         @for $i from 1 through 50 {
