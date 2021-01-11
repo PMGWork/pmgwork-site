@@ -205,8 +205,6 @@ button{
 }
 img {
     image-rendering: pixelated;
-    width: 1280px;
-    height: 720px;
 }
 .font {
     font-family: inter, "Noto Sans JP", sans-serif;
@@ -911,6 +909,8 @@ img {
                 @include sm {
                     padding: 10px;
                     margin: 10px;
+                    width: 24px;
+                    height: 24px;
                 }
 
                 $twi: #1DA1F2;
