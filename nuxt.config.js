@@ -15,7 +15,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { property: 'og:title', content: 'ぴくせる / Pixel'},
+      { property: 'og:title', content: 'ぴくせる | Pixel'},
       { property: 'og:image', content: 'https://images.microcms-assets.io/protected/ap-northeast-1:f0125be4-1574-49d1-bdb0-156ee92aa551/service/pmgwork/media/ogimage.png'},
       { name: 'twitter:card', content: 'summary_large_image'},
       { name: 'twitter:site', content: '@pmgwork'}
@@ -30,7 +30,8 @@ export default {
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js', body: true },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.5/lottie.min.js', body: true },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js', body: true },
-      { src: '/js/butter.js', body: true }
+      { src: '/js/butter.js', body: true },
+      { src: '/js/descartia.min.js', body: true }
     ]
   },
 

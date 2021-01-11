@@ -205,6 +205,8 @@ button{
 }
 img {
     image-rendering: pixelated;
+    width: 1280px;
+    height: 720px;
 }
 .font {
     font-family: inter, "Noto Sans JP", sans-serif;
@@ -554,7 +556,7 @@ img {
         margin: 150px 0 0;
         padding: 30px;
     }
-    .about-logo {
+    .about-logo img {
         position: absolute;
         width: 800px;
         margin: -300px -150px;
@@ -838,7 +840,6 @@ img {
     @include sm {
         padding: 30px;
         margin: -200px 0 0;
-
     }
     .pages-about {
         padding-bottom: 150px;
@@ -878,6 +879,64 @@ img {
                 margin-bottom: 10%;
             }
         }
+    }
+    .pages-share {
+        padding: 150px 0;
+        border-top: solid 1px #DCDCDC;
+        @include md {
+            padding: 100px;
+        }
+        @include sm {
+            padding: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            @include sm {
+                margin-bottom: 40px;
+            }
+        }
+        .share-link {
+            display: flex;
+            justify-content: center;
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 18px 24px;
+                margin: 15px;
+                border-radius: 100px;
+                @include sm {
+                    padding: 10px;
+                    margin: 10px;
+                }
+                span {
+                    font-size: 28px;
+                    @include md {
+                        font-size: 24px;
+                    }
+                    @include sm {
+                        font-size: 20px;
+                    }
+                }
+                h5 {
+                    margin-left: 16px;
+                    @include sm {
+                        display: none;
+                    }
+                }
+                &.twi {
+                    background: #1DA1F2;
+                }
+                &.face {
+                    background: #1778F2;
+                }
+                &.line {
+                    background: #2CCF6F;
+                }
+            }
+        }
+
     }
 }
 .next {
@@ -1000,6 +1059,7 @@ img {
     opacity: 0
 }
 
+/* IconFont */
 @font-face {
     font-family: 'fontawesome';
     src: url('../font/fontawesome.ttf') format('truetype');
@@ -1008,8 +1068,7 @@ img {
     font-display: block;
 }
 
-/* IconFont */
-[class^="icon-"], [class*=" icon-"] {
+  [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'fontawesome' !important;
     speak: never;
@@ -1022,17 +1081,26 @@ img {
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
+  }
 
-.icon-twitter:before {
+  .icon-line:before {
+    content: "\e900";
+  }
+  .icon-twitter:before {
     content: "\f099";
-}
-.icon-envelope:before {
+  }
+  .icon-facebook:before {
+    content: "\f09a";
+  }
+  .icon-facebook-f:before {
+    content: "\f09a";
+  }
+  .icon-envelope:before {
     content: "\f0e0";
-}
-.icon-youtube-play:before {
+  }
+  .icon-youtube-play:before {
     content: "\f16a";
-}
-.icon-instagram:before {
+  }
+  .icon-instagram:before {
     content: "\f16d";
-}
+  }
