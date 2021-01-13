@@ -16,13 +16,6 @@
 <script>
 export default {
     mounted(){
-        //height
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        window.addEventListener('resize', () => {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        });
         //lottie
         lottie.loadAnimation({
             container: document.getElementById('lottie-logo'),path: '/animation/logomotion.json',renderer: 'svg',loop: true,autoplay: true
