@@ -123,14 +123,8 @@ export default {
         };
 
         //background
-        const bg_item = document.getElementById("bg-item1");
-        bg_item.style.height = bg_height + 'px';
-        window.addEventListener('resize', () => {
-            var bg_height = document.getElementById("pages-wrapper").clientHeight;
-            bg_item.style.height = bg_height + 'px';
-        });
-
-        document.getElementById("lottie-logo").style.opacity = '';
+        this.bg_size();
+        window.addEventListener('resize', (this.bg_size));
 
         //textsplit
         const container = document.querySelectorAll('.ts');
@@ -153,9 +147,17 @@ export default {
         const scrollio = document.querySelectorAll('.scroll,.delay-scroll,.delay-scroll1,.delay-scroll2,.delay-scroll3,.delay-scroll4')
         scrollio.forEach((target) => this.onIntersect(target, options))
     },
+    beforeDestroy(){
+        window.removeEventListener('resize', (this.bg_size));
+    },
     methods: {
         bg_add() {
             document.getElementById("background").classList.add('bg-color');
+        },
+        bg_size() {
+            const bg_item = document.getElementById("bg-item1");
+            var bg_height = document.getElementById("pages-wrapper").clientHeight;
+            bg_item.style.height = bg_height + 'px';
         },
         onIntersect(target, options = {}) {
             const observer = new IntersectionObserver(this.addShowClass, options)

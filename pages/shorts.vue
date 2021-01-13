@@ -41,33 +41,36 @@ export default {
     mounted(){
         butter.cancel()
 
-        setTimeout(function(){
-            butter.init({
-                scrollY: false
-            })
-        }, 200);
+        var _ua = (function(u){
+            return {
+                Tablet:(u.indexOf("windows") != -1 && u.indexOf("touch") != -1 && u.indexOf("tablet pc") == -1)
+                    || u.indexOf("ipad") != -1
+                    || (u.indexOf("android") != -1 && u.indexOf("mobile") == -1)
+                    || (u.indexOf("firefox") != -1 && u.indexOf("tablet") != -1)
+                    || u.indexOf("kindle") != -1
+                    || u.indexOf("silk") != -1
+                    || u.indexOf("playbook") != -1,
+                Mobile:(u.indexOf("windows") != -1 && u.indexOf("phone") != -1)
+                    || u.indexOf("iphone") != -1
+                    || u.indexOf("ipod") != -1
+                    || (u.indexOf("android") != -1 && u.indexOf("mobile") != -1)
+                    || (u.indexOf("firefox") != -1 && u.indexOf("mobile") != -1)
+                    || u.indexOf("blackberry") != -1
+            }
+        })(window.navigator.userAgent.toLowerCase());
+
+        if(!_ua.Mobile&&!_ua.Tablet){
+            setTimeout(function(){
+                butter.init({
+                    scrollY: false
+                })
+            }, 200);
+        } else {
+            document.querySelector(".shorts-wrapper").style.overflowX = 'scroll';
+        }
 
         //horizontal scroll
-
         document.addEventListener('wheel', this.onScroll, { passive: false });
-
-        //headercolor
-        const bg_height = document.getElementById("bg-item").clientHeight;
-        const scrollheight = bg_height - 200;
-        const linksCol = document.querySelectorAll("header a,#lottie-logo");
-
-        window.addEventListener('scroll', _.throttle(scroll, 300))
-        function scroll(){
-            if(window.scrollY > scrollheight) {
-                linksCol.forEach(linkCol => {
-                    linkCol.classList.add('hd-color');
-                });
-            } else {
-                linksCol.forEach(linkCol => {
-                    linkCol.classList.remove('hd-color');
-                });
-            }
-        };
 
         //textsplit
         const container = document.querySelectorAll('.ts');
@@ -80,15 +83,6 @@ export default {
             });
             item.innerHTML = newHtml
         });
-
-        //Animation
-        const options = {
-            root: null,
-            rootMargin: "-10% 0px",
-            threshold: 0
-        }
-        const scrollio = document.querySelectorAll('.scroll,.delay-scroll,.delay-scroll1')
-        scrollio.forEach((target) => this.onIntersect(target, options))
     },
     beforeDestroy () {
         document.removeEventListener('wheel', this.onScroll, { passive: false });

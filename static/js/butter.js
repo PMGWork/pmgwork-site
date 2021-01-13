@@ -86,19 +86,23 @@
             if (!self.resizing) {
                 self.resizing = true;
                 cancelAnimationFrame(self.animateId);
-                window.setTimeout(function() {
-                    if (this.scrollY) {
+                if (this.scrollY) {
+                    window.setTimeout(function() {
                         if (parseInt(document.body.style.height) != parseInt(self.wrapper.clientHeight)) {
                             document.body.style.height = self.wrapper.clientHeight + 'px';
                         }
-                    } else {
+                        self.animateId = window.requestAnimationFrame(self.animate.bind(self));
+                        self.resizing = false;
+                    }, 150)
+                } else {
+                    window.setTimeout(function() {
                         if (parseInt(document.body.style.width) != parseInt(self.wrapper.scrollWidth)) {
                             document.body.style.width = self.wrapper.scrollWidth + 'px';
                         }
-                    }
-                    self.animateId = window.requestAnimationFrame(self.animate.bind(self));
-                    self.resizing = false;
-                }, 150)
+                        self.animateId = window.requestAnimationFrame(self.animate.bind(self));
+                        self.resizing = false;
+                    }, 150)
+                }
             }
         },
 

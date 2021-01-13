@@ -22,13 +22,11 @@ $main-color: #202020;
 
 * {
     scrollbar-width: none;
-    -ms-overflow-style: none;
     &::-webkit-scrollbar {
         display: none;
     }
 }
 body {
-    overflow: scroll;
     position: relative;
     margin: 0 auto;
     width: 100%;
@@ -61,17 +59,13 @@ body {
 }
 #background {
     position: fixed;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    overflow: hidden;
     background: linear-gradient(-45deg, #102050, #203080);
     z-index: -99;
     &.bg-color {
          background: #f8f8f8;
     }
-}
-#butter {
-    position: fixed;
 }
 
 h1 {
@@ -309,7 +303,6 @@ button{
     .layer {
         position: absolute;
         width: 100%;
-        overflow: hidden;
     }
     .main-title {
         position: absolute;
@@ -354,7 +347,7 @@ button{
 
 .bg-white {
     position: fixed;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background: #f6f6f6;
     z-index: -10;
@@ -546,17 +539,21 @@ button{
 
 .shorts {
     height: 100vh;
+    width: 100vw;
     #bg-item {
         position: fixed;
+        width: 100vw;
     }
     .heading {
         position: fixed;
+        width: 100vw;
         left: 0;
         right: 0;
     }
 }
 .shorts-wrapper {
     position: absolute;
+    width: 100%;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
