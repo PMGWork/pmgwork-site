@@ -18,6 +18,12 @@
             <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
                 <span class="icon-twitter"></span>
             </a>
+            <a href="https://instagram.com/pmgwork" target="_blank" rel="noopener noreferrer">
+                <span class="icon-instagram"></span>
+            </a>
+            <a href="https://youtube.com/pmgwork" target="_blank" rel="noopener noreferrer">
+                <span class="icon-youtube-play"></span>
+                </a>
             <a href="mailto:mail@pmgwork.com" target="_blank" rel="noopener noreferrer">
                 <span class="icon-envelope"></span>
             </a>
@@ -29,9 +35,14 @@
 <script>
 export default {
     mounted(){
-        butter.cancel()
-
         document.getElementById("lottie-logo").style.opacity = '0';
+
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        window.addEventListener('resize', () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
 
         const scene = document.getElementById('scene');
         const parallaxInstance = new Parallax(scene);
@@ -68,6 +79,9 @@ export default {
             });
             item.innerHTML = newHtml
         });
+    },
+    beforeDestroy() {
+        document.getElementById("lottie-logo").style.opacity = '';
     }
 }
 </script>

@@ -1,46 +1,22 @@
 <template>
-<div class="works">
+<div class="shorts">
     <div class="bg-white"></div>
+    <div id="bg-item"></div>
+    <div class="heading">
+        <h1 class="delay-title ts">#Shorts</h1>
+    </div>
     <div id="butter">
-        <div id="bg-item"></div>
-        <div class="heading">
-            <h1 class="delay-title ts">Works</h1>
-            <p class="delay-title1 ts">Motion Graphics ・ Design ・ 3DCG</p>
-        </div>
-        <ul class="works-wrapper">
-            <li class="works-article" v-for="content in contents" :key="content.id">
-                <div class="works-image scroll">
-                    <nuxt-link @click.native="bg_add" :to="`/works/${content.id}`">
-                        <picture>
-                            <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
-                            <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
-                            <img :src="content.image.url" width="1280" height="720">
-                        </picture>
-                    </nuxt-link>
-                </div>
-                <div class="works-title">
-                    <h3 :style="content.gradation" class="delay-scroll ts">{{ content.title }}</h3>
-                    <p class="delay-scroll1 ts">{{ content.date }}</p>
-                </div>
-            </li>
-        </ul>
-        <footer class="footer">
-            <p class="copyright">© 2020 Pixel</p>
-            <div class="footer-link">
-                <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-twitter"></span>
-                </a>
-                <a href="https://instagram.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-instagram"></span>
-                </a>
-                <a href="https://youtube.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-youtube-play"></span>
-                </a>
-                <a href="mailto:mail@pmgwork.com" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-envelope"></span>
+        <div class="shorts-wrapper delay-image">
+            <div class="shorts-article" v-for="content in contents" :key="content.id">
+                <a :href="content.link" target="_blank" rel="noopener noreferrer">
+                    <picture>
+                        <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
+                        <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
+                        <img :src="content.image.url">
+                    </picture>
                 </a>
             </div>
-        </footer>
+        </div>
     </div>
 </div>
 </template>
@@ -50,7 +26,7 @@ import axios from 'axios'
 export default {
     async asyncData() {
         const { data } = await axios.get(
-            'https://pmgwork.microcms.io/api/v1/works?limit=50',
+            'https://pmgwork.microcms.io/api/v1/shorts?limit=50',
             {
                 headers: { 'X-API-KEY': '8d729177-1247-4c07-b1b4-b2ccd3bd4e66' }
             }
@@ -67,9 +43,13 @@ export default {
 
         setTimeout(function(){
             butter.init({
-                scrollY: true
+                scrollY: false
             })
-        }, 10);
+        }, 200);
+
+        //horizontal scroll
+
+        document.addEventListener('wheel', this.onScroll, { passive: false });
 
         //headercolor
         const bg_height = document.getElementById("bg-item").clientHeight;
@@ -110,9 +90,20 @@ export default {
         const scrollio = document.querySelectorAll('.scroll,.delay-scroll,.delay-scroll1')
         scrollio.forEach((target) => this.onIntersect(target, options))
     },
+    beforeDestroy () {
+        document.removeEventListener('wheel', this.onScroll, { passive: false });
+    },
     methods: {
         bg_add() {
             document.getElementById("background").classList.add('bg-color');
+        },
+        onScroll(e) {
+            let delta = ((e.deltaY || -e.wheelDelta || e.detail) >> 20) || 1;
+            delta = delta * (-100);
+            document.documentElement.scrollLeft -= delta;
+            // safari needs also this
+            document.body.scrollLeft -= delta;
+            e.preventDefault();
         },
         onIntersect(target, options = {}) {
             const observer = new IntersectionObserver(this.addShowClass, options)

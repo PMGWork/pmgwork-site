@@ -23,8 +23,12 @@ $main-color: #202020;
 * {
     scrollbar-width: none;
     -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 body {
+    overflow: scroll;
     position: relative;
     margin: 0 auto;
     width: 100%;
@@ -41,10 +45,6 @@ body {
 
     -webkit-user-select: none;
     user-select: none;
-
-    &::-webkit-scrollbar {
-        display:none;
-    }
 }
 #loading {
     position: fixed;
@@ -69,6 +69,9 @@ body {
     &.bg-color {
          background: #f8f8f8;
     }
+}
+#butter {
+    position: fixed;
 }
 
 h1 {
@@ -203,9 +206,6 @@ button{
     padding: 0;
     appearance: none;
 }
-img {
-    image-rendering: pixelated;
-}
 .font {
     font-family: inter, "Noto Sans JP", sans-serif;
 }
@@ -321,7 +321,7 @@ img {
             left: 30px;
         }
         @include sm {
-            bottom: 20px;
+            bottom: 70px;
             left: 20px;
         }
     }
@@ -336,7 +336,7 @@ img {
         }
         @include sm {
             bottom: 30px;
-            right: 20px;
+            left: 0;
             font-size: 15px;
         }
         span {
@@ -363,7 +363,6 @@ img {
     position: absolute;
     width: 100%;
     height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
     background: linear-gradient(-45deg, #102050, #203080);
     z-index: -2;
     animation: bg-animation cubic-bezier(.5,0,.2,1) 1.2s both;
@@ -542,6 +541,53 @@ img {
             }
 
         }
+    }
+}
+
+.shorts {
+    height: 100vh;
+    #bg-item {
+        position: fixed;
+    }
+    .heading {
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+}
+.shorts-wrapper {
+    position: absolute;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    bottom: 50px;
+    height: calc(100vh - 500px);
+    @include md {
+        bottom: 0;
+        padding: 0;
+        height: calc(100vh - 300px);
+    }
+    @include sm {
+        bottom: 50px;
+        height: calc(100vh - 300px);
+    }
+
+}
+.shorts-article {
+    padding: 30px;
+    height: 90%;
+    @include md {
+        height: 40%;
+        padding: 20px;
+    }
+    a {
+        height: 100%;
+        width: 100%;
+    }
+    img {
+        height: 100%;
+        border-radius: 8px;
     }
 }
 
@@ -1050,6 +1096,14 @@ img {
         }
     }
 }
+.delay-image div {
+    animation: delay-animation2 cubic-bezier(0, 0.7, 0.3, 1) 1s both;
+    @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.2s * $i + .1s;
+        }
+    }
+}
 
 @keyframes delay-animation {
     0% {
@@ -1064,6 +1118,16 @@ img {
 @keyframes delay-animation1 {
     0% {
         transform: translate(0,50px) rotate(0.01deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0,0) rotate(0.01deg);
+        opacity: 1;
+    }
+}
+@keyframes delay-animation2 {
+    0% {
+        transform: translate(100px,0) rotate(0.01deg);
         opacity: 0;
     }
     100% {

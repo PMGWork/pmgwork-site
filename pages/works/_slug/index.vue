@@ -98,11 +98,14 @@ export default {
         butter.cancel()
 
         setTimeout(function(){
-            butter.init()
+            butter.init({
+                scrollY: true
+            })
         }, 200);
 
         //headercolor
-        const bg_height = document.getElementById("pages-wrapper").clientHeight;
+        var bg_height = document.getElementById("pages-wrapper").clientHeight;
+
         const scrollheight = bg_height - 200;
         const linksCol = document.querySelectorAll("header a,#lottie-logo");
 
@@ -122,7 +125,10 @@ export default {
         //background
         const bg_item = document.getElementById("bg-item1");
         bg_item.style.height = bg_height + 'px';
-
+        window.addEventListener('resize', () => {
+            var bg_height = document.getElementById("pages-wrapper").clientHeight;
+            bg_item.style.height = bg_height + 'px';
+        });
 
         document.getElementById("lottie-logo").style.opacity = '';
 

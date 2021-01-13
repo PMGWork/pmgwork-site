@@ -8,7 +8,8 @@
         this.defaults = {
             wrapperId: 'butter',
             wrapperDamper: 0.12,
-            cancelOnTouch: true
+            cancelOnTouch: true,
+            scrollY: true,
         }
 
         this.validateOptions = function(ops) {
@@ -22,8 +23,10 @@
         this.wrapperDamper;
         this.wrapperId;
         this.cancelOnTouch;
+        this.scrollY;
         this.wrapper;
-        this.wrapperOffset = 0;
+        this.wrapperOffsetY = 0;
+        this.wrapperOffsetX = 0;
         this.animateId;
         this.resizing = false;
         this.active = false;
@@ -41,27 +44,41 @@
             this.wrapperDamper = this.defaults.wrapperDamper;
             this.wrapperId = this.defaults.wrapperId;
             this.cancelOnTouch = this.defaults.cancelOnTouch;
+            this.scrollY = this.defaults.scrollY;
 
             this.wrapper = document.getElementById(this.wrapperId);
             this.wrapper.style.position = 'fixed';
-            this.wrapper.style.width = '100%';
 
-            document.body.style.height = this.wrapper.clientHeight + 'px';
+            if (this.scrollY) {
+                this.wrapper.style.width = '100%';
+                document.body.style.height = this.wrapper.clientHeight + 'px';
+            } else {
+                this.wrapper.style.height = '100%';
+                document.body.style.width = this.wrapper.scrollWidth + 'px';
+            }
 
             window.addEventListener('resize', this.resize.bind(this));
             if (this.cancelOnTouch) {
                 window.addEventListener('touchstart', this.cancel.bind(this));
             }
-            this.wrapperOffset = window.scrollY;
+            this.wrapperOffsetY = window.scrollY;
+            this.wrapperOffsetX = window.scrollX;
             this.animateId = window.requestAnimationFrame(this.animate.bind(this));
 
             window.addEventListener('load', this.resize.bind(this));
         },
 
         wrapperUpdate: function() {
-            var scrollY = document.body.scrollTop || window.scrollY;
-            this.wrapperOffset += (scrollY - this.wrapperOffset) * this.wrapperDamper;
-            this.wrapper.style.transform = 'translate3d(0,' + (-this.wrapperOffset.toFixed(2)) + 'px, 0)';
+            if (this.scrollY) {
+                var scrollY = document.body.scrollTop || window.scrollY;
+                this.wrapperOffsetY += (scrollY - this.wrapperOffsetY) * this.wrapperDamper;
+                this.wrapper.style.transform = 'translate3d(0,' + (-this.wrapperOffsetY.toFixed(2)) + 'px, 0)';
+            } else {
+                var scrollX = document.body.scrollTop || window.scrollX;
+                this.wrapperOffsetX += (scrollX - this.wrapperOffsetX) * this.wrapperDamper;
+                this.wrapper.style.transform = 'translate3d(' + (-this.wrapperOffsetX.toFixed(2)) + 'px, 0, 0)';
+            }
+
         },
 
         resize: function() {
@@ -70,8 +87,14 @@
                 self.resizing = true;
                 cancelAnimationFrame(self.animateId);
                 window.setTimeout(function() {
-                    if (parseInt(document.body.style.height) != parseInt(self.wrapper.clientHeight)) {
-                        document.body.style.height = self.wrapper.clientHeight + 'px';
+                    if (this.scrollY) {
+                        if (parseInt(document.body.style.height) != parseInt(self.wrapper.clientHeight)) {
+                            document.body.style.height = self.wrapper.clientHeight + 'px';
+                        }
+                    } else {
+                        if (parseInt(document.body.style.width) != parseInt(self.wrapper.scrollWidth)) {
+                            document.body.style.width = self.wrapper.scrollWidth + 'px';
+                        }
                     }
                     self.animateId = window.requestAnimationFrame(self.animate.bind(self));
                     self.resizing = false;
@@ -95,7 +118,8 @@
 
                 this.active = false;
                 this.wrapper = "";
-                this.wrapperOffset = 0;
+                this.wrapperOffsetY = 0;
+                this.wrapperOffsetX = 0;
                 this.resizing = true;
                 this.animateId = "";
             }

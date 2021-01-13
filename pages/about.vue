@@ -102,11 +102,12 @@ export default {
     mounted(){
         //butter
         butter.cancel()
-        window.setTimeout(function(){
-            butter.init()
-        }, 10);
 
-        document.getElementById("lottie-logo").style.opacity = '';
+        window.setTimeout(function(){
+            butter.init({
+                scrollY: true
+            })
+        }, 10);
 
         //headercolor
         const bg_height = document.getElementById("bg-item").clientHeight;
