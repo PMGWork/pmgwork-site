@@ -35,6 +35,8 @@
 <script>
 export default {
     mounted(){
+        butter.cancel()
+
         document.getElementById("lottie-logo").style.opacity = '0';
 
         const scene = document.getElementById('scene');

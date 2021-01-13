@@ -8,16 +8,21 @@
     <div id="butter">
         <div class="shorts-wrapper delay-image">
             <div class="shorts-article" v-for="content in contents" :key="content.id">
-                <a :href="content.link" target="_blank" rel="noopener noreferrer">
-                    <picture>
-                        <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
-                        <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
-                        <img :src="content.image.url">
-                    </picture>
-                </a>
+                <div class="shorts-image">
+                    <a :href="content.link" target="_blank" rel="noopener noreferrer">
+                        <picture>
+                            <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
+                            <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
+                            <img :src="content.image.url">
+                        </picture>
+                    </a>
+                </div>
+                <h3>{{ content.title }}</h3>
             </div>
         </div>
     </div>
+    <div id="scrollbar-hrz"></div>
+    <div id="scrollbar-hrz1"></div>
 </div>
 </template>
 
@@ -71,6 +76,15 @@ export default {
 
         //horizontal scroll
         document.addEventListener('wheel', this.onScroll, { passive: false });
+
+        //scrollbar
+
+        const scrollWidth = document.documentElement.scrollWidth;
+        window.addEventListener('scroll', function(){
+            const scrollPosition = window.scrollX;
+            const scrollbarScale = window.scrollX / (document.body.scrollWidth - window.innerWidth);
+            const scrollbar_hrz = document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
+        })
 
         //textsplit
         const container = document.querySelectorAll('.ts');
