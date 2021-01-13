@@ -566,8 +566,8 @@ button{
         height: calc(100vh - 300px);
     }
     @include sm {
-        bottom: 50px;
-        height: calc(100vh - 300px);
+        bottom: 20px;
+        height: calc(100vh - 250px);
     }
 
 }
@@ -584,7 +584,7 @@ button{
     }
     img {
         height: 100%;
-        border-radius: 8px;
+        border-radius: 4px;
     }
 }
 
