@@ -571,7 +571,7 @@ button{
     }
 }
 .shorts-article {
-    margin: 30px;
+    padding: 30px;
     height: 90%;
     @include md {
         height: auto;
@@ -1150,10 +1150,13 @@ button{
 }
 .delay-image .shorts-article {
     animation: delay-animation2 cubic-bezier(0, 0.7, 0.3, 1) 1s both;
-    @for $i from 1 through 10 {
+    @for $i from 1 through 5 {
         &:nth-child(#{$i}) {
             animation-delay: 0.2s * $i + .1s;
         }
+    }
+    @include md {
+        animation: delay-animation cubic-bezier(0, 0.7, 0.3, 1) 1s both;
     }
 }
 
