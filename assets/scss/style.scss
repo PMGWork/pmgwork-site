@@ -540,41 +540,42 @@ button{
 .shorts {
     height: 100vh;
     width: 100vw;
-    #bg-item {
+    #bg-item,.heading {
         position: fixed;
         width: 100vw;
+        @include md {
+            position: absolute;
+        }
     }
     .heading {
-        position: fixed;
-        width: 100vw;
         left: 0;
         right: 0;
     }
 }
 .shorts-wrapper {
     position: absolute;
-    width: 100%;
-    padding: 0 20px;
+    padding: 0 30px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     bottom: 10%;
     height: calc(100vh - 550px);
     @include md {
-        bottom: 5%;
-        padding: 0;
-        height: calc(100vh - 350px);
+        flex-direction: initial;
+        height: 100%;
+        top: 350px;
     }
     @include sm {
-        height: calc(100vh - 300px);
+        padding: 0;
+        top: 250px;
     }
 }
 .shorts-article {
     margin: 30px;
     height: 90%;
     @include md {
-        height: 40%;
-        margin: 20px;
+        height: auto;
+        width: 100%;
     }
     a {
         height: 100%;
@@ -590,6 +591,9 @@ button{
     img {
         height: 100%;
         transition: opacity .3s;
+        @include md {
+            width: 100%;
+        }
     }
     &:hover img {
         opacity: .6;
@@ -618,6 +622,9 @@ button{
     transform-origin: 0% 50%;
     transform: scaleX(0);
     background: #E0E0E0;
+    @include md {
+        display: none;
+    }
 }
 #scrollbar-hrz {
     background: #181818;

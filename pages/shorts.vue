@@ -40,7 +40,7 @@ export default {
     },
     head() {
         return {
-            title: 'Works | ぴくせる',
+            title: '#Shorts | ぴくせる',
         }
     },
     mounted(){
@@ -64,27 +64,22 @@ export default {
             }
         })(window.navigator.userAgent.toLowerCase());
 
-        if(!_ua.Mobile&&!_ua.Tablet){
-            setTimeout(function(){
-                butter.init({
-                    scrollY: false
-                })
-            }, 200);
-        } else {
-            document.querySelector(".shorts-wrapper").style.overflowX = 'scroll';
+        const windowWidth = window.innerWidth
+        if (windowWidth > 960) {
+            if(!_ua.Mobile&&!_ua.Tablet){
+                document.addEventListener('wheel', this.onScroll, { passive: false });
+                setTimeout(function(){
+                    butter.init({
+                        scrollY: false
+                    })
+                }, 200);
+            } else {
+                document.querySelector(".shorts-wrapper").style.overflowX = 'scroll';
+            }
         }
 
-        //horizontal scroll
-        document.addEventListener('wheel', this.onScroll, { passive: false });
-
         //scrollbar
-
-        const scrollWidth = document.documentElement.scrollWidth;
-        window.addEventListener('scroll', function(){
-            const scrollPosition = window.scrollX;
-            const scrollbarScale = window.scrollX / (document.body.scrollWidth - window.innerWidth);
-            const scrollbar_hrz = document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
-        })
+        window.addEventListener('scroll', this.scrollbar)
 
         //textsplit
         const container = document.querySelectorAll('.ts');
@@ -100,6 +95,7 @@ export default {
     },
     beforeDestroy () {
         document.removeEventListener('wheel', this.onScroll, { passive: false });
+        window.removeEventListener('scroll', this.scrollbar)
     },
     methods: {
         bg_add() {
@@ -112,6 +108,12 @@ export default {
             // safari needs also this
             document.body.scrollLeft -= delta;
             e.preventDefault();
+        },
+        scrollbar() {
+            const scrollWidth = document.documentElement.scrollWidth;
+            const scrollPosition = window.scrollX;
+            const scrollbarScale = window.scrollX / (document.body.scrollWidth - window.innerWidth);
+            const scrollbar_hrz = document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
         },
         onIntersect(target, options = {}) {
             const observer = new IntersectionObserver(this.addShowClass, options)
