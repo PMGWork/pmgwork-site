@@ -50,8 +50,8 @@
                 </div>
             </div>
             <div class="contact">
+                <h2 class="delay-scroll2 ts">Contact</h2>
                 <client-only>
-                    <h2 class="delay-scroll2 ts">Contact</h2>
                     <form name="contact" method="POST" data-netlify="true">
                         <input type="hidden" name="form-name" value="contact">
                         <p class="required">お名前</p>

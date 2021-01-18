@@ -78,6 +78,24 @@ export default {
             }
         }
 
+        //headercolor
+        const bg_height = document.getElementById("bg-item").clientHeight;
+        const scrollheight = bg_height - 200;
+        const linksCol = document.querySelectorAll("header a,#lottie-logo");
+
+        window.addEventListener('scroll', _.throttle(scroll, 300))
+        function scroll(){
+            if(window.scrollY > scrollheight) {
+                linksCol.forEach(linkCol => {
+                    linkCol.classList.add('hd-color');
+                });
+            } else {
+                linksCol.forEach(linkCol => {
+                    linkCol.classList.remove('hd-color');
+                });
+            }
+        };
+
         //scrollbar
         window.addEventListener('scroll', this.scrollbar)
 

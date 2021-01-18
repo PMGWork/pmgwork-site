@@ -39,7 +39,6 @@ body {
     line-height: 1.2;
     opacity: 1;
     z-index: -10;
-    transition: ease .8s;
 
     -webkit-user-select: none;
     user-select: none;
@@ -932,7 +931,7 @@ button{
 #pages-wrapper1 {
     color: $main-color;
     padding: 60px;
-    margin: -150px auto 0;
+    margin: -120px auto 0;
     max-width: 1366px;
     @include sm {
         padding: 30px;
@@ -946,6 +945,10 @@ button{
         }
         @include sm {
             padding-bottom: 50px;
+        }
+        div,h2 {
+            max-width: 1080px;
+            margin: 0 auto;
         }
         h2 {
             margin-bottom: 60px;
