@@ -27,7 +27,7 @@ export default {
       { rel: 'stylesheet', href: 'https://use.typekit.net/vqq6vsv.css' }
     ],
     script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js', body: true },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js', defer: true },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.5/lottie.min.js', body: true },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js', body: true },
       { src: '/js/butter.js', body: true }
