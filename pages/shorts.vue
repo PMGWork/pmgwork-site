@@ -72,7 +72,7 @@ export default {
                     butter.init({
                         scrollY: false
                     })
-                }, 200);
+                }, 500);
             } else {
                 document.querySelector(".shorts-wrapper").style.overflowX = 'scroll';
             }

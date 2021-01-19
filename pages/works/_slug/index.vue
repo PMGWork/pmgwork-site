@@ -101,7 +101,7 @@ export default {
             butter.init({
                 scrollY: true
             })
-        }, 200);
+        }, 500);
 
         //headercolor
         var bg_height = document.getElementById("pages-wrapper").clientHeight;

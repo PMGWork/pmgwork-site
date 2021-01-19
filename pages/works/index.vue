@@ -14,7 +14,7 @@
                         <picture>
                             <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
                             <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
-                            <img :src="content.image.url" width="1280" height="720">
+                            <img :src="content.image.url" width="1280" height="720" loading="lazy">
                         </picture>
                     </nuxt-link>
                 </div>
