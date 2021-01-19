@@ -42,19 +42,19 @@
             <div class="pages-share">
                 <h2 class="delay-scroll ts">Share!</h2>
                 <div class="share-link delay-scroll3">
-                    <a class="dl" :href="`https://twiter.com/share?text=${ title }%20%23pmgwork&url=https://pmgwork.com/works/${ id }`" rel="nofollow" target="_blank">
+                    <a class="dl" :href="`https://twiter.com/share?text=${ title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ id }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="twi">
                             <span class="icon-twitter"></span>
                             <h5>Twitter</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }&t=${ title }%20%23pmgwork`" rel="nofollow" target="_blank">
+                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }&t=${ title }%20%23pmgwork`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="face">
                             <span class="icon-facebook"></span>
                             <h5>Facebook</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`http://line.me/R/msg/text/${ title }%20https://pmgwork.com/works/${ id }`" rel="nofollow" target="_blank">
+                    <a class="dl" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ id }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="line">
                             <span class="icon-line"></span>
                             <h5>LINE</h5>
