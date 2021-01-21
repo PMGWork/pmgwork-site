@@ -37,6 +37,9 @@ export default {
     mounted(){
         butter.cancel()
 
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+
         document.getElementById("lottie-logo").style.opacity = '0';
 
         const scene = document.getElementById('scene');
