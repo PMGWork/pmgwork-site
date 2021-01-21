@@ -7,7 +7,7 @@
             <div class="pages-image scroll">
                 <picture>
                     <source :srcset="`${ thumbnail.url }?fm=webp`" type="image/webp">
-                    <img :src="thumbnail.url" width="1280" height="720">
+                    <img :src="thumbnail.url" width="1280" height="720" alt="thumbnail">
                 </picture>
             </div>
             <div class="pages-title">
@@ -43,7 +43,7 @@
                     <picture>
                         <source :srcset="`${ item.image.url }?w=640&fm=webp`" type="image/webp">
                         <source :srcset="`${ item.image.url }?w=640`" type="image/png">
-                        <img :src="item.image.url" width="640" height="360" loading="lazy">
+                        <img :src="item.image.url" width="640" height="360" loading="lazy" alt="image">
                     </picture>
                 </div>
             </div>
@@ -52,19 +52,19 @@
                 <div class="share-link delay-scroll3">
                     <a class="dl" :href="`https://twitter.com/share?text=${ title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ id }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="twi">
-                            <span class="icon-twitter"></span>
+                            <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
                             <h5>Twitter</h5>
                         </div>
                     </a>
                     <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }&t=${ title }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="face">
-                            <span class="icon-facebook"></span>
+                            <img class="desvg" src="https://simpleicons.org/icons/facebook.svg">
                             <h5>Facebook</h5>
                         </div>
                     </a>
                     <a class="dl" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ id }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="line">
-                            <span class="icon-line"></span>
+                            <img class="desvg" src="https://simpleicons.org/icons/line.svg">
                             <h5>LINE</h5>
                         </div>
                     </a>
@@ -103,6 +103,7 @@ export default {
         }
     },
     mounted(){
+        //butter
         butter.cancel()
 
         setTimeout(function(){
@@ -110,6 +111,8 @@ export default {
                 scrollY: true
             })
         }, 10);
+
+        deSVG('.desvg', true);
 
         //headercolor
         var bg_height = document.getElementById("pages-wrapper").clientHeight;

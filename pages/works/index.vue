@@ -15,7 +15,7 @@
                             <source :srcset="`${ content.thumbnail.url }?w=480&fm=webp`" media="(max-width: 560px)" type="image/webp">
                             <source :srcset="`${ content.thumbnail.url }?w=480`" media="(max-width: 560px)" type="image/png">
                             <source :srcset="`${ content.thumbnail.url }?fm=webp`" type="image/webp">
-                            <img :src="content.thumbnail.url" width="1280" height="720" loading="lazy">
+                            <img :src="content.thumbnail.url" width="1280" height="720" loading="lazy" :alt="`${ content.title }`">
                         </picture>
                     </nuxt-link>
                 </div>
@@ -29,16 +29,16 @@
             <p class="copyright">© 2020 Pixel</p>
             <div class="footer-link">
                 <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-twitter"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
                 </a>
                 <a href="https://instagram.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-instagram"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/instagram.svg">
                 </a>
                 <a href="https://youtube.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-youtube-play"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/youtube.svg">
                 </a>
                 <a href="mailto:mail@pmgwork.com" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-envelope"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/gmail.svg">
                 </a>
             </div>
         </footer>
@@ -65,6 +65,7 @@ export default {
         }
     },
     mounted(){
+        //butter
         butter.cancel()
 
         setTimeout(function(){
@@ -72,6 +73,8 @@ export default {
                 scrollY: true
             })
         }, 10);
+
+        deSVG('.desvg', true);
 
         //headercolor
         const bg_height = document.getElementById("bg-item").clientHeight;

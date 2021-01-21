@@ -9,7 +9,7 @@
         </div>
         <div class="about-wrapper">
             <div class="about-logo">
-                <img src="~/assets/img/newlogo.svg">
+                <img src="~/assets/img/newlogo.svg" alt="logo">
             </div>
             <div class="about-title">
                 <h2 class="delay-scroll ts">ぴくせる</h2>
@@ -75,16 +75,16 @@
             <p class="copyright">© 2020 Pixel</p>
             <div class="footer-link">
                 <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-twitter"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
                 </a>
                 <a href="https://instagram.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-instagram"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/instagram.svg">
                 </a>
                 <a href="https://youtube.com/pmgwork" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-youtube-play"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/youtube.svg">
                 </a>
                 <a href="mailto:mail@pmgwork.com" target="_blank" rel="noopener noreferrer">
-                    <span class="icon-envelope"></span>
+                    <img class="desvg" src="https://simpleicons.org/icons/gmail.svg">
                 </a>
             </div>
         </footer>
@@ -108,6 +108,8 @@ export default {
                 scrollY: true
             })
         }, 10);
+
+        deSVG('.desvg', true);
 
         //headercolor
         const bg_height = document.getElementById("bg-item").clientHeight;

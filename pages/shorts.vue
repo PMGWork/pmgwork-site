@@ -13,7 +13,7 @@
                         <picture>
                             <source :srcset="`${ content.image.url }?w=640&fm=webp`" type="image/webp">
                             <source :srcset="`${ content.image.url }?w=640`" type="image/png">
-                            <img :src="content.image.url">
+                            <img :src="content.image.url" :alt="`${ content.title }`">
                         </picture>
                     </a>
                 </div>

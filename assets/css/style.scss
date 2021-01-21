@@ -20,45 +20,6 @@ $main-color: #202020;
     }
 }
 
-/* IconFont */
-@font-face {
-    font-family: 'fontawesome';
-    src: url('../font/fontawesome.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'fontawesome' !important;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-}
-
-.icon-line::before {
-    content: "\e900";
-}
-.icon-twitter::before {
-    content: "\f099";
-}
-.icon-facebook::before {
-    content: "\f09a";
-}
-.icon-facebook-f::before {
-    content: "\f09a";
-}
-.icon-envelope::before {
-    content: "\f0e0";
-}
-.icon-youtube-play::before {
-    content: "\f16a";
-}
-.icon-instagram::before {
-    content: "\f16d";
-}
-
 * {
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -371,15 +332,14 @@ button{
             left: 0;
             font-size: 15px;
         }
-        span {
-            font-size: 20px;
+        svg {
+            width: 20px;
             margin-left: 20px;
-            color: #fff;
+            fill: #fff;
             transition: all .2s;
             &:hover {
                 opacity: .5;
             }
-
         }
     }
 }
@@ -571,7 +531,15 @@ button{
             &:hover {
                 opacity: .5;
             }
-
+        }
+        svg {
+            width: 20px;
+            margin-left: 20px;
+            fill: $main-color;
+            transition: all .2s;
+            &:hover {
+                opacity: .5;
+            }
         }
     }
 }
@@ -1079,7 +1047,6 @@ button{
                     width: 24px;
                     height: 24px;
                 }
-
                 $twi: #1DA1F2;
                 $face: #1778F2;
                 $line: #2CCF6F;
@@ -1114,6 +1081,16 @@ button{
                     }
                     @include sm {
                         font-size: 20px;
+                    }
+                }
+                svg {
+                    width: 28px;
+                    fill: currentColor;
+                    @include md {
+                        width: 24px;
+                    }
+                    @include sm {
+                        width: 20px;
                     }
                 }
                 h5 {
