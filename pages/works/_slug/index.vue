@@ -50,13 +50,13 @@
             <div class="pages-share">
                 <h2 class="delay-scroll ts">Share!</h2>
                 <div class="share-link delay-scroll3">
-                    <a class="dl" :href="`https://twiter.com/share?text=${ title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ id }`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`https://twitter.com/share?text=${ title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ id }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="twi">
                             <span class="icon-twitter"></span>
                             <h5>Twitter</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }&t=${ title }%20%23pmgwork`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }&t=${ title }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="face">
                             <span class="icon-facebook"></span>
                             <h5>Facebook</h5>
