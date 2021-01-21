@@ -24,7 +24,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Noto+Sans+JP:wght@500;700&display=swap' },
-      { rel: 'stylesheet', href: 'https://use.typekit.net/vqq6vsv.css' }
+      { rel: 'stylesheet', href: 'https://use.typekit.net/vqq6vsv.css' },
     ],
     script: [
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js', defer: true },
@@ -36,7 +36,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    '~/assets/scss/style.scss',
+    '~/assets/css/style.scss',
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
