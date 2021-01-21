@@ -1157,7 +1157,7 @@ button{
 .delay-scroll3.in-view {
     p,li,.dl {
         opacity: 0;
-        animation: delay-animation1 cubic-bezier(0, 0.7, 0.3, 1) .8s both;
+        animation: delay-animation2 cubic-bezier(0, 0.7, 0.3, 1) .8s both;
         @for $i from 1 through 50 {
             &:nth-child(#{$i}) {
                 animation-delay: 0.08s * $i + .3s;
@@ -1178,7 +1178,7 @@ button{
     }
 }
 .delay-image .shorts-article {
-    animation: delay-animation2 cubic-bezier(0, 0.7, 0.3, 1) 1s both;
+    animation: delay-animation3 cubic-bezier(0, 0.7, 0.3, 1) 1s both;
     @for $i from 1 through 5 {
         &:nth-child(#{$i}) {
             animation-delay: 0.2s * $i + .1s;
@@ -1191,7 +1191,7 @@ button{
 
 @keyframes delay-animation {
     0% {
-        transform: translate(0,100px) rotate(4deg);
+        transform: translate(0,100px) rotate(6deg);
         opacity: 0;
     }
     100% {
@@ -1201,7 +1201,7 @@ button{
 }
 @keyframes delay-animation1 {
     0% {
-        transform: translate(0,50px) rotate(4deg);
+        transform: translate(0,50px) rotate(6deg);
         opacity: 0;
     }
     100% {
@@ -1210,6 +1210,16 @@ button{
     }
 }
 @keyframes delay-animation2 {
+    0% {
+        transform: translate(0,50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0,0);
+        opacity: 1;
+    }
+}
+@keyframes delay-animation3 {
     0% {
         transform: translate(100px,0);
         opacity: 0;
