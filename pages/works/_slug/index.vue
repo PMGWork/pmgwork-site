@@ -2,12 +2,12 @@
 <div class="pages">
     <div class="bg-white"></div>
     <div id="butter">
-        <div :style="gradation" id="bg-item1"></div>
+        <div :style="`background-image: linear-gradient(135deg,${ gradation });`" id="bg-item1"></div>
         <div id="pages-wrapper">
             <div class="pages-image scroll">
                 <picture>
-                    <source :srcset="`${ image.url }?fm=webp`" type="image/webp">
-                    <img :src="image.url" width="1280" height="720">
+                    <source :srcset="`${ thumbnail.url }?fm=webp`" type="image/webp">
+                    <img :src="thumbnail.url" width="1280" height="720">
                 </picture>
             </div>
             <div class="pages-title">
@@ -38,7 +38,15 @@
                 <h2 class="delay-scroll2 ts">About</h2>
                 <div class="delay-scroll3 font" v-html="( body )"></div>
             </div>
-            <div class="pages-block" v-html="( bodyimage )"></div>
+            <div class="pages-block">
+                <div class="block-image scroll" v-for="item in images" :key="item.image.url">
+                    <picture>
+                        <source :srcset="`${ item.image.url }?w=640&fm=webp`" type="image/webp">
+                        <source :srcset="`${ item.image.url }?w=640`" type="image/png">
+                        <img :src="item.image.url" width="640" height="360" loading="lazy">
+                    </picture>
+                </div>
+            </div>
             <div class="pages-share">
                 <h2 class="delay-scroll ts">Share!</h2>
                 <div class="share-link delay-scroll3">
@@ -64,7 +72,7 @@
             </div>
         </div>
         <nuxt-link class="next-link" @click.native="bg_add" :to="`/works/${works.id}`">
-            <div :style="works.gradation" class="next">
+            <div :style="`background-image: linear-gradient(135deg,${ works.gradation });`" class="next">
                 <h5 class="delay-scroll4 ts">Next Project</h5>
                 <h2 class="delay-scroll ts">{{ works.title }}</h2>
             </div>
@@ -78,7 +86,7 @@ import axios from 'axios'
 export default {
     async asyncData({ params }) {
         const { data } = await axios.get(
-            `https://pmgwork.microcms.io/api/v1/works/${params.slug}?depth=1`,
+            `https://pmgwork.microcms.io/api/v1/works/${params.slug}?depth=3`,
             {
                 headers: { 'X-API-KEY': '8d729177-1247-4c07-b1b4-b2ccd3bd4e66' }
             }
@@ -90,7 +98,7 @@ export default {
             title: `${ this.title } | ぴくせる`,
             meta: [
                 { property: 'og:title', content: `${ this.title } | ぴくせる`},
-                { property: 'og:image', content: `${ this.image.url }`},
+                { property: 'og:image', content: `${ this.thumbnail.url }`},
             ],
         }
     },
@@ -101,7 +109,7 @@ export default {
             butter.init({
                 scrollY: true
             })
-        }, 500);
+        }, 10);
 
         //headercolor
         var bg_height = document.getElementById("pages-wrapper").clientHeight;

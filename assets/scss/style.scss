@@ -480,7 +480,7 @@ button{
     width: 52%;
     height: 100%;
     opacity: 0;
-    transform: translateY(200px);
+    transform: translateY(150px);
     transition: cubic-bezier(0, 0.7, 0.3, 1) 1s;
     @include md {
         width: 100%;
@@ -842,7 +842,7 @@ button{
         opacity: 0;
         width: 100%;
         height: 100%;
-        transform: translateY(200px);
+        transform: translateY(300px);
         transition: cubic-bezier(0, 0.7, 0.3, 1) 1s;
         img {
             border-radius: 8px;
@@ -957,26 +957,52 @@ button{
             }
         }
     }
-    .pages-block p {
+    .pages-block {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin: 150px 0;
+        margin: 150px 0 200px;
         @include md {
             margin: 100px 0;
         }
         @include sm {
             margin: 50px 0;
         }
-        img {
-            margin-bottom: 5%;
+        .block-image {
             width: 48%;
             height: 48%;
-            border-radius: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            transform: translateY(150px);
+            transition: cubic-bezier(0, 0.7, 0.3, 1) 1s;
+            &:nth-child(2n) {
+                margin-top: 10%;
+                margin-bottom: -5%;
+                @include md {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+            }
             @include md {
+                margin-top: 10%;
                 width: 100%;
                 height: 100%;
                 margin-bottom: 10%;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transform: scale(1.2);
+                transition: transform cubic-bezier(0, 0.7, 0.3, 1) 1s;
+            }
+            &.in-view {
+                opacity: 1;
+                transform: translateY(0px);
+                img {
+                    opacity: 1;
+                    transform: scale(1.02);
+                }
             }
         }
     }
@@ -1165,7 +1191,7 @@ button{
 
 @keyframes delay-animation {
     0% {
-        transform: translate(0,100px) rotate(0.01deg);
+        transform: translate(0,100px) rotate(4deg);
         opacity: 0;
     }
     100% {
@@ -1175,7 +1201,7 @@ button{
 }
 @keyframes delay-animation1 {
     0% {
-        transform: translate(0,50px) rotate(0.01deg);
+        transform: translate(0,50px) rotate(4deg);
         opacity: 0;
     }
     100% {
@@ -1185,11 +1211,11 @@ button{
 }
 @keyframes delay-animation2 {
     0% {
-        transform: translate(100px,0) rotate(0.01deg);
+        transform: translate(100px,0);
         opacity: 0;
     }
     100% {
-        transform: translate(0,0) rotate(0.01deg);
+        transform: translate(0,0);
         opacity: 1;
     }
 }

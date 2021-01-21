@@ -7,23 +7,24 @@
             <h1 class="delay-title ts">Works</h1>
             <p class="delay-title1 ts">Motion Graphics ・ Design ・ 3DCG</p>
         </div>
-        <ul class="works-wrapper">
-            <li class="works-article" v-for="content in contents" :key="content.id">
+        <div class="works-wrapper">
+            <div class="works-article" v-for="content in contents" :key="content.id">
                 <div class="works-image scroll">
                     <nuxt-link @click.native="bg_add" :to="`/works/${content.id}`">
                         <picture>
-                            <source :srcset="`${ content.image.url }?w=560&fm=webp`" media="(max-width: 560px)" type="image/webp">
-                            <source :srcset="`${ content.image.url }?fm=webp`" type="image/webp">
-                            <img :src="content.image.url" width="1280" height="720" loading="lazy">
+                            <source :srcset="`${ content.thumbnail.url }?w=480&fm=webp`" media="(max-width: 560px)" type="image/webp">
+                            <source :srcset="`${ content.thumbnail.url }?w=480`" media="(max-width: 560px)" type="image/png">
+                            <source :srcset="`${ content.thumbnail.url }?fm=webp`" type="image/webp">
+                            <img :src="content.thumbnail.url" width="1280" height="720" loading="lazy">
                         </picture>
                     </nuxt-link>
                 </div>
                 <div class="works-title">
-                    <h3 :style="content.gradation" class="delay-scroll ts">{{ content.title }}</h3>
+                    <h3 :style="`background-image: linear-gradient(135deg,${ content.gradation });`" class="delay-scroll ts">{{ content.title }}</h3>
                     <p class="delay-scroll1 ts">{{ content.date }}</p>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
         <footer class="footer">
             <p class="copyright">© 2020 Pixel</p>
             <div class="footer-link">
@@ -47,6 +48,7 @@
 
 <script>
 import axios from 'axios'
+
 export default {
     async asyncData() {
         const { data } = await axios.get(
