@@ -12,9 +12,8 @@
                 <div class="works-image scroll">
                     <nuxt-link @click.native="bg_add" :to="`/works/${content.id}`">
                         <picture>
-                            <source :srcset="`${ content.thumbnail.url }?w=480&fm=webp`" media="(max-width: 560px)" type="image/webp">
-                            <source :srcset="`${ content.thumbnail.url }?w=480`" media="(max-width: 560px)" type="image/png">
-                            <source :srcset="`${ content.thumbnail.url }?fm=webp`" type="image/webp">
+                            <source :srcset="`${ content.thumbnail.url }?auto=compress&lossless=0&w=480&fm=webp`" media="(max-width: 560px)" type="image/webp">
+                            <source :srcset="`${ content.thumbnail.url }?auto=compress&lossless=0&fm=webp`" type="image/webp">
                             <img :src="content.thumbnail.url" width="1280" height="720" loading="lazy" :alt="`${ content.title }`">
                         </picture>
                     </nuxt-link>

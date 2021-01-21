@@ -6,7 +6,7 @@
         <div id="pages-wrapper">
             <div class="pages-image scroll">
                 <picture>
-                    <source :srcset="`${ thumbnail.url }?fm=webp`" type="image/webp">
+                    <source :srcset="`${ thumbnail.url }?auto=compress&lossless=0&fm=webp`" type="image/webp">
                     <img :src="thumbnail.url" width="1280" height="720" alt="thumbnail">
                 </picture>
             </div>
@@ -41,8 +41,7 @@
             <div class="pages-block">
                 <div class="block-image scroll" v-for="item in images" :key="item.image.url">
                     <picture>
-                        <source :srcset="`${ item.image.url }?w=640&fm=webp`" type="image/webp">
-                        <source :srcset="`${ item.image.url }?w=640`" type="image/png">
+                        <source :srcset="`${ item.image.url }?auto=compress&lossless=0&w=640&fm=webp`" type="image/webp">
                         <img :src="item.image.url" width="640" height="360" loading="lazy" alt="image">
                     </picture>
                 </div>
