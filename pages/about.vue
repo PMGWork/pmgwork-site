@@ -51,24 +51,21 @@
             </div>
             <div class="contact">
                 <h2 class="delay-scroll2 ts">Contact</h2>
-                <client-only>
-                    <form name="contact" method="POST" data-netlify="true">
-                        <input type="hidden" name="form-name" value="contact">
-                        <p class="required">お名前</p>
-                        <input type="text" name="name" autocomplete="name" required>
-                        <p>会社名/団体名</p>
-                        <input type="text" name="company" autocomplete="organization">
-                        <p class="required">メールアドレス</p>
-                        <input type="text" name="email" autocomplete="email" placeholder="mail@example.com" required>
-                        <p class="required">件名</p>
-                        <input type="text" name="subject" required>
-                        <p class="required">本文</p>
-                        <textarea type="text" name="main" placeholder="ご依頼・ご相談の際は、スケジュールと予算を提示していただけると幸いです。" required></textarea>
-                        <p class="contact-button">
-                            <button type="submit" name="button" value="送信">送信</button>
-                        </p>
-                    </form>
-                </client-only>
+                <form class="delay-scroll3" action="https://formspree.io/f/xleozlgz" method="POST">
+                    <p class="required">お名前</p>
+                    <input type="text" name="name" autocomplete="name" required>
+                    <p>会社名/団体名</p>
+                    <input type="text" name="company" autocomplete="organization">
+                    <p class="required">メールアドレス</p>
+                    <input type="text" name="_replyto" autocomplete="email" placeholder="mail@example.com" required>
+                    <p class="required">件名</p>
+                    <input type="text" name="_subject" required>
+                    <p class="required">本文</p>
+                    <textarea type="text" name="main" placeholder="ご依頼・ご相談の際は、スケジュールと予算を提示していただけると幸いです。" required></textarea>
+                    <p class="contact-button">
+                        <button type="submit" name="button" value="送信">送信</button>
+                    </p>
+                </form>
             </div>
         </div>
         <footer class="footer">

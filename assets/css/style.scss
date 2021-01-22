@@ -1167,12 +1167,12 @@ button{
     }
 }
 .delay-scroll3 {
-    p,li,.dl {
+    p,li,.dl,input,textarea {
         opacity: 0;
     }
 }
 .delay-scroll3.in-view {
-    p,li,.dl {
+    p,li,.dl,input,textarea {
         opacity: 0;
         animation: delay-animation2 cubic-bezier(0, 0.7, 0.3, 1) .8s both;
         @for $i from 1 through 50 {
