@@ -27,10 +27,7 @@ export default {
       { rel: 'stylesheet', href: 'https://use.typekit.net/vqq6vsv.css' },
     ],
     script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js', async: true },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.5/lottie.min.js', defer: true },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js', defer: true },
-      { src: 'https://cdn.jsdelivr.net/npm/desvg@1.0.2/desvg.min.js', defer: true },
+      { src: 'https://cdn.jsdelivr.net/combine/npm/lodash@4.17.20,npm/lottie-web@5.7.6,npm/parallax-js@3.1.0,npm/desvg@1.0.2', defer: true },
       { src: '/js/butter.js', defer: true }
     ]
   },

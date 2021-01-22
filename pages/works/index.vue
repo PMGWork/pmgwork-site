@@ -14,7 +14,7 @@
                         <picture>
                             <source :srcset="`${ content.thumbnail.url }?auto=compress&lossless=0&w=480&fm=webp`" media="(max-width: 560px)" type="image/webp">
                             <source :srcset="`${ content.thumbnail.url }?auto=compress&lossless=0&fm=webp`" type="image/webp">
-                            <img :src="content.thumbnail.url" width="1280" height="720" loading="lazy" :alt="`${ content.title }`">
+                            <img :src="content.thumbnail.url" width="1280" height="720" loading="lazy" :alt="`${ content.title }`" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
                         </picture>
                     </nuxt-link>
                 </div>
