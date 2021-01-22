@@ -34,13 +34,6 @@
 
 <script>
 export default {
-    head() {
-        return {
-            meta: [
-                { name: 'og:description', content: 'ぴくせる / Pixel - Motion Graphics Designer'},
-            ],
-        }
-    },
     mounted(){
         butter.cancel()
 
