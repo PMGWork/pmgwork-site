@@ -69,7 +69,7 @@
             </div>
         </div>
         <footer class="footer">
-            <p class="copyright">© 2020 Pixel</p>
+            <p class="copyright">© 2021 Pixel</p>
             <div class="footer-link">
                 <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
                     <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
