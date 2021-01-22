@@ -7,7 +7,7 @@
             <div class="pages-image scroll">
                 <picture>
                     <source :srcset="`${ thumbnail.url }?auto=compress&lossless=0&fm=webp`" type="image/webp">
-                    <img :src="thumbnail.url" width="1280" height="720" alt="thumbnail" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                    <img :src="thumbnail.url" :width="thumbnail.width" :height="thumbnail.height" alt="thumbnail" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
                 </picture>
             </div>
             <div class="pages-title">
@@ -42,7 +42,7 @@
                 <div class="block-image scroll" v-for="item in images" :key="item.image.url">
                     <picture>
                         <source :srcset="`${ item.image.url }?auto=compress&lossless=0&w=640&fm=webp`" type="image/webp">
-                        <img :src="item.image.url" width="640" height="360" loading="lazy" alt="image" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                        <img :src="item.image.url" :width="item.image.width" :height="item.image.height" loading="lazy" alt="image" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
                     </picture>
                 </div>
             </div>

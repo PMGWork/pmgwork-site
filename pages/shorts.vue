@@ -12,7 +12,7 @@
                     <a :href="content.link" target="_blank" rel="noopener noreferrer">
                         <picture>
                             <source :srcset="`${ content.image.url }?auto=compress&lossless=0&w=640&fm=webp`" type="image/webp">
-                            <img :src="content.image.url" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                            <img :src="content.image.url" :width="content.image.width" :height="content.image.height" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
                         </picture>
                     </a>
                 </div>
@@ -30,7 +30,7 @@ import axios from 'axios'
 export default {
     async asyncData() {
         const { data } = await axios.get(
-            'https://pmgwork.microcms.io/api/v1/shorts?limit=50',
+            'https://pmgwork.microcms.io/api/v1/shorts?limit=100',
             {
                 headers: { 'X-API-KEY': '8d729177-1247-4c07-b1b4-b2ccd3bd4e66' }
             }
@@ -71,7 +71,7 @@ export default {
                     butter.init({
                         scrollY: false
                     })
-                }, 500);
+                }, 50);
             } else {
                 document.querySelector(".shorts-wrapper").style.overflowX = 'scroll';
             }
