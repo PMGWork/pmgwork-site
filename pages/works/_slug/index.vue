@@ -6,7 +6,7 @@
         <div id="pages-wrapper">
             <div class="pages-image scroll">
                 <picture>
-                    <source :srcset="`${ thumbnail.url }?auto=compress&lossless=0&fm=webp`" type="image/webp">
+                    <source :srcset="`${ thumbnail.url }&fm=webp`" type="image/webp">
                     <img :src="thumbnail.url" width="1280" height="720" alt="thumbnail" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
                 </picture>
             </div>
