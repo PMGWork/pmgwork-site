@@ -62,22 +62,22 @@ export default {
             container: document.getElementById('lottie-item'),path: '/animation/logomotion.json',renderer: 'svg',loop: true,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer1'),path: '/animation/shape1.json',renderer: 'svg',autoplay: true
+            container: document.getElementById('layer1'),path: '/animation/shape1.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer2'),path: '/animation/shape2.json',renderer: 'svg',autoplay: true
+            container: document.getElementById('layer2'),path: '/animation/shape2.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer3'),path: '/animation/shape3.json',renderer: 'svg',autoplay: true
+            container: document.getElementById('layer3'),path: '/animation/shape3.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer4'),path: '/animation/shape4.json',renderer: 'svg',autoplay: true
+            container: document.getElementById('layer4'),path: '/animation/shape4.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer5'),path: '/animation/shape5.json',renderer: 'svg',autoplay: true
+            container: document.getElementById('layer5'),path: '/animation/shape5.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer6'),path: '/animation/shape6.json',renderer: 'svg',autoplay: true
+            container: document.getElementById('layer6'),path: '/animation/shape6.json',renderer: 'svg',loop: false,autoplay: true
         });
 
         const container = document.querySelectorAll('.ts');

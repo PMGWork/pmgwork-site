@@ -5,9 +5,9 @@
         <header class="header">
             <nuxt-link @click.native="bg_remove" to="/"><div id="lottie-logo"></div></nuxt-link>
             <ul>
-                <li><nuxt-link @click.native="bg_remove" to="/works">Works</nuxt-link></li>
-                <li><nuxt-link @click.native="bg_remove" to="/shorts">#Shorts</nuxt-link></li>
-                <li><nuxt-link @click.native="bg_remove" to="/about">About</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" to="/works/">Works</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" to="/shorts/">#Shorts</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" to="/about/">About</nuxt-link></li>
             </ul>
         </header>
     </div>

@@ -10,7 +10,7 @@
         <div class="works-wrapper">
             <div class="works-article" v-for="content in contents" :key="content.id">
                 <div class="works-image scroll">
-                    <nuxt-link @click.native="bg_add" :to="`/works/${content.id}`">
+                    <nuxt-link @click.native="bg_add" :to="`/works/${content.id}/`">
                         <picture>
                             <source :srcset="`${ content.thumbnail.url }?auto=compress&lossless=0&w=480&fm=webp`" media="(max-width: 560px)" type="image/webp">
                             <source :srcset="`${ content.thumbnail.url }?auto=compress&lossless=0&fm=webp`" type="image/webp">
