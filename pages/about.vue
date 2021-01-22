@@ -104,7 +104,7 @@ export default {
             butter.init({
                 scrollY: true
             })
-        }, 10);
+        }, 50);
 
         deSVG('.desvg', true);
 
