@@ -11,7 +11,8 @@
                 <div class="shorts-image">
                     <a :href="content.link" target="_blank" rel="noopener noreferrer">
                         <picture>
-                            <source :srcset="`${ content.image.url }?auto=compress&lossless=0&w=640&fm=webp`" type="image/webp">
+                            <source :srcset="`${ content.image.url }`" type="image/webp">
+                            <source :srcset="`${ content.image.url }?fm=png`" type="image/png">
                             <img :src="content.image.url" :width="content.image.width" :height="content.image.height" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
                         </picture>
                     </a>
