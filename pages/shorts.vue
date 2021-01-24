@@ -13,7 +13,7 @@
                         <picture>
                             <source :srcset="`${ content.image.url }`" type="image/webp">
                             <source :srcset="`${ content.image.url }?fm=png`" type="image/png">
-                            <img :src="content.image.url" :width="content.image.width" :height="content.image.height" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                            <img :src="content.image.url" :width="content.image.width" :height="content.image.height" alt="video" loading="lazy" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
                         </picture>
                     </a>
                 </div>
