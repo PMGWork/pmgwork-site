@@ -56,7 +56,7 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/redirect-module',
+    '@nuxtjs/strapi',
     [
       'nuxt-compress',
       {
@@ -69,6 +69,11 @@ export default {
       },
     ],
   ],
+
+  strapi: {
+    entities: ['restaurants', 'categories'],
+    url: 'http://localhost:1337'
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

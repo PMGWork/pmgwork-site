@@ -35,6 +35,8 @@
 <script>
 export default {
     mounted(){
+        console.log(process.env.GRAPHCMS_ENDPOINT);
+
         butter.cancel()
 
         let vh = window.innerHeight * 0.01;
