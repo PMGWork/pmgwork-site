@@ -1,31 +1,40 @@
 <template>
-<div class="pages">
+<div class="pages" v-if="work">
     <div class="bg-white"></div>
     <div id="butter">
-        <div :style="`background-image: linear-gradient(135deg,${ gradation });`" id="bg-item1"></div>
+        <div :style="`background-image: linear-gradient(135deg,${ work.color.hex },${ work.color1.hex });`" id="bg-item1"></div>
         <div id="pages-wrapper">
             <div class="pages-image scroll">
                 <picture>
-                    <source :srcset="`${ thumbnail.url }?auto=compress&fm=webp`" type="image/webp">
-                    <img :src="thumbnail.url" :width="thumbnail.width" :height="thumbnail.height" alt="thumbnail" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                    <source :srcset="work.thumbnail.webp" type="image/webp">
+                    <img
+                        :src="work.thumbnail.url"
+                        :width="work.thumbnail.width"
+                        :height="work.thumbnail.height"
+                        :alt="work.title"
+                        loading="lazy"
+                        oncontextmenu="return false;"
+                        onselectstart="return false;"
+                        onmousedown="return false;"
+                    >
                 </picture>
             </div>
             <div class="pages-title">
-                <h2 class="delay-scroll2 ts">{{ title }}</h2>
-                <h5 class="delay-scroll4 ts">{{ date }}</h5>
+                <h2 class="delay-scroll2 ts">{{ work.title }}</h2>
+                <h5 class="delay-scroll4 ts">{{ work.genre }} - {{ work.date }}</h5>
             </div>
             <div class="pages-info scroll">
-                <div class="info-item" v-if="movie">
+                <div class="info-item" v-if="work.movie">
                     <h5>Movie</h5>
-                    <p>{{ movie }}</p>
+                    <p>{{ work.movie }}</p>
                 </div>
-                <div class="info-item" v-if="music">
+                <div class="info-item" v-if="work.music">
                     <h5>Music</h5>
-                    <p>{{ music }}</p>
+                    <p>{{ work.music }}</p>
                 </div>
                 <div class="info-item">
                     <h5>Use Tools</h5>
-                    <p>{{ tools }}</p>
+                    <p>{{ work.tools }}</p>
                 </div>
                 <a :href="link" target="_blank" rel="noopener noreferrer" class="info-play">
                     <h5>Play</h5>
@@ -34,34 +43,43 @@
         </div>
 
         <div id="pages-wrapper1">
-            <div class="pages-about" v-if="body">
+            <div class="pages-about" v-if="work.body">
                 <h2 class="delay-scroll2 ts">About</h2>
-                <div class="delay-scroll3 font" v-html="( body )"></div>
+                <div class="delay-scroll3 font" v-html="( work.body )"></div>
             </div>
             <div class="pages-block">
-                <div class="block-image scroll" v-for="item in images" :key="item.image.url">
+                <div class="block-image scroll" v-for="item in work.images" :key="item.url">
                     <picture>
-                        <source :srcset="`${ item.image.url }?auto=compress&w=640&fm=webp`" type="image/webp">
-                        <img :src="item.image.url" :width="item.image.width" :height="item.image.height" loading="lazy" alt="image" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                        <source :srcset="item.webp" type="image/webp">
+                        <img
+                            :src="item.url"
+                            :width="item.width"
+                            :height="item.height"
+                            alt="image"
+                            loading="lazy"
+                            oncontextmenu="return false;"
+                            onselectstart="return false;"
+                            onmousedown="return false;"
+                        >
                     </picture>
                 </div>
             </div>
             <div class="pages-share">
                 <h2 class="delay-scroll ts">Share!</h2>
                 <div class="share-link delay-scroll3">
-                    <a class="dl" :href="`https://twitter.com/share?text=${ title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ id }/`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`https://twitter.com/share?text=${ work.title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ work.slug }/`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="twi">
                             <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
                             <h5>Twitter</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ id }/&t=${ title }`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ work.slug }/&t=${ work.title }`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="face">
                             <img class="desvg" src="https://simpleicons.org/icons/facebook.svg">
                             <h5>Facebook</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ id }/`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ work.slug }/`" target="_blank" rel="nofollow noopener noreferrer">
                         <div class="line">
                             <img class="desvg" src="https://simpleicons.org/icons/line.svg">
                             <h5>LINE</h5>
@@ -70,10 +88,10 @@
                 </div>
             </div>
         </div>
-        <nuxt-link class="next-link" @click.native="bg_add" :to="`/works/${works.id}/`">
-            <div :style="`background-image: linear-gradient(135deg,${ works.gradation });`" class="next">
+        <nuxt-link class="next-link" @click.native="bg_add" :to="`/works/${ work.next.slug }/`">
+            <div :style="`background-image: linear-gradient(135deg,${ work.next.color.hex },${ work.next.color1.hex });`" class="next">
                 <h5 class="delay-scroll4 ts">Next Project</h5>
-                <h2 class="delay-scroll ts">{{ works.title }}</h2>
+                <h2 class="delay-scroll ts">{{ work.next.title }}</h2>
             </div>
         </nuxt-link>
     </div>
@@ -81,23 +99,76 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { gql } from 'graphql-request';
+
 export default {
-    async asyncData({ params }) {
-        const { data } = await axios.get(
-            `https://pmgwork.microcms.io/api/v1/works/${params.slug}?depth=3`,
+    async asyncData({ $graphcms, params }) {
+        const { slug } = params;
+
+        const { work } = await $graphcms.request(
+            gql`
+                query GetWork($slug: String) {
+                    work(where: { slug: $slug }) {
+                        title
+                        genre
+                        date
+                        color {
+                            hex
+                        }
+                        color1 {
+                            hex
+                        }
+                        thumbnail {
+                            webp: url(
+                                transformation: {
+                                    document: { output: { format: webp } }
+                                }
+                            )
+                            url
+                            height
+                            width
+                        }
+                        movie
+                        music
+                        tools
+                        body
+                        images {
+                            webp: url(
+                                transformation: {
+                                    image: { resize: { width: 640, height: 360, fit: clip } }
+                                    document: { output: { format: webp } }
+                                }
+                            )
+                            url
+                            height
+                            width
+                        }
+                        next {
+                            slug
+                            title
+                            color {
+                                hex
+                            }
+                            color1 {
+                                hex
+                            }
+                        }
+                    }
+                }
+            `,
             {
-                headers: { 'X-API-KEY': '8d729177-1247-4c07-b1b4-b2ccd3bd4e66' }
+                slug,
             }
-        )
-        return data
+        );
+
+        return { work };
     },
     head() {
         return {
-            title: `${ this.title } | ぴくせる`,
+            title: `${ this.work.title } | ぴくせる`,
             meta: [
-                { property: 'og:title', content: `${ this.title } | ぴくせる`},
-                { property: 'og:image', content: `${ this.thumbnail.url }`},
+                { property: 'og:title', content: `${ this.work.title } | ぴくせる`},
+                { property: 'og:image', content: `${ this.work.thumbnail.url }`},
             ],
         }
     },

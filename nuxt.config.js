@@ -35,11 +35,12 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    '~/assets/css/style.scss',
+    '~/assets/css/style.scss'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/graphcms.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -56,7 +57,6 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/strapi',
     [
       'nuxt-compress',
       {
@@ -69,11 +69,6 @@ export default {
       },
     ],
   ],
-
-  strapi: {
-    entities: ['restaurants', 'categories'],
-    url: 'http://localhost:1337'
-  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
@@ -101,22 +96,6 @@ export default {
           resolve(position)
         });
       });
-    }
-  },
-
-  generate: {
-    async routes() {
-      const pages = await axios
-        .get('https://pmgwork.microcms.io/api/v1/works?limit=100', {
-          headers: { 'X-API-KEY': '8d729177-1247-4c07-b1b4-b2ccd3bd4e66' }
-        })
-        .then((res) =>
-          res.data.contents.map((content) => ({
-            route: `works/${content.id}`,
-            payload: content
-          }))
-        )
-      return pages
     }
   }
 }

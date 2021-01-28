@@ -8,19 +8,27 @@
             <p class="delay-title1 ts">Motion Graphics ・ Design ・ 3DCG</p>
         </div>
         <div class="works-wrapper">
-            <div class="works-article" v-for="content in contents" :key="content.id">
+            <div class="works-article" v-for="work in works" :key="work.slug">
                 <div class="works-image scroll">
-                    <nuxt-link @click.native="bg_add" :to="`/works/${content.id}/`">
+                    <nuxt-link @click.native="bg_add" :to="`/works/${work.slug}/`">
                         <picture>
-                            <source :srcset="`${ content.thumbnail.url }?auto=compress&w=480&fm=webp`" media="(max-width: 560px)" type="image/webp">
-                            <source :srcset="`${ content.thumbnail.url }?auto=compress&fm=webp`" type="image/webp">
-                            <img :src="content.thumbnail.url" :width="content.thumbnail.width" :height="content.thumbnail.height" loading="lazy" :alt="`${ content.title }`" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                            <source :srcset="work.thumbnail.webp" type="image/webp">
+                            <img
+                                :src="work.thumbnail.url"
+                                :width="work.thumbnail.width"
+                                :height="work.thumbnail.height"
+                                :alt="work.title"
+                                loading="lazy"
+                                oncontextmenu="return false;"
+                                onselectstart="return false;"
+                                onmousedown="return false;"
+                            >
                         </picture>
                     </nuxt-link>
                 </div>
                 <div class="works-title">
-                    <h3 :style="`background-image: linear-gradient(135deg,${ content.gradation });`" class="delay-scroll ts">{{ content.title }}</h3>
-                    <p class="delay-scroll1 ts">{{ content.date }}</p>
+                    <h3 :style="`background-image: linear-gradient(135deg,${ work.color.hex },${ work.color1.hex });`" class="delay-scroll ts">{{ work.title }}</h3>
+                    <p class="delay-scroll1 ts">{{ work.genre }} - {{ work.date }}</p>
                 </div>
             </div>
         </div>
@@ -46,17 +54,40 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { gql } from 'graphql-request';
 
 export default {
-    async asyncData() {
-        const { data } = await axios.get(
-            'https://pmgwork.microcms.io/api/v1/works?limit=50',
-            {
-                headers: { 'X-API-KEY': '8d729177-1247-4c07-b1b4-b2ccd3bd4e66' }
-            }
-        )
-        return data
+    async asyncData({ $graphcms }) {
+        const { works } = await $graphcms.request(
+            gql`
+                {
+                    works(orderBy: date_DESC) {
+                        slug
+                        title
+                        genre
+                        date
+                        color {
+                            hex
+                        }
+                        color1 {
+                            hex
+                        }
+                        thumbnail {
+                            webp: url(
+                                transformation: {
+                                    document: { output: { format: webp } }
+                                }
+                            )
+                            url
+                            height
+                            width
+                        }
+                    }
+                }
+            `
+        );
+
+        return { works };
     },
     head() {
         return {

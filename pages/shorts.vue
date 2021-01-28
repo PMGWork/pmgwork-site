@@ -7,17 +7,26 @@
     </div>
     <div id="butter">
         <div class="shorts-wrapper delay-image">
-            <div class="shorts-article" v-for="content in contents" :key="content.id">
+            <div class="shorts-article" v-for="short in shorts" :key="short.id">
                 <div class="shorts-image">
-                    <a :href="content.link" target="_blank" rel="noopener noreferrer">
-                        <picture>
-                            <source :srcset="`${ content.image.url }`" type="image/webp">
-                            <source :srcset="`${ content.image.url }?fm=png`" type="image/png">
-                            <img :src="content.image.url" :width="content.image.width" :height="content.image.height" alt="video" loading="lazy" oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;">
+                    <a :href="short.link" target="_blank" rel="noopener noreferrer">
+                        <video v-if="short.video" :src="short.video.url" autoplay loop muted oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;"></video>
+                        <picture v-if="short.image">
+                            <source :srcset="short.image.webp" type="image/webp">
+                            <img
+                                :src="short.image.url"
+                                :width="short.image.width"
+                                :height="short.image.height"
+                                alt="video"
+                                loading="lazy"
+                                oncontextmenu="return false;"
+                                onselectstart="return false;"
+                                onmousedown="return false;"
+                            >
                         </picture>
                     </a>
                 </div>
-                <h3>{{ content.title }}</h3>
+                <h3>{{ short.title }}</h3>
             </div>
         </div>
     </div>
@@ -27,16 +36,36 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { gql } from 'graphql-request';
+
 export default {
-    async asyncData() {
-        const { data } = await axios.get(
-            'https://pmgwork.microcms.io/api/v1/shorts?limit=100',
-            {
-                headers: { 'X-API-KEY': '8d729177-1247-4c07-b1b4-b2ccd3bd4e66' }
-            }
-        )
-        return data
+    async asyncData({ $graphcms }) {
+        const { shorts } = await $graphcms.request(
+            gql`
+                {
+                    shorts(orderBy: date_DESC) {
+                        title
+                        video {
+                            url
+                        }
+                        image {
+                            webp: url(
+                                transformation: {
+                                    image: { resize: { width: 960, height: 540, fit: clip } }
+                                    document: { output: { format: webp } }
+                                }
+                            )
+                            url
+                            height
+                            width
+                        }
+                        link
+                    }
+                }
+            `
+        );
+
+        return { shorts };
     },
     head() {
         return {

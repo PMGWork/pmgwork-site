@@ -595,7 +595,7 @@ button{
         margin: 0 auto;
         background: #000;
     }
-    img {
+    img,video {
         height: 100%;
         width: auto;
         transition: opacity .3s;
@@ -603,7 +603,7 @@ button{
             width: 100%;
         }
     }
-    &:hover img {
+    &:hover img,&:hover video {
         opacity: .6;
     }
     h3 {
