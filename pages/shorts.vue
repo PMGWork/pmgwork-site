@@ -13,7 +13,6 @@
                         <video v-if="short.video"
                             :src="short.video.url"
                             height="540"
-                            preload="none"
                             autoplay loop muted playsinline
                             oncontextmenu="return false;"
                             onselectstart="return false;"
