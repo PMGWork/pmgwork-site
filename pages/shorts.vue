@@ -10,7 +10,7 @@
             <div class="shorts-article" v-for="short in shorts" :key="short.id">
                 <div class="shorts-image">
                     <a :href="short.link" target="_blank" rel="noopener noreferrer">
-                        <video v-if="short.video" :src="short.video.url" autoplay loop muted oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;"></video>
+                        <video v-if="short.video" :src="short.video.url" autoplay loop muted playsinline oncontextmenu="return false;" onselectstart="return false;" onmousedown="return false;"></video>
                         <picture v-if="short.image">
                             <source :srcset="short.image.webp" type="image/webp">
                             <img
