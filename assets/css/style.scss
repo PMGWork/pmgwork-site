@@ -598,6 +598,7 @@ button{
     img,video {
         height: 100%;
         width: auto;
+        transform: scale(1.01);
         transition: opacity .3s;
         @include md {
             width: 100%;
