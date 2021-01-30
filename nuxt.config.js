@@ -14,9 +14,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { name: 'description', content: 'ぴくせる - Motion Graphics Designer' },
       { property: 'og:title', content: 'ぴくせる | Pixel'},
-      { property: 'og:description', content: 'Motion Graphics Designer'},
       { property: 'og:image', content: 'https://images.microcms-assets.io/protected/ap-northeast-1:f0125be4-1574-49d1-bdb0-156ee92aa551/service/pmgwork/media/ogimage.png'},
       { name: 'twitter:card', content: 'summary_large_image'},
       { name: 'twitter:site', content: '@pmgwork'}
