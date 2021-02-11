@@ -36,7 +36,7 @@
                     <h5>Use Tools</h5>
                     <p>{{ work.tools }}</p>
                 </div>
-                <a :href="link" target="_blank" rel="noopener noreferrer" class="info-play">
+                <a :href="link" target="_blank" rel="noopener noreferrer" aria-label="play" class="info-play">
                     <h5>Play</h5>
                 </a>
             </div>
@@ -67,19 +67,19 @@
             <div class="pages-share">
                 <h2 class="delay-scroll ts">Share!</h2>
                 <div class="share-link delay-scroll3">
-                    <a class="dl" :href="`https://twitter.com/share?text=${ work.title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ work.slug }/`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`https://twitter.com/share?text=${ work.title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ work.slug }/`" target="_blank" aria-label="twitter" rel="nofollow noopener noreferrer">
                         <div class="twi">
                             <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
                             <h5>Twitter</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ work.slug }/&t=${ work.title }`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ work.slug }/&t=${ work.title }`" target="_blank" aria-label="facebook" rel="nofollow noopener noreferrer">
                         <div class="face">
                             <img class="desvg" src="https://simpleicons.org/icons/facebook.svg">
                             <h5>Facebook</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ work.slug }/`" target="_blank" rel="nofollow noopener noreferrer">
+                    <a class="dl" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ work.slug }/`" target="_blank" aria-label="line" rel="nofollow noopener noreferrer">
                         <div class="line">
                             <img class="desvg" src="https://simpleicons.org/icons/line.svg">
                             <h5>LINE</h5>
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <nuxt-link class="next-link" @click.native="bg_add" :to="`/works/${ work.next.slug }/`">
+        <nuxt-link class="next-link" @click.native="bg_add" aria-label="next" :to="`/works/${ work.next.slug }/`">
             <div :style="`background-image: linear-gradient(135deg,${ work.next.color.hex },${ work.next.color1.hex });`" class="next">
                 <h5 class="delay-scroll4 ts">Next Project</h5>
                 <h2 class="delay-scroll ts">{{ work.next.title }}</h2>

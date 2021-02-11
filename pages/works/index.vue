@@ -35,16 +35,16 @@
         <footer class="footer">
             <p class="copyright">© 2021 Pixel</p>
             <div class="footer-link">
-                <a href="https://twitter.com/pmgwork" target="_blank" rel="noopener noreferrer">
+                <a href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">
                     <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
                 </a>
-                <a href="https://instagram.com/pmgwork" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/pmgwork" target="_blank" aria-label="instagram" rel="noopener noreferrer">
                     <img class="desvg" src="https://simpleicons.org/icons/instagram.svg">
                 </a>
-                <a href="https://youtube.com/pmgwork" target="_blank" rel="noopener noreferrer">
+                <a href="https://youtube.com/pmgwork" target="_blank" aria-label="youtube" rel="noopener noreferrer">
                     <img class="desvg" src="https://simpleicons.org/icons/youtube.svg">
                 </a>
-                <a href="mailto:mail@pmgwork.com" target="_blank" rel="noopener noreferrer">
+                <a href="mailto:mail@pmgwork.com" target="_blank" aria-label="email" rel="noopener noreferrer">
                     <img class="desvg" src="https://simpleicons.org/icons/gmail.svg">
                 </a>
             </div>
@@ -92,6 +92,7 @@ export default {
     head() {
         return {
             title: 'Works | ぴくせる',
+            name: 'description', content: 'ぴくせる - Motion Graphics Designer',
         }
     },
     mounted(){

@@ -9,7 +9,7 @@
         <div class="shorts-wrapper delay-image">
             <div class="shorts-article" v-for="short in shorts" :key="short.id">
                 <div class="shorts-image">
-                    <a :href="short.link" target="_blank" rel="noopener noreferrer">
+                    <a :href="short.link" target="_blank" :aria-label="short.title" rel="noopener noreferrer">
                         <video v-if="short.video"
                             :src="short.video.url"
                             height="540"

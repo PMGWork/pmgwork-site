@@ -3,11 +3,11 @@
         <div id="loading" class="load"></div>
         <div id="background"></div>
         <header class="header">
-            <nuxt-link @click.native="bg_remove" to="/"><div id="lottie-logo"></div></nuxt-link>
+            <nuxt-link @click.native="bg_remove" aria-label="home" to="/"><div id="lottie-logo"></div></nuxt-link>
             <ul>
-                <li><nuxt-link @click.native="bg_remove" to="/works/">Works</nuxt-link></li>
-                <li><nuxt-link @click.native="bg_remove" to="/shorts/">#Shorts</nuxt-link></li>
-                <li><nuxt-link @click.native="bg_remove" to="/about/">About</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" aria-label="works" to="/works/">Works</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" aria-label="#shorts" to="/shorts/">#Shorts</nuxt-link></li>
+                <li><nuxt-link @click.native="bg_remove" aria-label="about" to="/about/">About</nuxt-link></li>
             </ul>
         </header>
     </div>
