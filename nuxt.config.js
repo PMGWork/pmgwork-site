@@ -56,17 +56,15 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     [
-      'nuxt-compress',
-      {
-        gzip: {
-          cache: true,
-        },
-        brotli: {
-          threshold: 10240,
-        },
-      },
+      '@nuxtjs/sitemap',
     ],
   ],
+
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://pmgwork.com',
+  },
+
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
