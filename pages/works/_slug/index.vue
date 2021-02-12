@@ -36,7 +36,7 @@
                     <h5>Use Tools</h5>
                     <p>{{ work.tools }}</p>
                 </div>
-                <a :href="link" target="_blank" rel="noopener noreferrer" aria-label="play" class="info-play">
+                <a :href="work.link" target="_blank" rel="noopener noreferrer" aria-label="play" class="info-play">
                     <h5>Play</h5>
                 </a>
             </div>
