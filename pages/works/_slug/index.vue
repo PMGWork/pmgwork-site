@@ -112,6 +112,7 @@ export default {
                         title
                         genre
                         date
+                        link
                         color {
                             hex
                         }
