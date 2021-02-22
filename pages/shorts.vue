@@ -165,8 +165,6 @@ export default {
             e.preventDefault();
         },
         scrollbar() {
-            const scrollWidth = document.documentElement.scrollWidth;
-            const scrollPosition = window.scrollX;
             const scrollbarScale = window.scrollX / (document.body.scrollWidth - window.innerWidth);
             const scrollbar_hrz = document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
         },

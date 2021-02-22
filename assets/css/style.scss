@@ -567,6 +567,7 @@ button{
     flex-wrap: wrap;
     bottom: 10%;
     height: calc(100vh - 550px);
+    width: 100%;
     @include md {
         flex-direction: initial;
         height: 100%;
