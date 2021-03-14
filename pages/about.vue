@@ -20,7 +20,6 @@
                 <div class="delay-scroll3 font">
                     <p>モーショングラフィックスや3DCGを用いた映像作品を制作しています。</p>
                     <p>映像制作等のご依頼は下記フォーム、もしくはTwitterのDMまでお願いします。</p>
-                    <p>（現在は依頼を募集しておりません。）</p>
                 </div>
             </div>
             <div class="about-block">
