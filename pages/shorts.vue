@@ -12,6 +12,7 @@
                     <a :href="short.link" target="_blank" :aria-label="short.title" rel="noopener noreferrer">
                         <video v-if="short.video"
                             :src="short.video.url"
+                            :width="short.vwidth"
                             height="540"
                             autoplay loop muted playsinline
                             oncontextmenu="return false;"
@@ -67,6 +68,7 @@ export default {
                             height
                             width
                         }
+                        vwidth
                         link
                     }
                 }
