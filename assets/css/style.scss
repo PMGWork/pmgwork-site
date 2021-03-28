@@ -654,7 +654,7 @@ button{
 }
 
 .about-wrapper {
-    margin: 240px auto 0;
+    margin: 240px auto 60px;
     padding: 60px;
     max-width: 1366px;
     color: $main-color;
@@ -721,6 +721,13 @@ button{
                 margin-bottom: 40px;
             }
         }
+        a {
+            color: #181818;
+            transition: all .3s;
+            &:hover {
+                opacity: .5;
+            }
+        }
     }
     .about-block {
         display: flex;
@@ -730,6 +737,7 @@ button{
         .about-tools {
             padding: 150px 0;
             border-top: solid 1px #DCDCDC;
+            border-bottom: solid 1px #DCDCDC;
             width: 100%;
             transition: background-size cubic-bezier(0.6, 0.2, 0, 1) 1.2s;
             @include md {

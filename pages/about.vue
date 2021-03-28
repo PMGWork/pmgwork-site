@@ -19,7 +19,7 @@
                 <h2 class="delay-scroll2 ts">Hello!</h2>
                 <div class="delay-scroll3 font">
                     <p>モーショングラフィックスや3DCGを用いた映像作品を制作しています。</p>
-                    <p>映像制作等のご依頼は下記フォーム、もしくはTwitterのDMまでお願いします。</p>
+                    <p>映像制作等のご依頼は <a href="mailto:mail@pmgwork.com">mail@pmgwork.com</a> 、もしくは <a href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">Twitter</a> のDMまでお願いします。</p>
                 </div>
             </div>
             <div class="about-block">
@@ -47,24 +47,6 @@
                         <li>JavaScript</li>
                     </ul>
                 </div>
-            </div>
-            <div class="contact">
-                <h2 class="delay-scroll2 ts">Contact</h2>
-                <form class="delay-scroll3" action="https://formspree.io/f/xleozlgz" method="POST">
-                    <p class="required">お名前</p>
-                    <input type="text" name="name" autocomplete="name" required>
-                    <p>会社名/団体名</p>
-                    <input type="text" name="company" autocomplete="organization">
-                    <p class="required">メールアドレス</p>
-                    <input type="text" name="_replyto" autocomplete="email" placeholder="mail@example.com" required>
-                    <p class="required">件名</p>
-                    <input type="text" name="_subject" required>
-                    <p class="required">本文</p>
-                    <textarea type="text" name="main" placeholder="ご依頼・ご相談の際は、スケジュールと予算を提示していただけると幸いです。" required></textarea>
-                    <p class="contact-button">
-                        <button type="submit" name="button" value="送信">送信</button>
-                    </p>
-                </form>
             </div>
         </div>
         <footer class="footer">
