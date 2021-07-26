@@ -20,6 +20,19 @@ $main-color: #202020;
     }
 }
 
+@font-face {
+	font-family: 'IBM-Plex-Sans-JP';
+	src: url('../font/IBMPlexSansJP-Medium.woff') format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+	font-family: 'IBM-Plex-Sans-JP';
+	src: url('../font/IBMPlexSansJP-Bold.woff') format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+
 * {
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -33,7 +46,7 @@ body {
     width: 100%;
     height: 100vh;
     color: #fff;
-    font-family: sofia-pro, "Noto Sans JP", sans-serif;
+    font-family: sofia-pro, "IBM-Plex-Sans-JP", sans-serif;
     font-size: 15px;
     font-weight: 500;
     line-height: 1.2;
@@ -174,7 +187,7 @@ input,textarea {
     width: 100%;
     letter-spacing: .05em;
     box-sizing: border-box;
-    font-family: inter, "Noto Sans JP", sans-serif;
+    font-family: inter, "IBM-Plex-Sans-JP", sans-serif;
     font-size: 17px;
     transition: ease .3s;
     @include md {
@@ -200,7 +213,7 @@ button{
     appearance: none;
 }
 .font {
-    font-family: inter, "Noto Sans JP", sans-serif;
+    font-family: inter, "IBM-Plex-Sans-JP", sans-serif;
 }
 
 .header {
