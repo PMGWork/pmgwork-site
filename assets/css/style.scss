@@ -975,6 +975,13 @@ button{
                 margin-bottom: 40px;
             }
         }
+        a {
+            color: #181818;
+            transition: all .3s;
+            &:hover {
+                opacity: .5;
+            }
+        }
     }
     .pages-block {
         display: flex;

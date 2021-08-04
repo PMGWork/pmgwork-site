@@ -28,7 +28,7 @@
                 </div>
                 <div class="works-title">
                     <h3 :style="`background-image: linear-gradient(135deg,${ work.color.hex },${ work.color1.hex });`" class="delay-scroll ts">{{ work.title }}</h3>
-                    <p class="delay-scroll1 ts">{{ work.genre }} - {{ work.date }}</p>
+                    <p class="delay-scroll1 ts">{{ work.genre }} - {{ work.date | moment }}</p>
                 </div>
             </div>
         </div>
@@ -55,6 +55,7 @@
 
 <script>
 import { gql } from 'graphql-request';
+import moment from "moment";
 
 export default {
     async asyncData({ $graphcms }) {
@@ -88,6 +89,11 @@ export default {
         );
 
         return { works };
+    },
+    filters: {
+        moment: function (date) {
+            return moment(date).format('YYYY/MM/DD')
+        }
     },
     head() {
         return {

@@ -21,7 +21,7 @@
             </div>
             <div class="pages-title">
                 <h2 class="delay-scroll2 ts">{{ work.title }}</h2>
-                <h5 class="delay-scroll4 ts">{{ work.genre }} - {{ work.date }}</h5>
+                <h5 class="delay-scroll4 ts">{{ work.genre }} - {{ work.date | moment }}</h5>
             </div>
             <div class="pages-info scroll">
                 <div class="info-item" v-if="work.movie">
@@ -45,7 +45,7 @@
         <div id="pages-wrapper1">
             <div class="pages-about" v-if="work.body">
                 <h2 class="delay-scroll2 ts">About</h2>
-                <div class="delay-scroll3 font" v-html="( work.body )"></div>
+                <div class="delay-scroll3 font" v-html="( work.body.html )"></div>
             </div>
             <div class="pages-block">
                 <div class="block-image scroll" v-for="item in work.images" :key="item.url">
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <nuxt-link class="next-link" @click.native="bg_add" aria-label="next" :to="`/works/${ work.next.slug }/`">
+        <nuxt-link class="next-link" @click.native="bg_add" v-if="work.next" aria-label="next" :to="`/works/${ work.next.slug }/`">
             <div :style="`background-image: linear-gradient(135deg,${ work.next.color.hex },${ work.next.color1.hex });`" class="next">
                 <h5 class="delay-scroll4 ts">Next Project</h5>
                 <h2 class="delay-scroll ts">{{ work.next.title }}</h2>
@@ -100,6 +100,7 @@
 
 <script>
 import { gql } from 'graphql-request';
+import moment from "moment";
 
 export default {
     async asyncData({ $graphcms, params }) {
@@ -132,7 +133,9 @@ export default {
                         movie
                         music
                         tools
-                        body
+                        body {
+                            html
+                        }
                         images {
                             webp: url(
                                 transformation: {
@@ -163,6 +166,11 @@ export default {
         );
 
         return { work };
+    },
+    filters: {
+        moment: function (date) {
+            return moment(date).format('YYYY/MM/DD')
+        }
     },
     head() {
         return {
