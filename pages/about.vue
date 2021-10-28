@@ -30,9 +30,10 @@
                         <li>Blender</li>
                         <li>Illustrator</li>
                         <li>Photoshop</li>
+                        <li>Lightroom</li>
                         <li>Xd</li>
+                        <li>Substance Painter</li>
                         <li>Vroid</li>
-                        <li>Visual Studio Code</li>
                     </ul>
                 </div>
                 <div class="about-tools">
