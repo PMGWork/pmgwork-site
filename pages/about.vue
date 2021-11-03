@@ -18,6 +18,7 @@
             <div class="about-content">
                 <h2 class="delay-scroll2 ts">Hello!</h2>
                 <div class="delay-scroll3 font">
+                    <p>※現在、案件の方を募集しておりません。何卒よろしくお願いします。</p>
                     <p>モーショングラフィックスや3DCGを用いた映像作品を制作しています。</p>
                     <p>映像制作等のご依頼は <a href="mailto:mail@pmgwork.com">mail@pmgwork.com</a> 、もしくは <a href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">Twitter</a> のDMまでお願いします。</p>
                 </div>
