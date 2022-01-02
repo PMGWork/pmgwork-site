@@ -15,7 +15,8 @@ export default {
       { property: 'og:title', content: 'ぴくせる | Pixel'},
       { property: 'og:image', content: 'https://images.microcms-assets.io/protected/ap-northeast-1:f0125be4-1574-49d1-bdb0-156ee92aa551/service/pmgwork/media/ogimage.png'},
       { name: 'twitter:card', content: 'summary_large_image'},
-      { name: 'twitter:site', content: '@pmgwork'}
+      { name: 'twitter:site', content: '@pmgwork'},
+      { name: 'theme-color', content: '#102050'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
