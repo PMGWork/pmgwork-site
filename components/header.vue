@@ -6,7 +6,6 @@
             <nuxt-link @click.native="bg_remove" aria-label="home" to="/"><div id="lottie-logo"></div></nuxt-link>
             <ul>
                 <li><nuxt-link @click.native="bg_remove" aria-label="works" to="/works/">Works</nuxt-link></li>
-                <li><nuxt-link @click.native="bg_remove" aria-label="#shorts" to="/shorts/">#Shorts</nuxt-link></li>
                 <li><nuxt-link @click.native="bg_remove" aria-label="about" to="/about/">About</nuxt-link></li>
             </ul>
         </header>

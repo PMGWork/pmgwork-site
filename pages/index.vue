@@ -1,6 +1,5 @@
 <template>
     <div class="main">
-        <div class="background"></div>
         <div id="scene">
             <div id="layer1" class="layer" data-depth="0.2"></div>
             <div id="layer2" class="layer" data-depth="0.25"></div>
