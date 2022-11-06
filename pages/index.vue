@@ -33,6 +33,11 @@
 
 <script>
 export default {
+    methods: {
+        handle(event) {
+            event.preventDefault();
+        }
+    },
     mounted(){
         console.log(process.env.GRAPHCMS_ENDPOINT);
 
@@ -44,6 +49,9 @@ export default {
             let vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
         });
+
+        document.addEventListener('touchmove', this.handle, { passive: false });
+        document.addEventListener('mousewheel', this.handle, { passive: false });
 
         document.getElementById("lottie-logo").style.opacity = '0';
 
@@ -87,6 +95,9 @@ export default {
     },
     beforeDestroy() {
         document.getElementById("lottie-logo").style.opacity = '';
+
+        document.removeEventListener('touchmove', this.handle, { passive: false });
+        document.removeEventListener('mousewheel', this.handle, { passive: false });
     }
 }
 </script>
