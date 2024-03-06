@@ -18,9 +18,8 @@
             <div class="about-content">
                 <h2 class="delay-scroll2 ts">Hello!</h2>
                 <div class="delay-scroll3 font">
-                    <p>※現在、案件の方を募集しておりません。何卒よろしくお願いします。</p>
                     <p>モーショングラフィックスや3DCGを用いた映像作品を制作しています。</p>
-                    <p>映像制作等のご依頼は <a href="mailto:mail@pmgwork.com">mail@pmgwork.com</a> 、もしくは <a href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">Twitter</a> のDMまでお願いします。</p>
+                    <p>映像制作等のご依頼は <a href="mailto:pmgwork.com@gmail.com">pmgwork.com@gmail.com</a> までお願いします。</p>
                 </div>
             </div>
             <div class="about-block">
@@ -30,11 +29,6 @@
                         <li>AfterEffects</li>
                         <li>Blender</li>
                         <li>Illustrator</li>
-                        <li>Photoshop</li>
-                        <li>Lightroom</li>
-                        <li>Xd</li>
-                        <li>Substance Painter</li>
-                        <li>Vroid</li>
                     </ul>
                 </div>
                 <div class="about-tools">
@@ -43,10 +37,9 @@
                         <li>Motion Graphics</li>
                         <li>3DCG</li>
                         <li>Graphic Design</li>
-                        <li>UI・UX</li>
                         <li>Web Design</li>
                         <li>HTML・CSS</li>
-                        <li>JavaScript</li>
+                        <li>Processing</li>
                     </ul>
                 </div>
             </div>
@@ -63,7 +56,7 @@
                 <a href="https://youtube.com/pmgwork" target="_blank" aria-label="youtube" rel="noopener noreferrer">
                     <img class="desvg" src="https://simpleicons.org/icons/youtube.svg">
                 </a>
-                <a href="mailto:mail@pmgwork.com" target="_blank" aria-label="email" rel="noopener noreferrer">
+                <a href="mailto:pmgwork.com@gmail.com" target="_blank" aria-label="email" rel="noopener noreferrer">
                     <img class="desvg" src="https://simpleicons.org/icons/gmail.svg">
                 </a>
             </div>
