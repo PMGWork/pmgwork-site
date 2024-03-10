@@ -34,7 +34,7 @@
                 </div>
             </div>
             <footer class="footer">
-                <p class="copyright">© 2021 Pixel</p>
+                <p class="copyright">© 2024 Pixel</p>
                 <div class="footer-link">
                     <a href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">
                         <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
@@ -67,7 +67,6 @@
                             slug
                             title
                             isClient
-                            genre
                             date
                             color {
                                 hex

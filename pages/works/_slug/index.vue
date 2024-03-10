@@ -21,7 +21,8 @@
                 </div>
                 <div class="pages-title">
                     <h2 class="delay-scroll2 ts">{{ work.title }}</h2>
-                    <h5 class="delay-scroll4 ts">{{ work.genre }} - {{ work.date | moment }}</h5>
+                    <p v-if="work.isClient" class="delay-scroll4 ts">Client Work - {{ work.date | moment }}</p>
+                    <p v-else class="delay-scroll4 ts">Personal Work - {{ work.date | moment }}</p>
                 </div>
                 <div class="pages-info scroll">
                     <div class="info-item" v-for="item in work.credits" :key="item.title">
@@ -107,7 +108,7 @@
                     query GetWork($slug: String) {
                         work(where: { slug: $slug }) {
                             title
-                            genre
+                            isClient
                             date
                             link
                             color {
@@ -126,13 +127,11 @@
                                 height
                                 width
                             }
-                            movie
-                            music
-                            tools
                             credits {
                                 title
                                 name
                             }
+                            tools
                             body {
                                 html
                             }
