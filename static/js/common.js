@@ -33,7 +33,7 @@ export default {
             y: document.documentElement.clientHeight / 2
         }
 
-        if (window.matchMedia( "(pointer: fine)" ).matches) {
+        if(window.matchMedia( "(pointer: fine)" ).matches) {
             document.addEventListener("mousemove", e => {
                 mPos.x = e.clientX;
                 mPos.y = e.clientY;
@@ -56,7 +56,6 @@ export default {
         this.throttledColorChange = _.throttle(() => this.colorChange(mPos.y, scrollheight, links, stalker), 300);
         window.addEventListener('scroll', this.throttledColorChange);
         document.addEventListener('mousemove', this.throttledColorChange);
-
 
         //hover
         const links_view = document.getElementsByClassName("view");
