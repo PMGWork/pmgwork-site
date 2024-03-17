@@ -76,7 +76,12 @@ export default {
         if(window.matchMedia( "(pointer: fine)" ).matches) {
             document.addEventListener("mousemove", (this.parallax), false);
         } else {
-            window.addEventListener("deviceorientation", (this.parallax), false);
+            DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if(permissionState === "granted") {
+                    window.addEventListener("deviceorientation", (this.parallax), false);
+                }
+            })
         }
     },
     beforeDestroy() {
