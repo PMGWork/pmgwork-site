@@ -1,17 +1,19 @@
 <template>
   <div>
+    <Stalker />
     <Header />
     <nuxt />
   </div>
 </template>
 
 <script>
-import Header from '~/components/header.vue'
+import Stalker from "~/components/stalker.vue";
+import Header from "~/components/header.vue";
 
 export default {
-  name: 'default',
+  name: "default",
   components: {
-    Header
-  }
-}
+    Stalker, Header
+  },
+};
 </script>

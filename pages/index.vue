@@ -1,29 +1,29 @@
 <template>
     <div class="main">
         <div id="scene">
-            <div id="layer1" class="layer" data-depth="0.2"></div>
-            <div id="layer2" class="layer" data-depth="0.25"></div>
-            <div id="layer3" class="layer" data-depth="0.3"></div>
-            <div id="layer4" class="layer" data-depth="0.35"></div>
-            <div id="layer5" class="layer" data-depth="0.4"></div>
-            <div id="layer6" class="layer" data-depth="0.45"></div>
+            <div id="layer1" class="layer" depth="0.2"></div>
+            <div id="layer2" class="layer" depth="0.25"></div>
+            <div id="layer3" class="layer" depth="0.3"></div>
+            <div id="layer4" class="layer" depth="0.35"></div>
+            <div id="layer5" class="layer" depth="0.4"></div>
+            <div id="layer6" class="layer" depth="0.45"></div>
         </div>
         <div id="lottie-item"></div>
-        <div class="main-title">
-            <h1 class="delay-title ts">Pixel</h1>
-            <h4 class="delay-title1 ts">Motion Graphics Designer</h4>
+        <div class="main-title-wrapper">
+            <h1 class="main-title ts">Pixel</h1>
+            <h4 class="main-subtitle ts">Motion Graphics Designer</h4>
         </div>
         <div class="main-link">
-            <a href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">
+            <a class="range" href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">
                 <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
             </a>
-            <a href="https://instagram.com/pmgwork" target="_blank" aria-label="instagram" rel="noopener noreferrer">
+            <a class="range" href="https://instagram.com/pmgwork" target="_blank" aria-label="instagram" rel="noopener noreferrer">
                 <img class="desvg" src="https://simpleicons.org/icons/instagram.svg">
             </a>
-            <a href="https://youtube.com/pmgwork" target="_blank" aria-label="youtube" rel="noopener noreferrer">
+            <a class="range" href="https://youtube.com/pmgwork" target="_blank" aria-label="youtube" rel="noopener noreferrer">
                 <img class="desvg" src="https://simpleicons.org/icons/youtube.svg">
             </a>
-            <a href="mailto:mail@pmgwork.com" target="_blank" aria-label="email" rel="noopener noreferrer">
+            <a class="range" href="mailto:mail@pmgwork.com" target="_blank" aria-label="email" rel="noopener noreferrer">
                 <img class="desvg" src="https://simpleicons.org/icons/gmail.svg">
             </a>
         </div>
@@ -32,16 +32,14 @@
 </template>
 
 <script>
-export default {
-    methods: {
-        handle(event) {
-            event.preventDefault();
-        }
-    },
-    mounted(){
-        console.log(process.env.GRAPHCMS_ENDPOINT);
+import common from '~/static/js/common.js';
 
-        butter.cancel()
+export default {
+    mixins: [
+        common
+    ],
+    mounted(){
+        butter.cancel();
 
         let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -50,15 +48,7 @@ export default {
             document.documentElement.style.setProperty('--vh', `${vh}px`);
         });
 
-        document.addEventListener('touchmove', this.handle, { passive: false });
-        document.addEventListener('mousewheel', this.handle, { passive: false });
-
         document.getElementById("lottie-logo").style.opacity = '0';
-
-        deSVG('.desvg', true);
-
-        const scene = document.getElementById('scene');
-        const parallaxInstance = new Parallax(scene);
 
         lottie.loadAnimation({
             container: document.getElementById('lottie-item'),path: '/animation/logomotion.json',renderer: 'svg',loop: true,autoplay: true
@@ -82,22 +72,44 @@ export default {
             container: document.getElementById('layer6'),path: '/animation/shape6.json',renderer: 'svg',loop: false,autoplay: true
         });
 
-        const container = document.querySelectorAll('.ts');
-        container.forEach(item => {
-            const content = item.textContent;
-            const text = content.trim();
-            let newHtml = "";
-            text.split("").forEach(function(v) {
-                newHtml += "<span>" + v + "</span>";
-            });
-            item.innerHTML = newHtml
-        });
+        document.addEventListener("mousemove", (this.parallax), false);
     },
     beforeDestroy() {
-        document.getElementById("lottie-logo").style.opacity = '';
+        document.getElementById("lottie-logo").style.opacity = null;
+        document.removeEventListener('mousemove', (this.parallax), { passive: false });
+    },
+    methods: {
+        parallax(e) {
+            let layers = document.getElementsByClassName("layer");
+            const depth = 0.3;
+            for(var i = 0; i < layers.length; i++) {
+                layers[i].style.transition = "all " + .5 + "s cubic-bezier(.2,.6,.5,1)";
+            }
 
-        document.removeEventListener('touchmove', this.handle, { passive: false });
-        document.removeEventListener('mousewheel', this.handle, { passive: false });
+            //マウス位置、ウィンドウ位置
+            let mPos = {
+                x: e.clientX,
+                y: e.clientY
+            }
+            let wPos = {
+                x: document.body.clientWidth,
+                y: document.body.clientHeight
+            }
+
+            //コンテンツ位置
+            let parallax = {
+                x: mPos.x - wPos.x / 2.0,
+                y: mPos.y - wPos.y / 2.0
+            }
+
+            //コンテンツを移動
+            for(var i = 0; i < layers.length; i++) {
+                let d = depth * layers[i].getAttribute("depth");
+                layers[i].style.transform =
+                    "translate3d(" + d * -parallax.x + "px," + d * -parallax.y + "px, 0)";
+
+            }
+        }
     }
 }
 </script>

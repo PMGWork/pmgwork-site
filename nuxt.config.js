@@ -56,6 +56,7 @@ export default {
   modules: [
     [
       '@nuxtjs/sitemap',
+      '@pinia/nuxt',
     ],
   ],
 
