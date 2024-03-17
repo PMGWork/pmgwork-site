@@ -75,19 +75,11 @@ export default {
         //パララックス実行
         if(window.matchMedia( "(pointer: fine)" ).matches) {
             document.addEventListener("mousemove", (this.parallax), false);
-        } else {
-            DeviceOrientationEvent.requestPermission()
-            .then(permissionState => {
-                if(permissionState === "granted") {
-                    window.addEventListener("deviceorientation", (this.parallax), false);
-                }
-            })
         }
     },
     beforeDestroy() {
         document.getElementById("lottie-logo").style.opacity = null;
         document.removeEventListener('mousemove', (this.parallax), { passive: false });
-        window.removeEventListener('deviceorientation', (this.parallax), { passive: false });
     },
     methods: {
         parallax(e) {
@@ -99,20 +91,8 @@ export default {
 
             //マウス位置、ウィンドウ位置
             let mPos = {
-                x: 0,
-                y: 0
-            }
-
-            if(window.matchMedia( "(pointer: fine)" ).matches) {
-                mPos = {
-                    x: e.clientX,
-                    y: e.clientY
-                }
-            } else {
-                mPos = {
-                    x: e.gamma,
-                    y: e.beta
-                }
+                x: e.clientX,
+                y: e.clientY
             }
             let wPos = {
                 x: document.body.clientWidth,

@@ -9,8 +9,6 @@
 <script>
 export default {
     mounted(){
-        const stalker = document.getElementById("stalker");
-
         if (window.matchMedia( "(pointer: fine)" ).matches) {
             let mPos = {
                 x: document.documentElement.clientWidth / 2,
