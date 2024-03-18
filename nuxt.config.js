@@ -44,7 +44,6 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  ssr: false,
   buildModules: [
     '@nuxtjs/google-analytics'
   ],
@@ -56,7 +55,7 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     [
-      '@nuxtjs/sitemap',
+      '@nuxtjs/sitemap'
     ],
   ],
 
@@ -68,7 +67,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    transpile: ['@lottiefiles/dotlottie-web'],
   },
 
   router: {
