@@ -15,11 +15,13 @@
 </template>
 
 <script>
+import lottie from 'lottie-web';
+
 export default {
     mounted(){
         //lottie
         lottie.loadAnimation({
-            container: document.getElementById('lottie-logo'),path: '/animation/logomotion.json',renderer: 'svg',loop: true,autoplay: true
+            container: document.getElementById('lottie-logo'),path: '/animation/lm.json',renderer: 'svg',loop: true,autoplay: true
         })
 
         //loading

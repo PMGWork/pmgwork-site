@@ -33,6 +33,8 @@
 
 <script>
 import common from '~/static/js/common.js';
+import lottie from 'lottie-web';
+import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 export default {
     mixins: [
@@ -51,25 +53,25 @@ export default {
         document.getElementById("lottie-logo").style.opacity = '0';
 
         lottie.loadAnimation({
-            container: document.getElementById('lottie-item'),path: '/animation/logomotion.json',renderer: 'svg',loop: true,autoplay: true
+            container: document.getElementById('lottie-item'),path: '/animation/lm.json',renderer: 'svg',loop: true,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer1'),path: '/animation/shape1.json',renderer: 'svg',loop: false,autoplay: true
+            container: document.getElementById('layer1'),path: '/animation/1.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer2'),path: '/animation/shape2.json',renderer: 'svg',loop: false,autoplay: true
+            container: document.getElementById('layer2'),path: '/animation/2.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer3'),path: '/animation/shape3.json',renderer: 'svg',loop: false,autoplay: true
+            container: document.getElementById('layer3'),path: '/animation/3.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer4'),path: '/animation/shape4.json',renderer: 'svg',loop: false,autoplay: true
+            container: document.getElementById('layer4'),path: '/animation/4.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer5'),path: '/animation/shape5.json',renderer: 'svg',loop: false,autoplay: true
+            container: document.getElementById('layer5'),path: '/animation/5.json',renderer: 'svg',loop: false,autoplay: true
         });
         lottie.loadAnimation({
-            container: document.getElementById('layer6'),path: '/animation/shape6.json',renderer: 'svg',loop: false,autoplay: true
+            container: document.getElementById('layer6'),path: '/animation/6.json',renderer: 'svg',loop: false,autoplay: true
         });
 
         //パララックス実行

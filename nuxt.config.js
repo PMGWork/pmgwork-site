@@ -25,7 +25,7 @@ export default {
       { rel: 'stylesheet', href: 'https://use.typekit.net/vqq6vsv.css' },
     ],
     script: [
-      { src: 'https://cdn.jsdelivr.net/combine/npm/lodash@4.17.20,npm/lottie-web@5.7.6,npm/parallax-js@3.1.0,npm/desvg@1.0.2', defer: true },
+      { src: 'https://cdn.jsdelivr.net/npm/desvg@1.0.2', defer: true },
       { src: '/js/butter.js', defer: true }
     ]
   },
@@ -44,6 +44,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+  ssr: false,
   buildModules: [
     '@nuxtjs/google-analytics'
   ],
@@ -56,7 +57,6 @@ export default {
   modules: [
     [
       '@nuxtjs/sitemap',
-      '@pinia/nuxt',
     ],
   ],
 
@@ -68,6 +68,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    transpile: ['@lottiefiles/dotlottie-web'],
   },
 
   router: {
