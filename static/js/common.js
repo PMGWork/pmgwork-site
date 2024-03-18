@@ -1,10 +1,19 @@
-import dayjs from "dayjs";
 import _ from 'lodash';
+
+import 'dayjs/locale/ja'
+import dayjs, { locale, extend } from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+locale('ja')
+extend(relativeTime);
 
 export default {
     filters: {
         dayjs: function (date) {
             return dayjs(date).format('YYYY/MM/DD')
+        },
+        dayjs_relative: function (date) {
+            return dayjs(date).fromNow()
         }
     },
     data() {
@@ -49,6 +58,8 @@ export default {
             bg_height = document.getElementById("bg-item").clientHeight;
         } else if(document.getElementById("pages-wrapper")) {
             bg_height = document.getElementById("pages-wrapper").clientHeight;
+        } else if(document.getElementById("header-image")) {
+            bg_height = document.getElementById("header-image").clientHeight + 30;
         }
 
         const scrollheight = bg_height - 200;

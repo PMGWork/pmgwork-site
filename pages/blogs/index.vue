@@ -3,14 +3,14 @@
         <div class="bg-white"></div>
         <div id="butter">
             <div id="bg-item"></div>
-            <div class="heading">
-                <h1 class="delay-title ts">Blogs</h1>
-                <p class="delay-title1 ts">いろいろ</p>
+            <div class="title-wrapper">
+                <h1 class="title ts">Blogs</h1>
+                <p class="subtitle ts">雑多</p>
             </div>
             <div class="blogs-wrapper">
                 <div class="blogs-article" v-for="blog in blogs" :key="blog.id">
                     <nuxt-link @click.native="bg_add" :to="`/blogs/${blog.id}/`">
-                        <div class="article-wrapper scroll">
+                        <div class="article-wrapper scroll view">
                             <div class="blogs-image scroll">
                                 <picture>
                                     <source :srcset="blog.thumbnail.webp" type="image/webp">
@@ -60,12 +60,7 @@
 
     <script>
     import { gql } from 'graphql-request';
-    import 'dayjs/locale/ja'
-    import dayjs, { locale, extend } from "dayjs";
-    import relativeTime from 'dayjs/plugin/relativeTime';
-
-    locale('ja')
-    extend(relativeTime);
+    import common from '~/static/js/common.js';
 
     export default {
         async asyncData({ $graphcms }) {
@@ -93,20 +88,15 @@
 
             return { blogs };
         },
-        filters: {
-            dayjs_absolute: function (date) {
-                return dayjs(date).format('YYYY/MM/DD')
-            },
-            dayjs_relative: function (date) {
-                return dayjs(date).fromNow()
-            }
-        },
         head() {
             return {
                 title: 'Blogs | ぴくせる',
                 name: 'description', content: 'ぴくせる - Motion Graphics Designer',
             }
         },
+        mixins: [
+            common
+        ],
         mounted(){
             //butter
             butter.cancel()
@@ -117,62 +107,14 @@
                 })
             }, 50);
 
-            deSVG('.desvg', true);
-
-            //headercolor
-            const bg_height = document.getElementById("bg-item").clientHeight;
-            const scrollheight = bg_height - 200;
-            const linksCol = document.querySelectorAll("header a,#lottie-logo");
-
-            window.addEventListener('scroll', _.throttle(scroll, 300))
-            function scroll(){
-                if(window.scrollY > scrollheight) {
-                    linksCol.forEach(linkCol => {
-                        linkCol.classList.add('hd-color');
-                    });
-                } else {
-                    linksCol.forEach(linkCol => {
-                        linkCol.classList.remove('hd-color');
-                    });
-                }
-            };
-
-            //textsplit
-            const container = document.querySelectorAll('.ts');
-            container.forEach(item => {
-                const content = item.textContent;
-                const text = content.trim();
-                let newHtml = "";
-                text.split("").forEach(function(v) {
-                    newHtml += "<span>" + v + "</span>";
-                });
-                item.innerHTML = newHtml
-            });
-
             //Animation
             const options = {
                 root: null,
                 rootMargin: "-10% 0px",
                 threshold: 0
             }
-            const scrollio = document.querySelectorAll('.scroll,.delay-scroll,.delay-scroll1')
+            const scrollio = document.querySelectorAll('.scroll')
             scrollio.forEach((target) => this.onIntersect(target, options))
-        },
-        methods: {
-            bg_add() {
-                document.getElementById("background").classList.add('bg-color');
-            },
-            onIntersect(target, options = {}) {
-                const observer = new IntersectionObserver(this.addShowClass, options)
-                observer.observe(target)
-            },
-            addShowClass(entries) {
-                for(const e of entries) {
-                    if (e.isIntersecting) {
-                        e.target.classList.add("in-view")
-                    }
-                }
-            }
         }
     }
     </script>

@@ -34,7 +34,6 @@
 <script>
 import common from '~/static/js/common.js';
 import lottie from 'lottie-web';
-import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 export default {
     mixins: [

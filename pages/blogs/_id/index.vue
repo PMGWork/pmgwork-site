@@ -2,7 +2,7 @@
     <div class="blog" v-if="blog">
         <div class="bg-white"></div>
         <div id="butter">
-            <div class="header-image">
+            <div id="header-image">
                     <picture>
                         <source :srcset="blog.thumbnail.webp" type="image/webp">
                         <img
@@ -18,34 +18,34 @@
                     </picture>
                 </div>
             <div id="blog-wrapper">
-                <div class="blog-title">
-                    <h1 class="delay-scroll5 ts">{{ blog.title }}</h1>
-                    <div class="delay-scroll6 blog-property">
+                <div class="blog-title-wrapper">
+                    <h1 class="blog-title ts">{{ blog.title }}</h1>
+                    <div class="list blog-property">
                         <li>{{ blog.date | dayjs_relative }}</li>
                         <li>#Tech</li>
                     </div>
                 </div>
                 <div class="blog-body" v-if="blog.body">
-                    <div class="delay-scroll6 font" v-html="( blog.body.html )"></div>
+                    <div class="block font" v-html="( blog.body.html )"></div>
                 </div>
             </div>
 
             <div class="blog-share">
                 <h2 class="delay-scroll ts">Share!</h2>
                 <div class="share-link delay-scroll3">
-                    <a class="dl" :href="`https://twitter.com/share?text=${ blog.title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ blog.id }/`" target="_blank" aria-label="twitter" rel="nofollow noopener noreferrer">
+                    <a class="dl hover" :href="`https://twitter.com/share?text=${ blog.title }&hashtags=pmgwork&url=https://pmgwork.com/works/${ blog.id }/`" target="_blank" aria-label="twitter" rel="nofollow noopener noreferrer">
                         <div class="twi">
                             <img class="desvg" src="https://simpleicons.org/icons/twitter.svg">
                             <h5>Twitter</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ blog.id }/&t=${ blog.title }`" target="_blank" aria-label="facebook" rel="nofollow noopener noreferrer">
+                    <a class="dl hover" :href="`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${ blog.id }/&t=${ blog.title }`" target="_blank" aria-label="facebook" rel="nofollow noopener noreferrer">
                         <div class="face">
                             <img class="desvg" src="https://simpleicons.org/icons/facebook.svg">
                             <h5>Facebook</h5>
                         </div>
                     </a>
-                    <a class="dl" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ blog.id }/`" target="_blank" aria-label="line" rel="nofollow noopener noreferrer">
+                    <a class="dl hover" :href="`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${ blog.id }/`" target="_blank" aria-label="line" rel="nofollow noopener noreferrer">
                         <div class="line">
                             <img class="desvg" src="https://simpleicons.org/icons/line.svg">
                             <h5>LINE</h5>
@@ -59,7 +59,7 @@
 
     <script>
     import { gql } from 'graphql-request';
-    import dayjs from "dayjs";
+    import common from '~/static/js/common.js';
 
     export default {
         async asyncData({ $graphcms, params }) {
@@ -90,11 +90,6 @@
 
             return { blog };
         },
-        filters: {
-            dayjs: function (date) {
-                return dayjs(date).format('YYYY/MM/DD')
-            }
-        },
         head() {
             return {
                 title: `${ this.blog.title } | ぴくせる`,
@@ -104,6 +99,9 @@
                 ],
             }
         },
+        mixins: [
+            common
+        ],
         mounted(){
             //butter
             butter.cancel()
@@ -114,37 +112,10 @@
                 })
             }, 50);
 
-            deSVG('.desvg', true);
-
-            //headercolor
-            var bg_height = document.getElementById("blog-wrapper").clientHeight;
-
-            const scrollheight = bg_height - 200;
-            const linksCol = document.querySelectorAll("header a,#lottie-logo");
-
-            window.addEventListener('scroll', _.throttle(scroll, 300))
-            function scroll(){
-                if(window.scrollY > scrollheight) {
-                    linksCol.forEach(linkCol => {
-                        linkCol.classList.add('hd-color');
-                    });
-                } else {
-                    linksCol.forEach(linkCol => {
-                        linkCol.classList.remove('hd-color');
-                    });
-                }
-            };
-
-            //textsplit
-            const container = document.querySelectorAll('.ts');
-            container.forEach(item => {
-                const content = item.textContent;
-                const text = content.trim();
-                let newHtml = "";
-                text.split("").forEach(function(v) {
-                    newHtml += "<span>" + v + "</span>";
-                });
-                item.innerHTML = newHtml
+            //addClass
+            const blocks = document.querySelectorAll('.block,.list');
+            blocks.forEach(block => {
+                Array.from(block.children).forEach(child => child.classList.add('anm'));
             });
 
             //Animation
@@ -153,25 +124,9 @@
                 rootMargin: "-10% 0px",
                 threshold: 0
             }
-            const scrollio = document.querySelectorAll('.scroll,.delay-scroll,.delay-scroll1,.delay-scroll2,.delay-scroll3,.delay-scroll4,.delay-scroll5,.delay-scroll6')
+            const scrollio = document.querySelectorAll('.blog-title,.list,.anm,.block,.next-heading')
             scrollio.forEach((target) => this.onIntersect(target, options))
 
-        },
-        beforeDestroy(){
-            window.removeEventListener('resize', (this.bg_size));
-        },
-        methods: {
-            onIntersect(target, options = {}) {
-                const observer = new IntersectionObserver(this.addShowClass, options)
-                observer.observe(target)
-            },
-            addShowClass(entries) {
-                for(const e of entries) {
-                    if (e.isIntersecting) {
-                        e.target.classList.add("in-view")
-                    }
-                }
-            }
         }
     }
     </script>

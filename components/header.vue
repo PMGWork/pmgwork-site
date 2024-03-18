@@ -9,6 +9,7 @@
             <ul>
                 <li class="range"><nuxt-link @click.native="bg_remove" aria-label="works" to="/works/">Works</nuxt-link></li>
                 <li class="range"><nuxt-link @click.native="bg_remove" aria-label="about" to="/about/">About</nuxt-link></li>
+                <li class="range"><nuxt-link @click.native="bg_remove" aria-label="blogs" to="/blogs/">Blogs</nuxt-link></li>
             </ul>
         </header>
     </div>
