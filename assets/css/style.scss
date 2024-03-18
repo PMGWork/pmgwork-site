@@ -566,13 +566,11 @@ button{
     }
 
     .blogs-title {
-        margin: 20px;
-        @include md {
-            position: relative;
-            width: 100%;
-        }
+        padding: 20px;
+
         h4{
             margin-bottom: 20px;
+            margin-top: 0;
             font-size: 20px;
             line-height: 2;
         }
