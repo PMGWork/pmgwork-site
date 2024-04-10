@@ -1,12 +1,12 @@
 <template>
     <div class="main">
         <div id="scene">
-            <div id="layer1" class="layer" depth="0.2"></div>
-            <div id="layer2" class="layer" depth="0.25"></div>
-            <div id="layer3" class="layer" depth="0.3"></div>
-            <div id="layer4" class="layer" depth="0.35"></div>
-            <div id="layer5" class="layer" depth="0.4"></div>
-            <div id="layer6" class="layer" depth="0.45"></div>
+            <canvas id="layer1" class="layer" width="1200" height="1000" depth="0.2"></canvas>
+            <canvas id="layer2" class="layer" width="1200" height="1000" depth="0.25"></canvas>
+            <canvas id="layer3" class="layer" width="1200" height="1000" depth="0.3"></canvas>
+            <canvas id="layer4" class="layer" width="1200" height="1000" depth="0.35"></canvas>
+            <canvas id="layer5" class="layer" width="1200" height="1000" depth="0.4"></canvas>
+            <canvas id="layer6" class="layer" width="1200" height="1000" depth="0.45"></canvas>
         </div>
         <div id="lottie-item"></div>
         <div class="main-title-wrapper">
@@ -34,6 +34,7 @@
 <script>
 import common from '~/static/js/common.js';
 import lottie from 'lottie-web';
+import * as rive from "@rive-app/canvas";
 
 export default {
     mixins: [
@@ -41,6 +42,18 @@ export default {
     ],
     mounted(){
         butter.cancel();
+
+        //rive
+        for(var i = 0; i < 6; i++) {
+            const r = new rive.Rive({
+                src: `/animation/${ i + 1 }.riv`,
+                canvas: document.getElementById(`layer${ i + 1 }`),
+                autoplay: true,
+                onLoad: () => {
+                    r.resizeDrawingSurfaceToCanvas();
+                },
+            });
+        }
 
         let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -50,28 +63,6 @@ export default {
         });
 
         document.getElementById("lottie-logo").style.opacity = '0';
-
-        lottie.loadAnimation({
-            container: document.getElementById('lottie-item'),path: '/animation/lm.json',renderer: 'svg',loop: true,autoplay: true
-        });
-        lottie.loadAnimation({
-            container: document.getElementById('layer1'),path: '/animation/1.json',renderer: 'svg',loop: false,autoplay: true
-        });
-        lottie.loadAnimation({
-            container: document.getElementById('layer2'),path: '/animation/2.json',renderer: 'svg',loop: false,autoplay: true
-        });
-        lottie.loadAnimation({
-            container: document.getElementById('layer3'),path: '/animation/3.json',renderer: 'svg',loop: false,autoplay: true
-        });
-        lottie.loadAnimation({
-            container: document.getElementById('layer4'),path: '/animation/4.json',renderer: 'svg',loop: false,autoplay: true
-        });
-        lottie.loadAnimation({
-            container: document.getElementById('layer5'),path: '/animation/5.json',renderer: 'svg',loop: false,autoplay: true
-        });
-        lottie.loadAnimation({
-            container: document.getElementById('layer6'),path: '/animation/6.json',renderer: 'svg',loop: false,autoplay: true
-        });
 
         //パララックス実行
         if(window.matchMedia( "(pointer: fine)" ).matches) {

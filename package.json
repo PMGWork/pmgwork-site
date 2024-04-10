@@ -12,6 +12,7 @@
     "@lottiefiles/dotlottie-web": "^0.16.0",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/sitemap": "^2.4.0",
+    "@rive-app/canvas": "^2.14.0",
     "core-js": "^3.36.0",
     "dayjs": "^1.11.10",
     "graphql": "^15.5.0",
