@@ -4,7 +4,7 @@
         <div id="background"></div>
         <header class="header">
             <nuxt-link class="range" @click.native="bg_remove" aria-label="home" to="/">
-                <div id="lottie-logo"></div>
+                <canvas id="lottie-logo" width="400" height="400"></canvas>
             </nuxt-link>
             <ul>
                 <li class="range"><nuxt-link @click.native="bg_remove" aria-label="works" to="/works/">Works</nuxt-link></li>
@@ -15,14 +15,19 @@
 </template>
 
 <script>
-import lottie from 'lottie-web';
+import * as rive from "@rive-app/canvas";
 
 export default {
     mounted(){
-        //lottie
-        lottie.loadAnimation({
-            container: document.getElementById('lottie-logo'),path: '/animation/lm.json',renderer: 'svg',loop: true,autoplay: true
-        })
+        //rive
+        const r = new rive.Rive({
+            src: `/animation/logomotion.riv`,
+            canvas: document.getElementById(`lottie-logo`),
+            autoplay: true,
+            onLoad: () => {
+                r.resizeDrawingSurfaceToCanvas();
+            },
+        });
 
         //loading
         window.onload = function() {

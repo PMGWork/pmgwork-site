@@ -8,7 +8,7 @@
             <canvas id="layer5" class="layer" width="1200" height="1000" depth="0.4"></canvas>
             <canvas id="layer6" class="layer" width="1200" height="1000" depth="0.45"></canvas>
         </div>
-        <div id="lottie-item"></div>
+        <canvas id="lottie-item" width="800" height="800"></canvas>
         <div class="main-title-wrapper">
             <h1 class="main-title ts">Pixel</h1>
             <h4 class="main-subtitle ts">Motion Graphics Designer</h4>
@@ -33,7 +33,6 @@
 
 <script>
 import common from '~/static/js/common.js';
-import lottie from 'lottie-web';
 import * as rive from "@rive-app/canvas";
 
 export default {
@@ -54,6 +53,15 @@ export default {
                 },
             });
         }
+
+        const r1 = new rive.Rive({
+            src: `/animation/logomotion.riv`,
+            canvas: document.getElementById(`lottie-item`),
+            autoplay: true,
+            onLoad: () => {
+                r1.resizeDrawingSurfaceToCanvas();
+            },
+        });
 
         let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
