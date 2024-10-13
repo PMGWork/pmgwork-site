@@ -89,7 +89,7 @@ export default {
                 layers[i].style.transition = "all " + .5 + "s cubic-bezier(.2,.6,.5,1)";
             }
 
-            //マウス位置、ウィンドウ位置
+            //マウス位置・ウィンドウ位置
             let mPos = {
                 x: e.clientX,
                 y: e.clientY
