@@ -1,7 +1,3 @@
----
-// Stalkerコンポーネント - カーソル追跡、ホバー効果、スティック効果を統合
----
-
 <div>
     <div id="stalker" class="stalker">
         <div class="stalker-item"></div>
@@ -15,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const stalker = document.getElementById("stalker");
     if (!stalker) return;
 
-    // Mouse position tracking
+    // マウスの位置を追跡
     let mPos = {
         x: document.documentElement.clientWidth / 2,
         y: document.documentElement.clientHeight / 2
@@ -30,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mPos.y = e.clientY;
     };
 
-    // Stalker animation (cursor following)
+    // ストーカーのアニメーション
     function sPosUpdate() {
         sPos.x += (mPos.x - sPos.x) * 0.8;
         sPos.y += (mPos.y - sPos.y) * 0.8;
@@ -42,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(sPosUpdate);
     }
 
-    // Setup hover classes
+    // ホバークラスの設定
     function setupHoverClasses() {
         if (!stalker) return;
 
@@ -68,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         addHover(linksHover, 'hover_stick');
     }
 
-    // Setup stick links (magnetic effect)
+    // スティックリンクの設定
     function setupStickLinks() {
         if (!window.matchMedia('(pointer: fine)').matches) return;
 
@@ -106,11 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Color change based on scroll
-    function setupColorChange() {
+    // ヘッダーの色を変更
+    function setupColorChange(hasFinePointer: boolean) {
         const links = document.querySelectorAll('header a, #header-logo');
 
-        // Determine background height for threshold
         let bgHeight = 99999;
         const bgItem = document.getElementById('bg-item');
         const pagesWrapper = document.getElementById('pages-wrapper');
@@ -139,32 +134,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const throttledColorChange = throttle(colorChange, 300);
         window.addEventListener('scroll', throttledColorChange);
-        document.addEventListener('mousemove', throttledColorChange);
+        if (hasFinePointer) {
+            document.addEventListener('mousemove', throttledColorChange);
+        }
 
         return () => {
             window.removeEventListener('scroll', throttledColorChange);
-            document.removeEventListener('mousemove', throttledColorChange);
+            if (hasFinePointer) {
+                document.removeEventListener('mousemove', throttledColorChange);
+            }
         };
     }
 
-    if (window.matchMedia("(pointer: fine)").matches) {
+    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (hasFinePointer) {
         document.addEventListener("mousemove", handleMouseMove);
         requestAnimationFrame(sPosUpdate);
         setupStickLinks();
+        setupHoverClasses();
     } else if (stalker) {
         stalker.style.display = "none";
     }
 
-    // Setup hover effects and color changes
-    setupHoverClasses();
-    const disposeColorChange = setupColorChange();
-
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
-        if (window.matchMedia("(pointer: fine)").matches) {
-            document.removeEventListener('mousemove', handleMouseMove);
-        }
-        disposeColorChange();
-    });
+    setupColorChange(hasFinePointer);
 });
 </script>

@@ -1,20 +1,16 @@
----
-// Headerコンポーネント - サイトのヘッダー部分
----
-
 <div>
     <div id="loading" class="load"></div>
     <div id="background"></div>
     <header class="header">
-        <a class="range" href="/" aria-label="home" onclick="bgRemove()">
+        <a class="range" href="/" aria-label="home">
             <canvas id="header-logo" width="400" height="400"></canvas>
         </a>
         <ul>
             <li class="range">
-                <a href="/works/" aria-label="works" onclick="bgRemove()">Works</a>
+                <a href="/works/" aria-label="works">Works</a>
             </li>
             <li class="range">
-                <a href="/about/" aria-label="about" onclick="bgRemove()">About</a>
+                <a href="/about/" aria-label="about">About</a>
             </li>
         </ul>
     </header>
@@ -23,24 +19,7 @@
 <script>
 import * as rive from "@rive-app/canvas";
 
-// bg_remove関数をグローバルに定義
-(window as any).bgRemove = function() {
-    setTimeout(() => {
-        const background = document.getElementById("background");
-        const stalker = document.getElementById("stalker");
-
-        if (background) background.classList.remove('bg-color');
-        if (stalker) stalker.classList.remove('color');
-
-        document.querySelectorAll("header a, #header-logo").forEach(linkCol => {
-            linkCol.classList.remove('hd-color');
-        });
-    }, 50);
-};
-
-// ページロード時の初期化
 document.addEventListener('DOMContentLoaded', function() {
-    // Rive animation
     const logoCanvas = document.getElementById('header-logo') as HTMLCanvasElement;
     if (logoCanvas) {
         const r = new rive.Rive({
@@ -52,13 +31,5 @@ document.addEventListener('DOMContentLoaded', function() {
             },
         });
     }
-
-    // Loading
-    window.onload = function() {
-        const loading = document.getElementById("loading");
-        if (loading) {
-            loading.classList.remove('load');
-        }
-    };
 });
 </script>

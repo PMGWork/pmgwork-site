@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // 動的インポートでモジュールを読み込み
     const [
         { splitTextToSpans },
-        { setupScrollAnimations },
+        { setupScrollAnimations, addAnimationClasses },
         { showHeaderLogo }
     ] = await Promise.all([
         import('../../lib/dom/text.js'),
@@ -217,6 +217,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // 初期化処理を並列実行
     await Promise.all([
         splitTextToSpans(),
+        addAnimationClasses(),
         showHeaderLogo()
     ]);
 
