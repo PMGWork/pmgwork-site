@@ -2,9 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import { gql } from 'graphql-request';
-import { graphcmsClient } from '../../lib/graphcms';
+import { graphcmsClient } from '../../lib/clients/graphcms';
 import type { WorksResponse } from '../../types/global';
-import { formatDate } from '../../lib/date';
+import { formatDate } from '../../lib/utils/date';
 
 // GraphCMSからデータを取得
 const { works } = await graphcmsClient.request<WorksResponse>(
@@ -103,7 +103,15 @@ const { works } = await graphcmsClient.request<WorksResponse>(
 <script>
 document.addEventListener('DOMContentLoaded', async function() {
     // 動的インポートでモジュールを読み込み
-    const { splitTextToSpans, setupScrollAnimations, showHeaderLogo } = await import('../../lib/dom.js');
+    const [
+        { splitTextToSpans },
+        { setupScrollAnimations },
+        { showHeaderLogo }
+    ] = await Promise.all([
+        import('../../lib/dom/text.js'),
+        import('../../lib/animations/scroll.js'),
+        import('../../lib/ui/header.js')
+    ]);
 
     // 初期化処理を並列実行
     await Promise.all([

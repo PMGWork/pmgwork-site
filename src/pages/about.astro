@@ -75,7 +75,15 @@ const currentYear = new Date().getFullYear();
 <script>
 document.addEventListener('DOMContentLoaded', async function() {
     // 動的インポートでモジュールを読み込み
-    const { splitTextToSpans, setupScrollAnimations, showHeaderLogo, addAnimationClasses } = await import('../lib/dom.js');
+    const [
+        { splitTextToSpans },
+        { setupScrollAnimations, addAnimationClasses },
+        { showHeaderLogo }
+    ] = await Promise.all([
+        import('../lib/dom/text.js'),
+        import('../lib/animations/scroll.js'),
+        import('../lib/ui/header.js')
+    ]);
 
     // 初期化処理を並列実行
     await Promise.all([

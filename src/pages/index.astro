@@ -40,15 +40,17 @@ import { Icon } from 'astro-icon/components';
 document.addEventListener('DOMContentLoaded', async function() {
     // 動的インポートでモジュールを読み込み
     const [
-        { splitTextToSpans, hideHeaderLogo },
+        { splitTextToSpans },
+        { hideHeaderLogo },
         { initializeRiveLayers, initializeMainLogo },
         { setupParallax },
         { setupViewportHeight }
     ] = await Promise.all([
-        import('../lib/dom.js'),
-        import('../lib/rive-utils.js'),
-        import('../lib/parallax.js'),
-        import('../lib/viewport.js')
+        import('../lib/dom/text.js'),
+        import('../lib/ui/header.js'),
+        import('../lib/animations/rive.js'),
+        import('../lib/animations/parallax.js'),
+        import('../lib/dom/viewport.js')
     ]);
 
     // 初期化処理を並列実行
@@ -60,13 +62,16 @@ document.addEventListener('DOMContentLoaded', async function() {
     ]);
 
     // ビューポート高さとパララックスを設定
-    setupViewportHeight();
+    const disposeViewport = setupViewportHeight();
     const parallaxHandler = setupParallax();
 
     // クリーンアップ
     window.addEventListener('beforeunload', () => {
         if (parallaxHandler) {
             document.removeEventListener('mousemove', parallaxHandler);
+        }
+        if (disposeViewport) {
+            disposeViewport();
         }
     });
 });
