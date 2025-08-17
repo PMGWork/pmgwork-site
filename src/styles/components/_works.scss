@@ -1,0 +1,115 @@
+@use '../variables' as *;
+
+.works-wrapper {
+    margin: 130px 40px 20px;
+    @include md {
+        margin: 80px 40px 0;
+    }
+    @include sm {
+        margin: 40px 10px 0;
+    }
+}
+
+.works-article {
+    color: $main-color;
+    margin-bottom: 7%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    @include md {
+        display: block
+    }
+
+    .works-title {
+        background-repeat: no-repeat;
+        background-size: 0% 30%;
+        background-position: 10px bottom;
+        padding-right: 10px;
+        display: inline;
+        font-size: 4.4vw;
+        line-height: 1.5;
+        transition: background-size $transition-bezier 1.2s;
+        &.in-view {
+            background-size: 100% 30%;
+        }
+        @include md {
+            margin-bottom: 5.5%;
+            font-size: 7vw;
+        }
+        @include sm {
+            font-size: 36px;
+        }
+    }
+
+    .works-subtitle {
+        margin: 1em 0;
+    }
+
+    .works-title-wrapper {
+        width: 42%;
+        @include md {
+            position: relative;
+            width: 100%;
+            margin-top: 20px !important;
+            margin-left: 0 !important;
+        }
+        @include sm {
+            margin-top: 20px !important;
+            margin-left: 0 !important;
+        }
+    }
+
+    &:nth-child(2n-1) {
+        .works-title-wrapper {
+            margin-left: 6%;
+            margin-top: -20px;
+        }
+    }
+
+    &:nth-child(2n) {
+        .works-title-wrapper {
+            margin-right: 6%;
+            margin-top: -20px;
+            text-align: end;
+            @include md {
+                text-align: start;
+            }
+        }
+        .works-image {
+            order: 1;
+        }
+    }
+}
+
+.works-image {
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: $radius-sm;
+    width: 52%;
+    height: 100%;
+    opacity: 0;
+    transform: translateY(150px);
+    transition: $transition-bezier 1s;
+    @include md {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        z-index: $z-default;
+        opacity: 0;
+        vertical-align: bottom;
+        transform: scale(1.2);
+        transition: transform $transition-bezier 1s;
+    }
+
+    &.in-view {
+        opacity: 1;
+        transform: translateY(0px);
+        img {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}

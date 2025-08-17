@@ -1,0 +1,271 @@
+@use '../variables' as *;
+
+// Background items and animations
+#bg-item {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
+    z-index: $z-behind-element;
+    animation: bg-animation $transition-bezier-smooth 1.2s both;
+    @include md {
+        animation: bg-animation1 $transition-bezier-smooth 1.2s both;
+    }
+    @include sm {
+        animation: bg-animation2 $transition-bezier-smooth 1.2s both;
+    }
+}
+
+#bg-item1 {
+    position: absolute;
+    width: 100%;
+    z-index: $z-behind-element;
+    background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
+    animation: bgw-animation $transition-bezier-smooth 1.2s both;
+    @include pc {
+        animation: bgw-animation1 $transition-bezier-smooth 1.2s both;
+    }
+}
+
+// Share links
+.share-link {
+    display: flex;
+    justify-content: center;
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 18px 24px;
+        margin: 15px;
+        border-radius: $radius-pill;
+        transition: all $transition-normal;
+        @include sm {
+            padding: 10px;
+            margin: 10px;
+            width: 24px;
+            height: 24px;
+        }
+
+        &.twi {
+            background: $twitter-color;
+            border: solid 2px $twitter-color;
+            &:hover {
+                color: $twitter-color;
+            }
+        }
+        &.face {
+            background: $facebook-color;
+            border: solid 2px $facebook-color;
+            &:hover {
+                color: $facebook-color;
+            }
+        }
+        &.line {
+            background: $line-color;
+            border: solid 2px $line-color;
+            &:hover {
+                color: $line-color;
+            }
+        }
+        &:hover {
+            background: rgba($white, 0);
+        }
+        span {
+            font-size: 28px;
+            @include md {
+                font-size: 24px;
+            }
+            @include sm {
+                font-size: 20px;
+            }
+        }
+        svg {
+            width: 28px;
+            fill: currentColor;
+            @include md {
+                width: 24px;
+            }
+            @include sm {
+                width: 20px;
+            }
+        }
+        h5 {
+            margin-left: $space-md;
+            @include sm {
+                display: none;
+            }
+        }
+    }
+}
+
+// Social icons
+.social-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    fill: currentColor;
+    color: currentColor;
+    transition: all ease $transition-fast;
+}
+
+// Cursor
+.stalker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate3d(50vw, 50vh, 0);
+    z-index: 9999;
+    pointer-events: none;
+    transition: all $transition-slow cubic-bezier(.2,.6,.5,1);
+}
+
+.stalker-item {
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border-radius: $radius-pill;
+    background: $gray-light;
+    transition: all $transition-normal ease;
+
+    .color & {
+        background: $main-color;
+    }
+
+    .hover_stick & {
+        scale: 2;
+        opacity: 0.5;
+    }
+    .hover_view & {
+        scale: 4;
+        opacity: 1;
+        background: $main-color;
+        &::after {
+            font-size: 5px;
+            display: flex;
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            color: $gray-light;
+        }
+    }
+    .hover_view &::after {
+        content: "View";
+    }
+}
+
+// Scrollbars
+#scrollbar-hrz, #scrollbar-hrz1 {
+    position: fixed;
+    margin: 0 10vw;
+    bottom: 5%;
+    height: 2px;
+    width: 80vw;
+    transform-origin: 0% 50%;
+    transform: scaleX(0);
+    background: #E0E0E0;
+    @include md {
+        display: none;
+    }
+}
+
+#scrollbar-hrz {
+    background: #181818;
+    z-index: 5;
+    transition: transform .6s cubic-bezier(.3,.3,.2,1);
+}
+
+#scrollbar-hrz1 {
+    animation: scrollhrz 1.2s cubic-bezier(0.6, 0.2, 0, 1) both .5s;
+}
+
+// Shorts (currently unused)
+.shorts {
+    height: 100vh;
+    width: 100vw;
+    #bg-item,.title-wrapper {
+        position: fixed;
+        width: 100vw;
+        @include md {
+            position: absolute;
+        }
+    }
+    .title-wrapper {
+        left: 0;
+        right: 0;
+    }
+}
+
+.shorts-wrapper {
+    position: absolute;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    bottom: 10%;
+    height: calc(100vh - 550px);
+    width: 100%;
+    @include md {
+        flex-direction: initial;
+        height: 100%;
+        top: 350px;
+    }
+    @include sm {
+        padding: 0;
+        top: 250px;
+    }
+}
+
+.shorts-article {
+    padding: 30px;
+    height: 90%;
+    @include md {
+        height: auto;
+        width: 100%;
+    }
+    a {
+        height: 100%;
+        width: 100%;
+    }
+    .shorts-image {
+        height: 100%;
+        border-radius: $radius-sm;
+        overflow: hidden;
+        margin: 0 auto;
+        background: $black;
+    }
+    img,video {
+        height: 100%;
+        width: auto;
+        vertical-align: bottom;
+        transition: opacity $transition-normal;
+        @include md {
+            width: 100%;
+        }
+    }
+    &:hover img,&:hover video {
+        opacity: .6;
+    }
+    h3 {
+        pointer-events: none;
+        text-align: center;
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: opacity $transition-normal;
+    }
+    &:hover h3 {
+        opacity: 1;
+    }
+}
+
+// Transitions
+.page-enter-active, .page-leave-active {
+    transition: opacity $transition-slow
+}
+.page-enter, .page-leave-active {
+    opacity: 0
+}

@@ -9,6 +9,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.13.2"
+    "@iconify-json/simple-icons": "^1.2.48",
+    "@rive-app/canvas": "^2.31.2",
+    "astro": "^5.13.2",
+    "astro-icon": "^1.1.5",
+    "graphql-request": "^7.2.0",
+    "lodash.throttle": "^4.1.1",
+    "simple-icons": "^15.11.0"
+  },
+  "devDependencies": {
+    "@types/lodash.throttle": "^4.1.9",
+    "sass": "^1.90.0"
   }
 }

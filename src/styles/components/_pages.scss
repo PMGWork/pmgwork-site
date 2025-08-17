@@ -1,0 +1,212 @@
+@use '../variables' as *;
+
+#pages-wrapper {
+    padding: 160px 60px 500px;
+    margin: 0 auto;
+    max-width: 1366px;
+    @include md {
+        padding: 90px 60px 400px;
+    }
+    @include sm {
+        padding: 90px 30px 400px;
+    }
+
+    .pages-image {
+        overflow: hidden;
+        border-radius: $radius-md;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateY(300px);
+        transition: $transition-bezier 1s;
+        img {
+            border-radius: $radius-md;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            z-index: $z-default;
+            vertical-align: bottom;
+            transform: scale(1.2);
+            transition: transform $transition-bezier 1s;
+        }
+        &.in-view {
+            opacity: 1;
+            transform: translateY(0px);
+            img {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+
+    .pages-heading-wrapper {
+        h2 {
+            margin-top: 60px;
+            @include sm {
+                margin-top: 40px;
+                font-size: 40px;
+            }
+        }
+        h5 {
+            margin-top: 30px;
+            @include sm {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .pages-info {
+        margin-top: 60px;
+        padding: 20px 40px;
+        display: flex;
+        background: rgba($white, .1);
+        border-radius: $radius-xl;
+        opacity: 0;
+        transform: translateY(150px);
+        transition: $transition-bezier 1s;
+        @include sm {
+            padding: 20px;
+            flex-direction: column;
+        }
+        &.in-view {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+        .info-item {
+            margin: 15px 40px 0 0;
+            @include sm {
+                margin: 10px 20px 5px 0;
+            }
+            p {
+                font-size: 16px;
+                @include sm {
+                    font-size: 13px;
+                }
+            }
+        }
+        .info-play {
+            align-self: center;
+            margin-left: auto;
+            padding: 15px 30px;
+            background: rgba($white, 0.1);
+            border-radius: $radius-pill;
+            transition: all $transition-normal;
+            &:hover {
+                background: rgba($white, 0.2);
+            }
+            @include sm {
+                position: absolute;
+                right: 20px;
+                bottom: 30px;
+            }
+        }
+    }
+}
+
+#pages-wrapper1 {
+    color: $main-color;
+    padding: 60px;
+    margin: -120px auto 0;
+    max-width: 1366px;
+    @include sm {
+        padding: 30px;
+        margin: -200px 0 0;
+    }
+
+    .pages-about {
+        padding-bottom: 150px;
+        border-bottom: solid 1px #DCDCDC;
+        @include md {
+            padding-bottom: 100px;
+        }
+        @include sm {
+            padding-bottom: 50px;
+        }
+        div,h2 {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+        h2 {
+            margin-bottom: 60px;
+            @include sm {
+                margin-bottom: 40px;
+            }
+        }
+        a {
+            color: #181818;
+            transition: all $transition-normal;
+            &:hover {
+                opacity: .5;
+            }
+        }
+    }
+
+    .pages-block {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 150px 0 200px;
+        @include md {
+            margin: 100px 0;
+        }
+        @include sm {
+            margin: 50px 0;
+        }
+        .block-image {
+            width: 48%;
+            height: 48%;
+            border-radius: $radius-sm;
+            overflow: hidden;
+            transform: translateY(150px);
+            transition: $transition-bezier 1s;
+            &:nth-child(2n) {
+                margin-top: 10%;
+                margin-bottom: -5%;
+                @include md {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+            }
+            @include md {
+                margin-top: 10%;
+                width: 100%;
+                height: 100%;
+                margin-bottom: 10%;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                vertical-align: bottom;
+                transform: scale(1.2);
+                transition: transform $transition-bezier 1s;
+            }
+            &.in-view {
+                opacity: 1;
+                transform: translateY(0px);
+                img {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+    .pages-share {
+        padding: 150px 0;
+        border-top: solid 1px #DCDCDC;
+        @include md {
+            padding: 100px;
+        }
+        @include sm {
+            padding: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            @include sm {
+                margin-bottom: 40px;
+            }
+        }
+    }
+}

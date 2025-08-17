@@ -1,0 +1,294 @@
+@use 'variables' as *;
+
+// Animation classes
+.title span, .main-title span {
+    animation: title-animation $transition-bezier .8s both;
+    @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.06s * $i + .2s;
+        }
+    }
+}
+
+.subtitle span, .main-subtitle span {
+    animation: subtitle-animation $transition-bezier .8s both;
+    @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.01s * $i + .5s;
+        }
+    }
+}
+
+.works-title span, .about-title span {
+    opacity: 0;
+}
+
+.works-title.in-view span, .about-title.in-view span {
+    animation: works-title-animation $transition-bezier .8s both;
+    @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.03s * $i + .3s;
+        }
+    }
+}
+
+.works-subtitle span, .about-subtitle span {
+    opacity: 0;
+}
+
+.works-subtitle.in-view span, .about-subtitle.in-view span {
+    animation: works-title-animation $transition-bezier .8s both;
+    @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.01s * $i + .7s;
+        }
+    }
+}
+
+.heading span {
+    opacity: 0;
+}
+
+.heading.in-view span {
+    animation: title-animation $transition-bezier .8s both;
+    @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.03s * $i;
+        }
+    }
+}
+
+.subheading span {
+    opacity: 0;
+}
+
+.subheading.in-view span {
+    animation: subheading-animation $transition-bezier .8s both;
+    @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.01s * $i + .3s;
+        }
+    }
+}
+
+.next-heading span {
+    opacity: 0;
+}
+
+.next-heading.in-view span {
+    animation: subtitle-animation $transition-bezier .8s both;
+    @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.03s * $i + .4s;
+        }
+    }
+}
+
+.list {
+    .anm {
+        opacity: 0;
+        &.in-view{
+            animation: block-animation $transition-bezier .8s both;
+            @for $i from 1 through 50 {
+                &:nth-child(#{$i}) {
+                    animation-delay: 0.08s * $i + .3s;
+                }
+            }
+        }
+    }
+}
+
+.block {
+    .anm {
+        opacity: 0;
+        &.in-view {
+            animation: block-animation $transition-bezier .8s both;
+            animation-delay: .3s
+        }
+    }
+}
+
+.blog-title span {
+    opacity: 0;
+}
+
+.blog-title.in-view span {
+    opacity: 0;
+    animation: blog-title-animation $transition-bezier .8s both;
+    @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.01s * $i + .2s;
+        }
+    }
+}
+
+.delay-scroll6 {
+    h2,h3,p,li,.dl,input,textarea,pre {
+        opacity: 0;
+    }
+}
+
+.delay-scroll6.in-view {
+    h2,h3,p,li,.dl,input,textarea,pre {
+        opacity: 0;
+        animation: block-animation $transition-bezier .8s both;
+        @for $i from 1 through 50 {
+            &:nth-child(#{$i}) {
+                animation-delay: 0.08s * $i + .5s;
+            }
+        }
+    }
+}
+
+.delay-image .shorts-article {
+    animation: delay-animation3 $transition-bezier 1s both;
+    @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+            animation-delay: 0.2s * $i + .1s;
+        }
+    }
+    @include md {
+        animation: block-animation $transition-bezier 1s both;
+    }
+}
+
+// Keyframes
+@keyframes title-animation {
+    0% {
+        transform: translate3d(0,100px,0) rotate(6deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0,0,0) rotate(0.01deg);
+        opacity: 1;
+    }
+}
+
+@keyframes subtitle-animation {
+    0% {
+        transform: translate3d(0,50px,0) rotate(6deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0,0,0) rotate(0.01deg);
+        opacity: 1;
+    }
+}
+
+@keyframes works-title-animation {
+    0% {
+        transform: translate3d(0,50px,0) rotate(6deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0,0,0) rotate(0.01deg);
+        opacity: 1;
+    }
+}
+
+@keyframes blog-title-animation {
+    0% {
+        transform: translate3d(0,50px,0) rotate(6deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0,0,0) rotate(0.01deg);
+        opacity: 1;
+    }
+}
+
+@keyframes subheading-animation{
+    0% {
+        transform: translate3d(0,30px,0) rotate(6deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0,0,0) rotate(0.003deg);
+        opacity: 1;
+    }
+}
+
+@keyframes block-animation {
+    0% {
+        transform: translate3d(0,50px,0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@keyframes delay-animation3 {
+    0% {
+        transform: translate3d(100px,0,0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@keyframes bg-animation {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 450px, 0 750px);
+    }
+}
+
+@keyframes bg-animation1 {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 420px, 0 600px);
+    }
+}
+
+@keyframes bg-animation2 {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 300px, 0 400px);
+    }
+}
+
+@keyframes bgw-animation {
+    0% {
+        clip-path: circle(0% at 50% 0);
+    }
+    100% {
+        clip-path: circle(100% at 50% 0);
+    }
+}
+
+@keyframes bgw-animation1 {
+    0% {
+        clip-path: circle(0px at 50% 0);
+    }
+    100% {
+        clip-path: circle(1670px at 50% 0);
+    }
+}
+
+@keyframes header-image-animation {
+    0% {
+        top: -50vw;
+    }
+    100% {
+        top: 0vw;
+    }
+}
+
+@keyframes scrollhrz {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}

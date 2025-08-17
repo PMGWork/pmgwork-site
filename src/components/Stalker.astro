@@ -1,0 +1,170 @@
+---
+// Stalkerコンポーネント - カーソル追跡、ホバー効果、スティック効果を統合
+---
+
+<div>
+    <div id="stalker" class="stalker">
+        <div class="stalker-item"></div>
+    </div>
+</div>
+
+<script>
+import throttle from 'lodash.throttle';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const stalker = document.getElementById("stalker");
+    if (!stalker) return;
+
+    // Mouse position tracking
+    let mPos = {
+        x: document.documentElement.clientWidth / 2,
+        y: document.documentElement.clientHeight / 2
+    };
+    let sPos = {
+        x: document.documentElement.clientWidth / 2,
+        y: document.documentElement.clientHeight / 2
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+        mPos.x = e.clientX;
+        mPos.y = e.clientY;
+    };
+
+    // Stalker animation (cursor following)
+    function sPosUpdate() {
+        sPos.x += (mPos.x - sPos.x) * 0.8;
+        sPos.y += (mPos.y - sPos.y) * 0.8;
+
+        if (stalker) {
+            stalker.style.transform = `translate3d(${sPos.x}px, ${sPos.y}px, 0)`;
+        }
+
+        requestAnimationFrame(sPosUpdate);
+    }
+
+    // Setup hover classes
+    function setupHoverClasses() {
+        if (!stalker) return;
+
+        const addHover = (elements: HTMLCollectionOf<Element> | NodeListOf<Element>, className: string) => {
+            for (let i = 0; i < elements.length; i++) {
+                const link = elements[i] as HTMLElement;
+                link.addEventListener('mouseover', () => {
+                    if (stalker) stalker.classList.add(className);
+                });
+                link.addEventListener('mouseout', () => {
+                    if (stalker) stalker.classList.remove(className);
+                });
+            }
+        };
+
+        const linksView = document.getElementsByClassName('view');
+        const linksStick = document.getElementsByClassName('range');
+        const linksHover = document.getElementsByClassName('hover');
+
+        stalker.classList.remove('hover_view');
+        addHover(linksView, 'hover_view');
+        addHover(linksStick, 'hover_stick');
+        addHover(linksHover, 'hover_stick');
+    }
+
+    // Setup stick links (magnetic effect)
+    function setupStickLinks() {
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+
+        const stickLinks = document.getElementsByClassName('range');
+        for (let i = 0; i < stickLinks.length; i++) {
+            const link = stickLinks[i] as HTMLElement;
+            let animationId: number | null = null;
+
+            const animate = () => {
+                const rect = link.getBoundingClientRect();
+                const iPos = {
+                    x: rect.left + link.clientWidth / 2,
+                    y: rect.top + link.clientHeight / 2,
+                };
+                const cPos = {
+                    x: 0.5 * (mPos.x - iPos.x),
+                    y: 0.5 * (mPos.y - iPos.y),
+                };
+                const firstChild = link.children[0] as HTMLElement | undefined;
+                if (firstChild) {
+                    firstChild.style.transform = `translate3d(${cPos.x}px, ${cPos.y}px, 0)`;
+                }
+                animationId = requestAnimationFrame(animate);
+            };
+
+            link.addEventListener('mouseenter', () => {
+                animationId = requestAnimationFrame(animate);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                if (animationId !== null) cancelAnimationFrame(animationId);
+                const firstChild = link.children[0] as HTMLElement | undefined;
+                if (firstChild) firstChild.style.transform = '';
+            });
+        }
+    }
+
+    // Color change based on scroll
+    function setupColorChange() {
+        const links = document.querySelectorAll('header a, #header-logo');
+
+        // Determine background height for threshold
+        let bgHeight = 99999;
+        const bgItem = document.getElementById('bg-item');
+        const pagesWrapper = document.getElementById('pages-wrapper');
+        const headerImage = document.getElementById('header-image');
+        if (bgItem) bgHeight = bgItem.clientHeight;
+        else if (pagesWrapper) bgHeight = pagesWrapper.clientHeight;
+        else if (headerImage) bgHeight = headerImage.clientHeight + 30;
+
+        const scrollThreshold = bgHeight - 200;
+
+        const colorChange = () => {
+            if (window.scrollY > scrollThreshold) {
+                links.forEach((el) => el.classList.add('hd-color'));
+            } else {
+                links.forEach((el) => el.classList.remove('hd-color'));
+            }
+
+            if (stalker) {
+                if (window.scrollY + mPos.y > scrollThreshold) {
+                    stalker.classList.add('color');
+                } else {
+                    stalker.classList.remove('color');
+                }
+            }
+        };
+
+        const throttledColorChange = throttle(colorChange, 300);
+        window.addEventListener('scroll', throttledColorChange);
+        document.addEventListener('mousemove', throttledColorChange);
+
+        return () => {
+            window.removeEventListener('scroll', throttledColorChange);
+            document.removeEventListener('mousemove', throttledColorChange);
+        };
+    }
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+        document.addEventListener("mousemove", handleMouseMove);
+        requestAnimationFrame(sPosUpdate);
+        setupStickLinks();
+    } else if (stalker) {
+        stalker.style.display = "none";
+    }
+
+    // Setup hover effects and color changes
+    setupHoverClasses();
+    const disposeColorChange = setupColorChange();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (window.matchMedia("(pointer: fine)").matches) {
+            document.removeEventListener('mousemove', handleMouseMove);
+        }
+        disposeColorChange();
+    });
+});
+</script>

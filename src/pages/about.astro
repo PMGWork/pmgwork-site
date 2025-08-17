@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout title="About | ぴくせる">
+    <div class="about">
+        <div class="bg-white"></div>
+        <div>
+            <div id="bg-item"></div>
+            <div class="title-wrapper">
+                <h1 class="title ts">About</h1>
+                <p class="subtitle ts">自分について</p>
+            </div>
+            <div class="about-wrapper">
+                <div class="about-logo">
+                    <img src="/logo.svg" alt="logo">
+                </div>
+                <div class="about-title-wrapper">
+                    <h2 class="about-title ts">ぴくせる</h2>
+                    <h4 class="about-subtitle ts">Motion Graphics Designer</h4>
+                </div>
+                <div class="about-content">
+                    <h2 class="heading ts">Hello!</h2>
+                    <div class="block font">
+                        <p>モーショングラフィックスや3DCGを用いた映像作品を制作しています。</p>
+                        <p>映像制作等のご依頼は <a href="mailto:pmgwork.com@gmail.com">pmgwork.com@gmail.com</a> までお願いします。</p>
+                    </div>
+                </div>
+                <div class="about-block">
+                    <div class="about-tools">
+                        <h2 class="heading ts">Tools</h2>
+                        <ul class="list">
+                            <li>AfterEffects</li>
+                            <li>Blender</li>
+                            <li>Illustrator</li>
+                        </ul>
+                    </div>
+                    <div class="about-tools">
+                        <h2 class="heading ts">Skills</h2>
+                        <ul class="list">
+                            <li>Motion Graphics</li>
+                            <li>3DCG</li>
+                            <li>Graphic Design</li>
+                            <li>Web Design</li>
+                            <li>HTML・CSS</li>
+                            <li>Processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <p class="copyright">© {currentYear} Pixel</p>
+                <div class="footer-link">
+                    <a class="range" href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">
+                        <Icon name="simple-icons:x" class="social-icon" />
+                    </a>
+                    <a class="range" href="https://instagram.com/pmgwork" target="_blank" aria-label="instagram" rel="noopener noreferrer">
+                        <Icon name="simple-icons:instagram" class="social-icon" />
+                    </a>
+                    <a class="range" href="https://youtube.com/pmgwork" target="_blank" aria-label="youtube" rel="noopener noreferrer">
+                        <Icon name="simple-icons:youtube" class="social-icon" />
+                    </a>
+                    <a class="range" href="mailto:pmgwork.com@gmail.com" target="_blank" aria-label="email" rel="noopener noreferrer">
+                        <Icon name="simple-icons:gmail" class="social-icon" />
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+</Layout>
+
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+    // 動的インポートでモジュールを読み込み
+    const { splitTextToSpans, setupScrollAnimations, showHeaderLogo, addAnimationClasses } = await import('../lib/dom.js');
+
+    // 初期化処理を並列実行
+    await Promise.all([
+        splitTextToSpans(),
+        addAnimationClasses(),
+        showHeaderLogo()
+    ]);
+
+    // スクロールアニメーションを設定
+    setupScrollAnimations('.list, .anm, .about-title, .about-subtitle, .heading, .subheading');
+});
+</script>

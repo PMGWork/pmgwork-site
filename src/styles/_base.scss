@@ -1,0 +1,180 @@
+@use 'variables' as *;
+
+// Reset and base styles
+* {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+body {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    color: $white;
+    font-family: sofia-pro, "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    opacity: 1;
+    z-index: $z-behind;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+// Typography
+h1 {
+    margin: 0 auto;
+    font-size: 128px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    @include md {
+        font-size: 80px;
+    }
+    @include sm {
+        font-size: 60px;
+    }
+}
+
+h2 {
+    margin: 0 auto;
+    font-size: 90px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    @include md {
+        font-size: 72px;
+    }
+    @include sm {
+        font-size: 60px;
+    }
+}
+
+h3 {
+    margin: 0 auto;
+    font-size: 60px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    @include md {
+        font-size: 54px;
+    }
+    @include sm {
+        font-size: 36px;
+    }
+}
+
+h4 {
+    margin: 10px 0;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    @include md {
+        font-weight: 500;
+        font-size: 24px;
+    }
+    @include sm {
+        font-size: 18px;
+    }
+}
+
+h5 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    @include md {
+        font-size: 20px;
+    }
+    @include sm {
+        font-size: 16px;
+    }
+}
+
+p {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: .06em;
+    line-height: 3;
+    @include md {
+        font-size: 15px;
+        line-height: 2.5;
+    }
+    @include sm {
+        font-size: 14px;
+    }
+}
+
+a {
+    color: $white;
+    text-decoration: none;
+}
+
+span {
+    display: inline-block;
+    min-width: .3em;
+}
+
+ul {
+    margin: 0 auto;
+    padding: 0;
+}
+
+li {
+    letter-spacing: .05em;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 17px;
+    @include md {
+        font-size: 16px;
+    }
+    @include sm {
+        font-size: 15px;
+    }
+}
+
+// Form elements
+input, textarea {
+    color: $main-color;
+    border: none;
+    border-radius: $radius-md;
+    padding: $space-md;
+    width: 100%;
+    letter-spacing: .05em;
+    box-sizing: border-box;
+    font-family: inter, "Noto Sans JP", sans-serif;
+    font-size: 17px;
+    transition: ease $transition-normal;
+    @include md {
+        font-size: 15px;
+    }
+}
+
+input:focus, textarea:focus {
+    outline: 0;
+    box-shadow: 0px 0px 20px #E6E6E6;
+}
+
+input::placeholder, textarea::placeholder {
+    color: $gray-dark;
+}
+
+textarea {
+    height: 200px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+}
+
+// Utility classes
+.font {
+    font-family: inter, "Noto Sans JP", sans-serif;
+}

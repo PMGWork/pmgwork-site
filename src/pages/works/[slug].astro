@@ -1,0 +1,232 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import { gql } from 'graphql-request';
+import { graphcmsClient } from '../../lib/graphcms';
+import type { WorksResponse, Work } from '../../types/global';
+import { formatDate } from '../../lib/date';
+
+export async function getStaticPaths() {
+    const { works } = await graphcmsClient.request<WorksResponse>(
+        gql`
+            {
+                works(orderBy: date_DESC) {
+                    slug
+                    title
+                    isClient
+                    date
+                    link
+                    color {
+                        hex
+                    }
+                    color1 {
+                        hex
+                    }
+                    thumbnail {
+                        webp: url(
+                            transformation: {
+                                document: { output: { format: webp } }
+                            }
+                        )
+                        url
+                        height
+                        width
+                    }
+                    credits {
+                        title
+                        name
+                    }
+                    body {
+                        html
+                    }
+                    images {
+                        webp: url(
+                            transformation: {
+                                image: { resize: { width: 640, height: 360, fit: clip } }
+                                document: { output: { format: webp } }
+                            }
+                        )
+                        url
+                        height
+                        width
+                    }
+                }
+            }
+        `
+    );
+
+    return works.map((work, index) => {
+        const next = works[index + 1];
+        return {
+            params: { slug: work.slug },
+            props: {
+                work,
+                next: next
+                    ? {
+                          slug: next.slug,
+                          title: next.title,
+                          color: next.color,
+                          color1: next.color1
+                      }
+                    : null
+            }
+        };
+    });
+}
+
+interface Props {
+    work: Work;
+    next: {
+        slug: string;
+        title: string;
+        color: { hex: string };
+        color1: { hex: string };
+    } | null;
+}
+
+const { work, next } = Astro.props as Props;
+---
+
+<Layout title={`${work.title} | ぴくせる`}>
+    <div class="pages">
+        <div class="bg-white"></div>
+        <div>
+            <div style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} id="bg-item1"></div>
+            <div id="pages-wrapper">
+                <div class="pages-image scroll">
+                    <picture>
+                        {work.thumbnail.webp && (
+                            <source srcset={work.thumbnail.webp} type="image/webp" />
+                        )}
+                        <img
+                            src={work.thumbnail.url}
+                            width={work.thumbnail.width}
+                            height={work.thumbnail.height}
+                            alt={work.title}
+                            loading="lazy"
+                            oncontextmenu="return false;"
+                            onselectstart="return false;"
+                            onmousedown="return false;"
+                        />
+                    </picture>
+                </div>
+                <div class="pages-heading-wrapper">
+                    <h2 class="heading ts">{work.title}</h2>
+                    {work.isClient ? (
+                        <p class="subheading ts">Client Work - {formatDate(work.date)}</p>
+                    ) : (
+                        <p class="subheading ts">Personal Work - {formatDate(work.date)}</p>
+                    )}
+                </div>
+                <div class="pages-info scroll">
+                    {work.credits?.map((item) => (
+                        <div class="info-item">
+                            <h5>{item.title}</h5>
+                            <p>{item.name}</p>
+                        </div>
+                    ))}
+                    {work.link && (
+                        <a href={work.link} target="_blank" rel="noopener noreferrer" aria-label="play" class="info-play hover">
+                            <h5>Play</h5>
+                        </a>
+                    )}
+                </div>
+            </div>
+
+            <div id="pages-wrapper1">
+                {/** About */}
+                {work.body && (
+                    <div class="pages-about">
+                        <h2 class="heading ts">About</h2>
+                        <div class="block font" set:html={work.body.html}></div>
+                    </div>
+                )}
+
+                {/** Images */}
+                <div class="pages-block">
+                    {work.images?.map((img) => (
+                        <div class="block-image scroll">
+                            <picture>
+                                {img.webp && <source srcset={img.webp} type="image/webp" />}
+                                <img
+                                    src={img.url}
+                                    width={img.width}
+                                    height={img.height}
+                                    alt="image"
+                                    loading="lazy"
+                                    oncontextmenu="return false;"
+                                    onselectstart="return false;"
+                                    onmousedown="return false;"
+                                />
+                            </picture>
+                        </div>
+                    ))}
+                </div>
+
+                {/** Share */}
+                <div class="pages-share">
+                    <h2 class="heading ts">Share!</h2>
+                    <div class="share-link list">
+                        <a class="dl hover" href={`https://twitter.com/share?text=${work.title}&hashtags=pmgwork&url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="twitter" rel="nofollow noopener noreferrer">
+                            <div class="twi">
+                                <Icon name="simple-icons:x" class="social-icon" />
+                                <h5>Twitter</h5>
+                            </div>
+                        </a>
+                        <a class="dl hover" href={`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${work.slug}/&t=${work.title}`} target="_blank" aria-label="facebook" rel="nofollow noopener noreferrer">
+                            <div class="face">
+                                <Icon name="simple-icons:facebook" class="social-icon" />
+                                <h5>Facebook</h5>
+                            </div>
+                        </a>
+                        <a class="dl hover" href={`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="line" rel="nofollow noopener noreferrer">
+                            <div class="line">
+                                <Icon name="simple-icons:line" class="social-icon" />
+                                <h5>LINE</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {next && (
+                <a class="next-link view" aria-label="next" href={`/works/${next.slug}/`}>
+                    <div style={`background-image: linear-gradient(135deg, ${next.color.hex}, ${next.color1.hex});`} class="next">
+                        <h5 class="subheading ts">Next Project</h5>
+                        <h2 class="next-heading ts">{next.title}</h2>
+                    </div>
+                </a>
+            )}
+        </div>
+    </div>
+</Layout>
+
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+    // 動的インポートでモジュールを読み込み
+    const { splitTextToSpans, setupScrollAnimations, showHeaderLogo } = await import('../../lib/dom.js');
+
+    // 初期化処理を並列実行
+    await Promise.all([
+        splitTextToSpans(),
+        showHeaderLogo()
+    ]);
+
+    // 背景サイズ設定
+    bgSize();
+    window.addEventListener('resize', bgSize);
+
+    // スクロールアニメーションを設定
+    setupScrollAnimations('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading');
+
+    function bgSize() {
+        const bg = document.getElementById('bg-item1');
+        const wrap = document.getElementById('pages-wrapper');
+        if (bg && wrap) {
+            bg.style.height = `${wrap.clientHeight}px`;
+        }
+    }
+});
+</script>
+
+

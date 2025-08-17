@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import { gql } from 'graphql-request';
+import { graphcmsClient } from '../../lib/graphcms';
+import type { WorksResponse } from '../../types/global';
+import { formatDate } from '../../lib/date';
+
+// GraphCMSからデータを取得
+const { works } = await graphcmsClient.request<WorksResponse>(
+    gql`
+        {
+            works(orderBy: date_DESC) {
+                slug
+                title
+                isClient
+                date
+                color {
+                    hex
+                }
+                color1 {
+                    hex
+                }
+                thumbnail {
+                    webp: url(
+                        transformation: {
+                            document: { output: { format: webp } }
+                        }
+                    )
+                    url
+                    height
+                    width
+                }
+            }
+        }
+    `
+);
+---
+
+<Layout title="Works | ぴくせる">
+    <div class="works">
+        <div class="bg-white"></div>
+        <div>
+            <div id="bg-item"></div>
+            <div class="title-wrapper">
+                <h1 class="title ts">Works</h1>
+                <p class="subtitle ts">Motion Graphics ・ Design ・ 3DCG</p>
+            </div>
+            <div class="works-wrapper">
+                {works.map((work) => (
+                    <div class="works-article" id={work.slug}>
+                        <div class="works-image scroll view">
+                            <a href={`/works/${work.slug}/`}>
+                                <picture>
+                                    {work.thumbnail.webp && (
+                                        <source srcset={work.thumbnail.webp} type="image/webp" />
+                                    )}
+                                    <img
+                                        src={work.thumbnail.url}
+                                        width={work.thumbnail.width}
+                                        height={work.thumbnail.height}
+                                        alt={work.title}
+                                        loading="lazy"
+                                        oncontextmenu="return false;"
+                                        onselectstart="return false;"
+                                        onmousedown="return false;"
+                                    />
+                                </picture>
+                            </a>
+                        </div>
+                        <div class="works-title-wrapper">
+                            <h3 style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} class="works-title ts">{work.title}</h3>
+                            {work.isClient ? (
+                                <p class="works-subtitle ts">Client Work - {formatDate(work.date)}</p>
+                            ) : (
+                                <p class="works-subtitle ts">Personal Work - {formatDate(work.date)}</p>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <footer class="footer">
+                <p class="copyright">© {new Date().getFullYear()} Pixel</p>
+                <div class="footer-link">
+                    <a class="range" href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">
+                        <Icon name="simple-icons:x" class="social-icon" />
+                    </a>
+                    <a class="range" href="https://instagram.com/pmgwork" target="_blank" aria-label="instagram" rel="noopener noreferrer">
+                        <Icon name="simple-icons:instagram" class="social-icon" />
+                    </a>
+                    <a class="range" href="https://youtube.com/pmgwork" target="_blank" aria-label="youtube" rel="noopener noreferrer">
+                        <Icon name="simple-icons:youtube" class="social-icon" />
+                    </a>
+                    <a class="range" href="mailto:mail@pmgwork.com" target="_blank" aria-label="email" rel="noopener noreferrer">
+                        <Icon name="simple-icons:gmail" class="social-icon" />
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+</Layout>
+
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+    // 動的インポートでモジュールを読み込み
+    const { splitTextToSpans, setupScrollAnimations, showHeaderLogo } = await import('../../lib/dom.js');
+
+    // 初期化処理を並列実行
+    await Promise.all([
+        splitTextToSpans(),
+        showHeaderLogo()
+    ]);
+
+    // スクロールアニメーションを設定
+    setupScrollAnimations('.scroll, .works-title, .works-subtitle');
+});
+</script>
+
+
