@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
+import SplitText from '../../components/SplitText.astro';
+
 import { gql } from 'graphql-request';
 import { graphcmsClient } from '../../lib/clients/graphcms';
 import type { WorksResponse } from '../../types/global';
@@ -43,8 +45,8 @@ const { works } = await graphcmsClient.request<WorksResponse>(
         <div>
             <div id="bg-item"></div>
             <div class="title-wrapper">
-                <h1 class="title ts">Works</h1>
-                <p class="subtitle ts">Motion Graphics ・ Design ・ 3DCG</p>
+                <SplitText text="Works" as="h1" class="title ts" />
+                <SplitText text="Motion Graphics ・ Design ・ 3DCG" as="p" class="subtitle ts" />
             </div>
             <div class="works-wrapper">
                 {works.map((work) => (
@@ -69,11 +71,11 @@ const { works } = await graphcmsClient.request<WorksResponse>(
                             </a>
                         </div>
                         <div class="works-title-wrapper">
-                            <h3 style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} class="works-title ts">{work.title}</h3>
+                            <SplitText as="h3" class="works-title ts" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} text={work.title} />
                             {work.isClient ? (
-                                <p class="works-subtitle ts">Client Work - {formatDate(work.date)}</p>
+                                <SplitText as="p" class="works-subtitle ts" text={`Client Work - ${formatDate(work.date)}`} />
                             ) : (
-                                <p class="works-subtitle ts">Personal Work - {formatDate(work.date)}</p>
+                                <SplitText as="p" class="works-subtitle ts" text={`Personal Work - ${formatDate(work.date)}`} />
                             )}
                         </div>
                     </div>
@@ -88,19 +90,9 @@ const { works } = await graphcmsClient.request<WorksResponse>(
 document.addEventListener('DOMContentLoaded', async function() {
     // 動的インポートでモジュールを読み込み
     const [
-        { splitTextToSpans },
-        { setupScrollAnimations },
-        { showHeaderLogo }
+        { setupScrollAnimations }
     ] = await Promise.all([
-        import('../../lib/dom/text.js'),
-        import('../../lib/animations/scroll.js'),
-        import('../../lib/ui/header.js')
-    ]);
-
-    // 初期化処理を並列実行
-    await Promise.all([
-        splitTextToSpans(),
-        showHeaderLogo()
+        import('../../lib/animations/scroll.js')
     ]);
 
     // スクロールアニメーションを設定

@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SplitText from '../components/SplitText.astro';
+
 import { Icon } from 'astro-icon/components';
 ---
 
@@ -15,8 +17,8 @@ import { Icon } from 'astro-icon/components';
         </div>
         <canvas id="main-logo" width="800" height="800"></canvas>
         <div class="main-title-wrapper">
-            <h1 class="main-title ts">Pixel</h1>
-            <h4 class="main-subtitle ts">Motion Graphics Designer</h4>
+            <SplitText text="Pixel" as="h1" class="main-title ts" />
+            <SplitText text="Motion Graphics Designer" as="h4" class="main-subtitle ts" />
         </div>
         <div class="main-link">
             <a class="range" href="https://twitter.com/pmgwork" target="_blank" aria-label="twitter" rel="noopener noreferrer">
@@ -37,32 +39,25 @@ import { Icon } from 'astro-icon/components';
 </Layout>
 
 <script>
-document.addEventListener('DOMContentLoaded', async function() {
+import Swup from 'swup';
+
+const pageInit = async () => {
     // 動的インポートでモジュールを読み込み
     const [
-        { splitTextToSpans },
-        { hideHeaderLogo },
         { initializeRiveLayers, initializeMainLogo },
-        { setupParallax },
-        { setupViewportHeight }
+        { setupParallax }
     ] = await Promise.all([
-        import('../lib/dom/text.js'),
-        import('../lib/ui/header.js'),
         import('../lib/animations/rive.js'),
-        import('../lib/animations/parallax.js'),
-        import('../lib/dom/viewport.js')
+        import('../lib/animations/parallax.js')
     ]);
 
     // 初期化処理を並列実行
     await Promise.all([
-        splitTextToSpans(),
         initializeRiveLayers(),
-        initializeMainLogo(),
-        hideHeaderLogo()
+        initializeMainLogo()
     ]);
 
-    // ビューポート高さとパララックスを設定
-    const disposeViewport = setupViewportHeight();
+    // パララックスを設定
     const parallaxHandler = setupParallax();
 
     // クリーンアップ
@@ -70,9 +65,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (parallaxHandler) {
             document.removeEventListener('mousemove', parallaxHandler);
         }
-        if (disposeViewport) {
-            disposeViewport();
-        }
     });
-});
+}
+
+pageInit()
+
+const swup = new Swup();
+
+// ページ遷移後に再実行
+swup.hooks.on('page:view', (visit) => {
+  pageInit()
+})
 </script>

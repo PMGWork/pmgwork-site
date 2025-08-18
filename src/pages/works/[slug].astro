@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SplitText from '../../components/SplitText.astro';
+import type { WorksResponse, Work } from '../../types/global';
+import { formatDate } from '../../lib/utils/date';
 import { Icon } from 'astro-icon/components';
 import { gql } from 'graphql-request';
 import { graphcmsClient } from '../../lib/clients/graphcms';
-import type { WorksResponse, Work } from '../../types/global';
-import { formatDate } from '../../lib/utils/date';
 
 export async function getStaticPaths() {
     const { works } = await graphcmsClient.request<WorksResponse>(
@@ -111,11 +112,11 @@ const { work, next } = Astro.props as Props;
                     </picture>
                 </div>
                 <div class="pages-heading-wrapper">
-                    <h2 class="heading ts">{work.title}</h2>
+                    <SplitText as="h2" class="heading ts" text={work.title} />
                     {work.isClient ? (
-                        <p class="subheading ts">Client Work - {formatDate(work.date)}</p>
+                        <SplitText as="p" class="subheading ts" text={`Client Work - ${formatDate(work.date)}`} />
                     ) : (
-                        <p class="subheading ts">Personal Work - {formatDate(work.date)}</p>
+                        <SplitText as="p" class="subheading ts" text={`Personal Work - ${formatDate(work.date)}`} />
                     )}
                 </div>
                 <div class="pages-info scroll">
@@ -137,7 +138,7 @@ const { work, next } = Astro.props as Props;
                 {/** About */}
                 {work.body && (
                     <div class="pages-about">
-                        <h2 class="heading ts">About</h2>
+                        <SplitText as="h2" class="heading ts" text="About" />
                         <div class="block font" set:html={work.body.html}></div>
                     </div>
                 )}
@@ -192,8 +193,8 @@ const { work, next } = Astro.props as Props;
             {next && (
                 <a class="next-link view" aria-label="next" href={`/works/${next.slug}/`}>
                     <div style={`background-image: linear-gradient(135deg, ${next.color.hex}, ${next.color1.hex});`} class="next">
-                        <h5 class="subheading ts">Next Project</h5>
-                        <h2 class="next-heading ts">{next.title}</h2>
+                        <SplitText as="h5" class="subheading ts" text="Next Project" />
+                        <SplitText as="h2" class="next-heading ts" text={next.title} />
                     </div>
                 </a>
             )}
@@ -205,20 +206,14 @@ const { work, next } = Astro.props as Props;
 document.addEventListener('DOMContentLoaded', async function() {
     // 動的インポートでモジュールを読み込み
     const [
-        { splitTextToSpans },
-        { setupScrollAnimations, addAnimationClasses },
-        { showHeaderLogo }
+        { setupScrollAnimations, addAnimationClasses }
     ] = await Promise.all([
-        import('../../lib/dom/text.js'),
-        import('../../lib/animations/scroll.js'),
-        import('../../lib/ui/header.js')
+        import('../../lib/animations/scroll.js')
     ]);
 
     // 初期化処理を並列実行
     await Promise.all([
-        splitTextToSpans(),
-        addAnimationClasses(),
-        showHeaderLogo()
+        addAnimationClasses()
     ]);
 
     // 背景サイズ設定

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+import SplitText from '../components/SplitText.astro';
 ---
 
 <Layout title="About | ぴくせる">
@@ -9,19 +10,19 @@ import Footer from '../components/Footer.astro';
         <div>
             <div id="bg-item"></div>
             <div class="title-wrapper">
-                <h1 class="title ts">About</h1>
-                <p class="subtitle ts">自分について</p>
+                <SplitText text="About" as="h1" class="title ts" />
+                <SplitText text="自分について" as="p" class="subtitle ts" />
             </div>
             <div class="about-wrapper">
                 <div class="about-logo">
                     <img src="/logo.svg" alt="logo">
                 </div>
                 <div class="about-title-wrapper">
-                    <h2 class="about-title ts">ぴくせる</h2>
-                    <h4 class="about-subtitle ts">Motion Graphics Designer</h4>
+                    <SplitText text="ぴくせる" as="h2" class="about-title ts" />
+                    <SplitText text="Motion Graphics Designer" as="h4" class="about-subtitle ts" />
                 </div>
                 <div class="about-content">
-                    <h2 class="heading ts">Hello!</h2>
+                    <SplitText text="Hello!" as="h2" class="heading ts" />
                     <div class="block font">
                         <p>モーショングラフィックスや3DCGを用いた映像作品を制作しています。</p>
                         <p>映像制作等のご依頼は <a href="mailto:pmgwork.com@gmail.com">pmgwork.com@gmail.com</a> までお願いします。</p>
@@ -29,7 +30,7 @@ import Footer from '../components/Footer.astro';
                 </div>
                 <div class="about-block">
                     <div class="about-tools">
-                        <h2 class="heading ts">Tools</h2>
+                        <SplitText text="Tools" as="h2" class="heading ts" />
                         <ul class="list">
                             <li>AfterEffects</li>
                             <li>Blender</li>
@@ -37,7 +38,7 @@ import Footer from '../components/Footer.astro';
                         </ul>
                     </div>
                     <div class="about-tools">
-                        <h2 class="heading ts">Skills</h2>
+                        <SplitText text="Skills" as="h2" class="heading ts" />
                         <ul class="list">
                             <li>Motion Graphics</li>
                             <li>3DCG</li>
@@ -58,20 +59,14 @@ import Footer from '../components/Footer.astro';
 document.addEventListener('DOMContentLoaded', async function() {
     // 動的インポートでモジュールを読み込み
     const [
-        { splitTextToSpans },
-        { setupScrollAnimations, addAnimationClasses },
-        { showHeaderLogo }
+        { setupScrollAnimations, addAnimationClasses }
     ] = await Promise.all([
-        import('../lib/dom/text.js'),
         import('../lib/animations/scroll.js'),
-        import('../lib/ui/header.js')
     ]);
 
     // 初期化処理を並列実行
     await Promise.all([
-        splitTextToSpans(),
         addAnimationClasses(),
-        showHeaderLogo()
     ]);
 
     // スクロールアニメーションを設定

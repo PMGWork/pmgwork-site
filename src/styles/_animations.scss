@@ -212,3 +212,16 @@
     }
 }
 
+html {
+    &.is-changing {
+        .transition-fade {
+            transition: all $transition-normal;
+        }
+    }
+
+    &.is-animating {
+        .transition-fade {
+            opacity: 0;
+        }
+    }
+}

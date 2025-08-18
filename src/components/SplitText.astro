@@ -1,0 +1,19 @@
+---
+interface Props {
+    text: string;
+    as?: string;
+    class?: string;
+    splitBy?: 'char' | 'word';
+    style?: string;
+    ariaLabel?: string;
+}
+const { text, as = 'span', class: className = '', splitBy = 'char', style, ariaLabel } = Astro.props as Props;
+const Tag = as;
+const parts = splitBy === 'word' ? text.split(' ') : Array.from(text);
+---
+
+<Tag class={className} style={style} aria-label={ariaLabel ?? text}>
+    {parts.map((p, i) => (
+        <span class="char" data-index={i}>{p === ' ' ? '\u00A0' : p}</span>
+    ))}
+</Tag>
