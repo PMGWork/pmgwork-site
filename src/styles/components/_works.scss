@@ -11,7 +11,7 @@
 }
 
 .works-article {
-    color: $main-color;
+    color: $foreground;
     margin-bottom: 7%;
     padding: 20px;
     display: flex;
@@ -28,7 +28,7 @@
         display: inline;
         font-size: 4.4vw;
         line-height: 1.5;
-        transition: background-size $transition-bezier 1.2s;
+        transition: background-size $ease-out 1.2s;
         &.in-view {
             background-size: 100% 30%;
         }
@@ -89,7 +89,7 @@
     height: 100%;
     opacity: 0;
     transform: translateY(150px);
-    transition: $transition-bezier 1s;
+    transition: $ease-out 1s;
     @include md {
         width: 100%;
     }
@@ -101,7 +101,7 @@
         opacity: 0;
         vertical-align: bottom;
         transform: scale(1.2);
-        transition: transform $transition-bezier 1s;
+        transition: transform $ease-out 1s;
     }
 
     &.in-view {

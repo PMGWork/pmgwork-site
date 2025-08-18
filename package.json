@@ -11,11 +11,16 @@
   "dependencies": {
     "@iconify-json/simple-icons": "^1.2.48",
     "@rive-app/canvas": "^2.31.2",
+    "@swup/a11y-plugin": "^5.0.0",
+    "@swup/debug-plugin": "^4.1.0",
+    "@swup/forms-plugin": "^3.6.0",
+    "@swup/slide-theme": "^2.0.2",
     "astro": "^5.13.2",
     "astro-icon": "^1.1.5",
     "graphql-request": "^7.2.0",
     "lodash.throttle": "^4.1.1",
-    "simple-icons": "^15.11.0"
+    "simple-icons": "^15.11.0",
+    "swup": "^4.8.2"
   },
   "devDependencies": {
     "@types/lodash.throttle": "^4.1.9",

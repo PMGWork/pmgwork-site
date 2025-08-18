@@ -2,7 +2,7 @@
 
 // Animation classes
 .title span, .main-title span {
-    animation: title-animation $transition-bezier .8s both;
+    animation: title-animation $ease-out .8s both;
     @for $i from 1 through 10 {
         &:nth-child(#{$i}) {
             animation-delay: 0.06s * $i + .2s;
@@ -11,7 +11,7 @@
 }
 
 .subtitle span, .main-subtitle span {
-    animation: subtitle-animation $transition-bezier .8s both;
+    animation: subtitle-animation $ease-out .8s both;
     @for $i from 1 through 50 {
         &:nth-child(#{$i}) {
             animation-delay: 0.01s * $i + .5s;
@@ -24,7 +24,7 @@
 }
 
 .works-title.in-view span, .about-title.in-view span {
-    animation: works-title-animation $transition-bezier .8s both;
+    animation: works-title-animation $ease-out .8s both;
     @for $i from 1 through 50 {
         &:nth-child(#{$i}) {
             animation-delay: 0.03s * $i + .3s;
@@ -37,7 +37,7 @@
 }
 
 .works-subtitle.in-view span, .about-subtitle.in-view span {
-    animation: works-title-animation $transition-bezier .8s both;
+    animation: works-title-animation $ease-out .8s both;
     @for $i from 1 through 50 {
         &:nth-child(#{$i}) {
             animation-delay: 0.01s * $i + .7s;
@@ -50,7 +50,7 @@
 }
 
 .heading.in-view span {
-    animation: title-animation $transition-bezier .8s both;
+    animation: title-animation $ease-out .8s both;
     @for $i from 1 through 50 {
         &:nth-child(#{$i}) {
             animation-delay: 0.03s * $i;
@@ -63,7 +63,7 @@
 }
 
 .subheading.in-view span {
-    animation: subheading-animation $transition-bezier .8s both;
+    animation: subheading-animation $ease-out .8s both;
     @for $i from 1 through 50 {
         &:nth-child(#{$i}) {
             animation-delay: 0.01s * $i + .3s;
@@ -76,7 +76,7 @@
 }
 
 .next-heading.in-view span {
-    animation: subtitle-animation $transition-bezier .8s both;
+    animation: subtitle-animation $ease-out .8s both;
     @for $i from 1 through 50 {
         &:nth-child(#{$i}) {
             animation-delay: 0.03s * $i + .4s;
@@ -88,7 +88,7 @@
     .anm {
         opacity: 0;
         &.in-view{
-            animation: block-animation $transition-bezier .8s both;
+            animation: block-animation $ease-out .8s both;
             @for $i from 1 through 50 {
                 &:nth-child(#{$i}) {
                     animation-delay: 0.08s * $i + .3s;
@@ -102,7 +102,7 @@
     .anm {
         opacity: 0;
         &.in-view {
-            animation: block-animation $transition-bezier .8s both;
+            animation: block-animation $ease-out .8s both;
             animation-delay: .3s
         }
     }

@@ -4,12 +4,10 @@ $media-md: 960px;
 $media-sm: 560px;
 
 // Colors
-$main-color: #202020;
+$foreground: #202020;
+$background: #f6f6f6;
 $white: #fff;
-$black: #000;
-$gray-light: #f6f6f6;
-$gray-medium: #e0e0e0;
-$gray-dark: #969696;
+$gray: #969696;
 $blue-gradient-start: #102050;
 $blue-gradient-end: #203080;
 
@@ -17,13 +15,6 @@ $blue-gradient-end: #203080;
 $twitter-color: #1DA1F2;
 $facebook-color: #1778F2;
 $line-color: #2CCF6F;
-
-// Spacing
-$space-xs: 4px;
-$space-sm: 8px;
-$space-md: 16px;
-$space-lg: 24px;
-$space-xl: 32px;
 
 // Border radius
 $radius-sm: 4px;
@@ -46,8 +37,8 @@ $z-modal: 999999999999999;
 $transition-fast: 0.2s;
 $transition-normal: 0.3s;
 $transition-slow: 0.5s;
-$transition-bezier: cubic-bezier(0, 0.7, 0.3, 1);
-$transition-bezier-smooth: cubic-bezier(.5,0,.2,1);
+$ease-out: cubic-bezier(0, 0.7, 0.3, 1);
+$ease-in-out: cubic-bezier(.5,0,.2,1);
 
 // Mixins for breakpoints
 @mixin pc {

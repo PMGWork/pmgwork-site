@@ -8,7 +8,7 @@
     opacity: 0;
     pointer-events: none;
     background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
-    z-index: $z-modal;
+    z-index: 2;
     transition: all $transition-normal;
     &.load {
         opacity: 1;
@@ -30,7 +30,7 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: $gray-light;
+    background: $background;
     z-index: $z-behind;
 }
 
@@ -218,7 +218,7 @@
     }
 
     .copyright {
-        color: $main-color;
+        color: $foreground;
         padding-left: 60px;
         @include sm {
             padding-left: 30px;
@@ -273,8 +273,8 @@
             width: 100%;
             height: 100%;
             display: block;
-            fill: $main-color;
-            color: $main-color;
+            fill: $foreground;
+            color: $foreground;
             transition: all $transition-fast;
         }
     }

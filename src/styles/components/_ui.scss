@@ -7,12 +7,12 @@
     height: 100vh;
     background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
     z-index: $z-behind-element;
-    animation: bg-animation $transition-bezier-smooth 1.2s both;
+    animation: bg-animation $ease-in-out 1.2s both;
     @include md {
-        animation: bg-animation1 $transition-bezier-smooth 1.2s both;
+        animation: bg-animation1 $ease-in-out 1.2s both;
     }
     @include sm {
-        animation: bg-animation2 $transition-bezier-smooth 1.2s both;
+        animation: bg-animation2 $ease-in-out 1.2s both;
     }
 }
 
@@ -21,9 +21,9 @@
     width: 100%;
     z-index: $z-behind-element;
     background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
-    animation: bgw-animation $transition-bezier-smooth 1.2s both;
+    animation: bgw-animation $ease-in-out 1.2s both;
     @include pc {
-        animation: bgw-animation1 $transition-bezier-smooth 1.2s both;
+        animation: bgw-animation1 $ease-in-out 1.2s both;
     }
 }
 
@@ -90,7 +90,7 @@
             }
         }
         h5 {
-            margin-left: $space-md;
+            margin-left: 16px;
             @include sm {
                 display: none;
             }
@@ -124,11 +124,11 @@
     height: 20px;
     margin: -10px 0 0 -10px;
     border-radius: $radius-pill;
-    background: $gray-light;
+    background: $background;
     transition: all $transition-normal ease;
 
     .color & {
-        background: $main-color;
+        background: $foreground;
     }
 
     .hover_stick & {
@@ -138,7 +138,7 @@
     .hover_view & {
         scale: 4;
         opacity: 1;
-        background: $main-color;
+        background: $foreground;
         &::after {
             font-size: 5px;
             display: flex;
@@ -146,7 +146,7 @@
             width: 100%;
             justify-content: center;
             align-items: center;
-            color: $gray-light;
+            color: $background;
         }
     }
     .hover_view &::after {
