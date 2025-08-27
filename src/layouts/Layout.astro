@@ -20,7 +20,7 @@ const isTop = Astro.url.pathname === "/";
         <title>{Astro.props.title || 'Pixel'}</title>
         <script>
             import swup from '../lib/utils/swup';
-            import initLenis from '../lib/utils/lenis';
+            import lenis from '../lib/utils/lenis';
 
             // ページ遷移時にページビューイベントを発火させる
             window.dispatchEvent(new CustomEvent('swup:page:view'));
@@ -55,15 +55,10 @@ const isTop = Astro.url.pathname === "/";
             addAnimationClasses();
             observe('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading,.works-title,.works-subtitle,.about-title,.about-subtitle');
 
-            // Lenis smooth scroll (single global instance)
-            const lenis = initLenis();
-
+            // ページ遷移時にアニメーションを設定
             swup.hooks.on('page:view', () => {
                 addAnimationClasses();
                 observe('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading,.works-title,.works-subtitle,.about-title,.about-subtitle');
-                // Ensure scroll position is managed by Lenis after swap
-                // Optionally scroll to top on each view:
-                // lenis?.raw?.scrollTo(0);
             });
 
             // ページ遷移時に背景色を変更
