@@ -36,7 +36,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    transform: translate3d(50vw, 50vh, 0);
+    transform: translate3d(var(--sx, 50vw), var(--sy, 50vh), 0);
     z-index: $z-cursor;
     pointer-events: none;
     transition: all $transition-slow cubic-bezier(.2,.6,.5,1);
@@ -77,3 +77,16 @@
     }
 }
 
+// Stick to cursor on hover (CSS variables driven)
+.range:hover > :first-child {
+    transform: translate3d(
+        calc((var(--mx, 0px) - var(--cx, var(--mx, 0px))) / 2),
+        calc((var(--my, 0px) - var(--cy, var(--my, 0px))) / 2),
+        0
+    );
+}
+
+.range > :first-child {
+    transition: transform $transition-fast ease;
+    will-change: transform;
+}

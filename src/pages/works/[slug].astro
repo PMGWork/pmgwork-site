@@ -126,7 +126,7 @@ const { work, next } = Astro.props as Props;
                         </div>
                     ))}
                     {work.link && (
-                        <a href={work.link} target="_blank" rel="noopener noreferrer" aria-label="play" class="info-play hover">
+                        <a href={work.link} target="_blank" rel="noopener noreferrer" aria-label="play" class="info-play">
                             <h5>Play</h5>
                         </a>
                     )}
@@ -167,19 +167,19 @@ const { work, next } = Astro.props as Props;
                 <div class="pages-share">
                     <h2 class="heading ts">Share!</h2>
                     <div class="share-link list">
-                        <a class="dl hover" href={`https://twitter.com/share?text=${work.title}&hashtags=pmgwork&url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="twitter" rel="nofollow noopener noreferrer">
+                        <a class="dl" href={`https://twitter.com/share?text=${work.title}&hashtags=pmgwork&url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="twitter" rel="nofollow noopener noreferrer">
                             <div class="twi">
                                 <Icon name="simple-icons:x" class="social-icon" />
                                 <h5>Twitter</h5>
                             </div>
                         </a>
-                        <a class="dl hover" href={`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${work.slug}/&t=${work.title}`} target="_blank" aria-label="facebook" rel="nofollow noopener noreferrer">
+                        <a class="dl" href={`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${work.slug}/&t=${work.title}`} target="_blank" aria-label="facebook" rel="nofollow noopener noreferrer">
                             <div class="face">
                                 <Icon name="simple-icons:facebook" class="social-icon" />
                                 <h5>Facebook</h5>
                             </div>
                         </a>
-                        <a class="dl hover" href={`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="line" rel="nofollow noopener noreferrer">
+                        <a class="dl" href={`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="line" rel="nofollow noopener noreferrer">
                             <div class="line">
                                 <Icon name="simple-icons:line" class="social-icon" />
                                 <h5>LINE</h5>
@@ -219,5 +219,4 @@ pageInit();
 
 window.addEventListener('swup:page:view', pageInit);
 </script>
-
 
