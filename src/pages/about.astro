@@ -4,9 +4,8 @@ import Footer from '../components/Footer.astro';
 import SplitText from '../components/SplitText.astro';
 ---
 
-<Layout title="About | ぴくせる">
+<Layout title="About | Pixel">
     <div class="about">
-        <div class="bg-white"></div>
         <div>
             <div id="bg-item"></div>
             <div class="title-wrapper">
@@ -18,7 +17,7 @@ import SplitText from '../components/SplitText.astro';
                     <img src="/logo.svg" alt="logo">
                 </div>
                 <div class="about-title-wrapper">
-                    <SplitText text="ぴくせる" as="h2" class="about-title ts" />
+                    <SplitText text="Pixel" as="h1" class="about-title ts" />
                     <SplitText text="Motion Graphics Designer" as="h4" class="about-subtitle ts" />
                 </div>
                 <div class="about-content">
@@ -54,22 +53,3 @@ import SplitText from '../components/SplitText.astro';
         </div>
     </div>
 </Layout>
-
-<script>
-document.addEventListener('DOMContentLoaded', async function() {
-    // 動的インポートでモジュールを読み込み
-    const [
-        { setupScrollAnimations, addAnimationClasses }
-    ] = await Promise.all([
-        import('../lib/animations/scroll.js'),
-    ]);
-
-    // 初期化処理を並列実行
-    await Promise.all([
-        addAnimationClasses(),
-    ]);
-
-    // スクロールアニメーションを設定
-    setupScrollAnimations('.list, .anm, .about-title, .about-subtitle, .heading, .subheading');
-});
-</script>

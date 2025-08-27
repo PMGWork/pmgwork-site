@@ -88,12 +88,11 @@ interface Props {
 const { work, next } = Astro.props as Props;
 ---
 
-<Layout title={`${work.title} | ぴくせる`}>
+<Layout title={`${work.title} | Pixel`}>
     <div class="pages">
         <div class="bg-white"></div>
         <div>
-            <div style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} id="bg-item1"></div>
-            <div id="pages-wrapper">
+            <div id="pages-wrapper" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} >
                 <div class="pages-image scroll">
                     <picture>
                         {work.thumbnail.webp && (
@@ -191,7 +190,7 @@ const { work, next } = Astro.props as Props;
             </div>
 
             {next && (
-                <a class="next-link view" aria-label="next" href={`/works/${next.slug}/`}>
+                <a id="next-link" class="view" aria-label="next" href={`/works/${next.slug}/`}>
                     <div style={`background-image: linear-gradient(135deg, ${next.color.hex}, ${next.color1.hex});`} class="next">
                         <SplitText as="h5" class="subheading ts" text="Next Project" />
                         <SplitText as="h2" class="next-heading ts" text={next.title} />
@@ -203,26 +202,7 @@ const { work, next } = Astro.props as Props;
 </Layout>
 
 <script>
-document.addEventListener('DOMContentLoaded', async function() {
-    // 動的インポートでモジュールを読み込み
-    const [
-        { setupScrollAnimations, addAnimationClasses }
-    ] = await Promise.all([
-        import('../../lib/animations/scroll.js')
-    ]);
-
-    // 初期化処理を並列実行
-    await Promise.all([
-        addAnimationClasses()
-    ]);
-
-    // 背景サイズ設定
-    bgSize();
-    window.addEventListener('resize', bgSize);
-
-    // スクロールアニメーションを設定
-    setupScrollAnimations('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading');
-
+const pageInit = () => {
     function bgSize() {
         const bg = document.getElementById('bg-item1');
         const wrap = document.getElementById('pages-wrapper');
@@ -230,7 +210,14 @@ document.addEventListener('DOMContentLoaded', async function() {
             bg.style.height = `${wrap.clientHeight}px`;
         }
     }
-});
+
+    bgSize();
+    window.addEventListener('resize', bgSize);
+}
+
+pageInit();
+
+window.addEventListener('swup:page:view', pageInit);
 </script>
 
 

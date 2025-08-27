@@ -25,13 +25,10 @@ $radius-pill: 100px;
 
 // Z-index layers
 $z-background: -99;
-$z-behind: -10;
-$z-behind-content: -9;
-$z-behind-element: -2;
-$z-behind-text: -1;
-$z-default: 1;
-$z-header: 10;
-$z-modal: 999999999999999;
+$z-title: 5;
+$z-content: 10;
+$z-header: 20;
+$z-cursor: 9000;
 
 // Transitions
 $transition-fast: 0.2s;

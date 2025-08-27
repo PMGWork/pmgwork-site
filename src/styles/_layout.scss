@@ -7,17 +7,6 @@
     height: 100vh;
     background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
     z-index: $z-background;
-    &.bg-color {
-         background: #f8f8f8;
-    }
-}
-
-.bg-white {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: $background;
-    z-index: $z-behind;
 }
 
 // Header
@@ -51,9 +40,6 @@
             top: 20px;
             left: 20px;
         }
-        &.header-color {
-            filter: brightness(.1);
-        }
     }
 
     ul {
@@ -73,7 +59,6 @@
         }
 
         li {
-            z-index: $z-header;
             padding: 30px 15px;
             margin: -30px -15px -30px 15px;
             @include sm {
@@ -84,14 +69,15 @@
                 display: inline-block;
                 transition: all $transition-normal;
                 &.header-color {
-                    color: #181818;
+                    color: $foreground;
                 }
             }
         }
     }
 }
 
-body.is-home #header-logo {
+// Swup
+body.is-top #header-logo {
     opacity: 0 !important;
 }
 
@@ -101,14 +87,14 @@ body.is-home #header-logo {
     overflow: hidden;
 
     #background {
-        height: 100vh;    /* フォールバック */
-        height: 100dvh;   /* 動的ビューポート高さ */
+        height: 100vh;
+        height: 100dvh;
     }
 
     #scene {
         width: 1100px;
-        height: 100vh;    /* フォールバック */
-        height: 100dvh;   /* 動的ビューポート高さ */
+        height: 100vh;
+        height: 100dvh;
         margin-left: auto;
         @include md {
             width: 960px;
@@ -141,7 +127,6 @@ body.is-home #header-logo {
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: $z-default;
         @include md {
             width: 240px;
             height: 240px;
@@ -271,24 +256,17 @@ body.is-home #header-logo {
     }
 }
 
+// Title wrapper
 .title-wrapper {
     pointer-events: none;
     text-align: center;
     padding-top: 180px;
+    position: relative;
+    z-index: $z-title;
     @include md {
         padding-top: 130px;
     }
     @include sm {
         padding-top: 100px;
     }
-}
-
-.next {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
 }

@@ -39,9 +39,8 @@ const { works } = await graphcmsClient.request<WorksResponse>(
 );
 ---
 
-<Layout title="Works | ぴくせる">
+<Layout title="Works | Pixel">
     <div class="works">
-        <div class="bg-white"></div>
         <div>
             <div id="bg-item"></div>
             <div class="title-wrapper">
@@ -85,19 +84,5 @@ const { works } = await graphcmsClient.request<WorksResponse>(
         </div>
     </div>
 </Layout>
-
-<script>
-document.addEventListener('DOMContentLoaded', async function() {
-    // 動的インポートでモジュールを読み込み
-    const [
-        { setupScrollAnimations }
-    ] = await Promise.all([
-        import('../../lib/animations/scroll.js')
-    ]);
-
-    // スクロールアニメーションを設定
-    setupScrollAnimations('.scroll, .works-title, .works-subtitle');
-});
-</script>
 
 

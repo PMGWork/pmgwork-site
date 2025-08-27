@@ -112,33 +112,33 @@
 // Keyframes
 @keyframes title-animation {
     0% {
-        transform: translate3d(0,100px,0) rotate(6deg);
+        top: 100px;
         opacity: 0;
     }
     100% {
-        transform: translate3d(0,0,0) rotate(0.01deg);
+        top: 0;
         opacity: 1;
     }
 }
 
 @keyframes subtitle-animation {
     0% {
-        transform: translate3d(0,50px,0) rotate(6deg);
+        top: 50px;
         opacity: 0;
     }
     100% {
-        transform: translate3d(0,0,0) rotate(0.01deg);
+        top: 0;
         opacity: 1;
     }
 }
 
 @keyframes works-title-animation {
     0% {
-        transform: translate3d(0,50px,0) rotate(6deg);
+        top: 50px;
         opacity: 0;
     }
     100% {
-        transform: translate3d(0,0,0) rotate(0.01deg);
+        top: 0;
         opacity: 1;
     }
 }
@@ -146,11 +146,11 @@
 
 @keyframes subheading-animation{
     0% {
-        transform: translate3d(0,30px,0) rotate(6deg);
+        top: 30px;
         opacity: 0;
     }
     100% {
-        transform: translate3d(0,0,0) rotate(0.003deg);
+        top: 0;
         opacity: 1;
     }
 }

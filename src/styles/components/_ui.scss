@@ -1,100 +1,18 @@
 @use '../variables' as *;
 
-// Background items and animations
+// Background
 #bg-item {
     position: absolute;
+    z-index: $z-title;
     width: 100%;
     height: 100vh;
     background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
-    z-index: $z-behind-element;
     animation: bg-animation $ease-in-out 1.2s both;
     @include md {
         animation: bg-animation1 $ease-in-out 1.2s both;
     }
     @include sm {
         animation: bg-animation2 $ease-in-out 1.2s both;
-    }
-}
-
-#bg-item1 {
-    position: absolute;
-    width: 100%;
-    z-index: $z-behind-element;
-    background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
-    animation: bgw-animation $ease-in-out 1.2s both;
-    @include pc {
-        animation: bgw-animation1 $ease-in-out 1.2s both;
-    }
-}
-
-// Share links
-.share-link {
-    display: flex;
-    justify-content: center;
-    div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 18px 24px;
-        margin: 15px;
-        border-radius: $radius-pill;
-        transition: all $transition-normal;
-        @include sm {
-            padding: 10px;
-            margin: 10px;
-            width: 24px;
-            height: 24px;
-        }
-
-        &.twi {
-            background: $twitter-color;
-            border: solid 2px $twitter-color;
-            &:hover {
-                color: $twitter-color;
-            }
-        }
-        &.face {
-            background: $facebook-color;
-            border: solid 2px $facebook-color;
-            &:hover {
-                color: $facebook-color;
-            }
-        }
-        &.line {
-            background: $line-color;
-            border: solid 2px $line-color;
-            &:hover {
-                color: $line-color;
-            }
-        }
-        &:hover {
-            background: rgba($white, 0);
-        }
-        span {
-            font-size: 28px;
-            @include md {
-                font-size: 24px;
-            }
-            @include sm {
-                font-size: 20px;
-            }
-        }
-        svg {
-            width: 28px;
-            fill: currentColor;
-            @include md {
-                width: 24px;
-            }
-            @include sm {
-                width: 20px;
-            }
-        }
-        h5 {
-            margin-left: 16px;
-            @include sm {
-                display: none;
-            }
-        }
     }
 }
 
@@ -108,13 +26,18 @@
     transition: all ease $transition-fast;
 }
 
+.split-char {
+    display: inline;
+    position: relative;
+}
+
 // Cursor
 .stalker {
     position: fixed;
     top: 0;
     left: 0;
     transform: translate3d(50vw, 50vh, 0);
-    z-index: 9999;
+    z-index: $z-cursor;
     pointer-events: none;
     transition: all $transition-slow cubic-bezier(.2,.6,.5,1);
 }

@@ -1,21 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SplitText from '../components/SplitText.astro';
-
+import RivePlayer from '../components/RivePlayer.tsx';
+import ParallaxLayers from '../components/ParallaxLayers.tsx';
 import { Icon } from 'astro-icon/components';
 ---
 
 <Layout>
     <div class="main">
         <div id="scene">
-            <canvas id="layer1" class="layer" width="1200" height="1000" data-depth="0.2"></canvas>
-            <canvas id="layer2" class="layer" width="1200" height="1000" data-depth="0.25"></canvas>
-            <canvas id="layer3" class="layer" width="1200" height="1000" data-depth="0.3"></canvas>
-            <canvas id="layer4" class="layer" width="1200" height="1000" data-depth="0.35"></canvas>
-            <canvas id="layer5" class="layer" width="1200" height="1000" data-depth="0.4"></canvas>
-            <canvas id="layer6" class="layer" width="1200" height="1000" data-depth="0.45"></canvas>
+            <ParallaxLayers client:load />
         </div>
-        <canvas id="main-logo" width="800" height="800"></canvas>
+        <RivePlayer client:load src="/animation/logomotion.riv" id="main-logo" />
         <div class="main-title-wrapper">
             <SplitText text="Pixel" as="h1" class="main-title ts" />
             <SplitText text="Motion Graphics Designer" as="h4" class="main-subtitle ts" />
@@ -37,43 +33,3 @@ import { Icon } from 'astro-icon/components';
 
     </div>
 </Layout>
-
-<script>
-import Swup from 'swup';
-
-const pageInit = async () => {
-    // 動的インポートでモジュールを読み込み
-    const [
-        { initializeRiveLayers, initializeMainLogo },
-        { setupParallax }
-    ] = await Promise.all([
-        import('../lib/animations/rive.js'),
-        import('../lib/animations/parallax.js')
-    ]);
-
-    // 初期化処理を並列実行
-    await Promise.all([
-        initializeRiveLayers(),
-        initializeMainLogo()
-    ]);
-
-    // パララックスを設定
-    const parallaxHandler = setupParallax();
-
-    // クリーンアップ
-    window.addEventListener('beforeunload', () => {
-        if (parallaxHandler) {
-            document.removeEventListener('mousemove', parallaxHandler);
-        }
-    });
-}
-
-pageInit()
-
-const swup = new Swup();
-
-// ページ遷移後に再実行
-swup.hooks.on('page:view', (visit) => {
-  pageInit()
-})
-</script>

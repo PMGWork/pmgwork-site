@@ -1,9 +1,9 @@
 ---
 import '../styles/global.scss';
-import Stalker from '../components/Stalker.astro';
-import Header from '../components/Header.astro';
+import Stalker from '../components/Stalker.tsx';
+import Header from '../components/Header.tsx';
 
-const isHome = Astro.url.pathname === "/";
+const isTop = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -11,36 +11,78 @@ const isHome = Astro.url.pathname === "/";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://use.typekit.net/wvf5bje.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-        <title>{Astro.props.title || 'ぴくせる'}</title>
+        <title>{Astro.props.title || 'Pixel'}</title>
+        <script>
+            import swup from '../lib/utils/swup';
+
+            // ページ遷移時にページビューイベントを発火させる
+            window.dispatchEvent(new CustomEvent('swup:page:view'));
+
+            // ブロック要素の子要素にアニメーションクラスを追加
+            export function addAnimationClasses(): void {
+                const blocks = document.querySelectorAll('.block, .list');
+                blocks.forEach(block => {
+                    Array.from(block.children).forEach(child => {
+                        child.classList.add('anm');
+                    });
+                });
+            }
+
+            // スクロールアニメーションを設定
+            export function observe(
+                targetSelector: string,
+                options: IntersectionObserverInit = { root: null, rootMargin: '-10% 0px', threshold: 0 }
+            ): void {
+                const observer = new IntersectionObserver((entries, ob) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            ob.unobserve(entry.target);
+                        }
+                    });
+                }, options);
+
+                document.querySelectorAll(targetSelector).forEach((el) => observer.observe(el));
+            }
+
+            addAnimationClasses();
+            observe('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading,.works-title,.works-subtitle,.about-title,.about-subtitle');
+
+            swup.hooks.on('page:view', () => {
+                addAnimationClasses();
+                observe('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading,.works-title,.works-subtitle,.about-title,.about-subtitle');
+            });
+
+            // ページ遷移時に背景色を変更
+            swup.hooks.on('visit:start', (visit) => {
+                const bg = document.getElementById('background');
+                if (!bg) return;
+
+                const nextUrl = visit?.to?.url ? new URL(visit.to.url, location.origin) : null;
+                const nextPath = nextUrl ? nextUrl.pathname : '';
+
+                const isWorkDetail = (p: string) => /^\/works\/.+/.test(p);
+
+                if ( isWorkDetail(nextPath)) {
+                    bg.style.background = '#f6f6f6';
+                } else {
+                    bg.style.background = '';
+                }
+            });
+        </script>
     </head>
-    <body class:list={{ "is-home": isHome }}>
-        <Stalker />
-        <Header />
+    <body class:list={{ "is-top": isTop }}>
+        <Stalker client:load />
+        <Header client:load />
         <div id="background"></div>
         <div id="swup" class="transition-fade">
             <slot />
         </div>
-
-        <script>
-            import Swup from 'swup';
-            import SwupHeadPlugin from '@swup/head-plugin';
-            import BodyClassPlugin from '@swup/body-class-plugin';
-
-            const swup = new Swup({
-                containers: ['#swup'],
-                plugins: [
-                    new BodyClassPlugin(),
-                    new SwupHeadPlugin(),
-                ],
-                linkSelector: 'a[href^="/"]:not([data-no-swup]):not([href^="#"]):not([target]):not([download])',
-                cache: false
-            });
-        </script>
     </body>
 </html>

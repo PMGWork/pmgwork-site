@@ -1,5 +1,9 @@
 @use '../variables' as *;
 
+.about {
+    background: $background;
+}
+
 .about-wrapper {
     pointer-events: none;
     margin: 240px auto 60px;
@@ -15,7 +19,7 @@
         position: absolute;
         width: 800px;
         margin: -300px -150px;
-        z-index: $z-behind-content;
+        z-index: 1;
         @include md {
             width: 500px;
             margin: -180px -100px;
@@ -28,6 +32,8 @@
 
     .about-title-wrapper {
         text-align: end;
+        position: relative;
+        z-index: $z-content;
         .about-title {
             background-repeat: no-repeat;
             background-size: 0% 30%;
@@ -60,6 +66,8 @@
     .about-content {
         text-align: center;
         margin: 300px 0 150px;
+        position: relative;
+        z-index: $z-content;
         @include md {
             margin: 240px 0 120px;
         }
@@ -73,7 +81,7 @@
             }
         }
         a {
-            color: #181818;
+            color: $foreground;
             transition: all $transition-normal;
             &:hover {
                 opacity: .5;
@@ -83,6 +91,8 @@
 
     .about-block {
         display: flex;
+        position: relative;
+        z-index: $z-content;
         @include md {
             display: inline;
         }
