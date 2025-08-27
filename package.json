@@ -13,27 +13,20 @@
     "@iconify-json/simple-icons": "^1.2.48",
     "@rive-app/canvas": "^2.31.2",
     "@rive-app/react-canvas": "^4.23.1",
-    "@swup/a11y-plugin": "^5.0.0",
     "@swup/body-class-plugin": "^3.3.0",
-    "@swup/debug-plugin": "^4.1.0",
-    "@swup/forms-plugin": "^3.6.0",
     "@swup/head-plugin": "^2.3.1",
-    "@swup/scripts-plugin": "^2.1.0",
-    "@swup/scroll-plugin": "^4.0.0",
-    "@swup/slide-theme": "^2.0.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "astro": "^5.13.2",
     "astro-icon": "^1.1.5",
     "graphql-request": "^7.2.0",
-    "lodash.throttle": "^4.1.1",
+    "gsap": "^3.13.0",
     "lenis": "^1.2.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "swup": "^4.8.2"
   },
   "devDependencies": {
-    "@types/lodash.throttle": "^4.1.9",
     "sass": "^1.90.0"
   }
 }
