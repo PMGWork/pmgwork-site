@@ -1,46 +1,40 @@
-# Astro Starter Kit: Basics
+## pmgwork-site
 
-```sh
-npm create astro@latest -- --template basics
+Astro + React ベースのポートフォリオサイトです。GSAP/ScrollTrigger によるスクロールアニメーション、Swup によるページ遷移、Lenis によるスムーススクロールを用いています。
+
+### Tech Stack
+- Astro 5, React 19
+- GSAP (ScrollTrigger, SplitText), CustomEase
+- Swup (+ Head/BodyClass plugins)
+- Lenis
+- GraphCMS (Hygraph) via `graphql-request`
+
+### 開発
+- `npm i`
+- `npm run dev` で `localhost:4321`
+- `npm run build` → `dist/`
+- `npm run preview`
+
+### 環境変数
+`PUBLIC_GRAPHCMS_ENDPOINT` を `.env` に設定してください。例は `.env.example` を参照。
+
+```
+PUBLIC_GRAPHCMS_ENDPOINT="https://<your-hygraph-endpoint>"
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### ルーティングとアニメーション初期化
+`src/layouts/Layout.astro` の `<script>` 内で、ページごとのアニメーションをマッピングで判定・実行します。
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── work
-│       └── index.astro
-└── package.json
+```ts
+const routes = [
+  { match: p => p === '/works' || p === '/works/', run: animateWorks },
+  { match: p => p === '/about' || p === '/about/', run: animateAbout },
+  { match: p => /^\/works\/.+/.test(p), run: animateWork },
+];
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### 背景色の切替（責務分離）
+Swup のフックで `body.is-work-detail` クラスを付け替え、CSS 側（`src/styles/_layout.scss`）で `#background` の背景色を切替えます。インラインの `style` 変更は行いません。
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### セキュリティ（set:html）
+`src/pages/works/[slug].astro` では CMS 出力の HTML を挿入するため、`src/lib/utils/sanitize.ts` で簡易サニタイズを適用しています。厳密な要件がある場合は DOMPurify や sanitize-html の採用を推奨します。

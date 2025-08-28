@@ -7,8 +7,8 @@ export function animate() {
     const subtitle = titleWrapper?.querySelector(".subtitle")
 
     if (title && subtitle) {
-        const splitTitle = new SplitText(title, { type: "chars", tag: "span" });
-        const splitSubtitle = new SplitText(subtitle, { type: "chars", tag: "span" });
+        const splitTitle = SplitText.create(title, { type: "chars", tag: "span" });
+        const splitSubtitle = SplitText.create(subtitle, { type: "chars", tag: "span" });
 
         gsap.timeline()
         .from(

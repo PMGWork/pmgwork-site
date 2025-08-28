@@ -94,7 +94,7 @@ export default function Stalker() {
         const onPointerOut = (e: PointerEvent) => {
             // ホバー解除対象要素を取得
             const target = e.target as HTMLElement | null;
-            const related = (e as any).relatedTarget as Node | null;
+            const related = (e.relatedTarget ? (e.relatedTarget as Node) : null);
 
             // ストーカー要素を取得
             const stalker = stalkerElement();

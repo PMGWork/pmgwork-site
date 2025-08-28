@@ -89,7 +89,6 @@ const { work, next } = Astro.props as Props;
 
 <Layout title={`${work.title} | Pixel`}>
     <div class="work">
-        <div class="bg-white"></div>
         <div>
             <div id="work-wrapper" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} >
                 <div class="work-image">
@@ -199,22 +198,3 @@ const { work, next } = Astro.props as Props;
         </div>
     </div>
 </Layout>
-
-<script>
-const pageInit = () => {
-    function bgSize() {
-        const bg = document.getElementById('bg-item1');
-        const wrap = document.getElementById('work-wrapper');
-        if (bg && wrap) {
-            bg.style.height = `${wrap.clientHeight}px`;
-        }
-    }
-
-    bgSize();
-    window.addEventListener('resize', bgSize);
-}
-
-pageInit();
-
-window.addEventListener('swup:page:view', pageInit);
-</script>

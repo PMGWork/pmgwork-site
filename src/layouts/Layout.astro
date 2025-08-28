@@ -20,7 +20,7 @@ const isTop = Astro.url.pathname === "/";
         <title>{Astro.props.title || 'Pixel'}</title>
         <script>
             import swup from '../lib/utils/swup';
-            import lenis from '../lib/utils/lenis';
+            import '../lib/utils/lenis';
 
             // ページ遷移時にページビューイベントを発火させる
             window.dispatchEvent(new CustomEvent('swup:page:view'));
@@ -33,9 +33,9 @@ const isTop = Astro.url.pathname === "/";
                 const nextUrl = visit?.to?.url ? new URL(visit.to.url, location.origin) : null;
                 const nextPath = nextUrl ? nextUrl.pathname : '';
 
-                const isWorkDetail = (p: string) => /^\/works\/.+/.test(p);
+                const isWork = (p: string) => /^\/works\/.+/.test(p);
 
-                if (isWorkDetail(nextPath)) {
+                if (isWork(nextPath)) {
                     bg.style.background = '#f6f6f6';
                 } else {
                     bg.style.background = '';

@@ -9,6 +9,11 @@
     z-index: $z-background;
 }
 
+// Work background
+body.is-work #background {
+    background: $background;
+}
+
 // Header
 .header {
     position: relative;
