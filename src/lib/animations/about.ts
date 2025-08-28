@@ -1,6 +1,7 @@
 import { gsap, SplitText, easings } from '../utils/gsap';
 
 export function animateAbout() {
+    // タイトルアニメーション
     const aboutTitle = document.querySelectorAll(".about-title-wrapper");
 
     aboutTitle.forEach((wrapper) => {

@@ -1,7 +1,7 @@
 import { gsap, SplitText, easings } from '../utils/gsap';
 
 export function animate() {
-    // タイトルアニメーション
+    // メインタイトルアニメーション（.title, .subtitle）
     const titleWrapper = document.querySelector(".title-wrapper, .main-title-wrapper");
     const title = titleWrapper?.querySelector(".title")
     const subtitle = titleWrapper?.querySelector(".subtitle")
@@ -35,7 +35,7 @@ export function animate() {
         );
     }
 
-    // 見出しアニメーション
+    // 見出しアニメーション（.heading）
     const headings = document.querySelectorAll(".heading");
 
     if (headings.length != 0) {
@@ -63,7 +63,7 @@ export function animate() {
         });
     }
 
-    // リスト（.list）とブロック（.block）の子要素をスクロールで出現
+    // リストアニメーション（.list, .block）
     const lists = document.querySelectorAll(".list");
     lists.forEach((list) => {
         const children = Array.from(list.children) as HTMLElement[];
@@ -104,7 +104,7 @@ export function animate() {
         });
     });
 
-    // 単発のスクロール要素（.scroll）
+    // スクロールアニメーション（.scroll）
     const scrollElems = document.querySelectorAll(".scroll");
     scrollElems.forEach((el) => {
         gsap.from(el, {

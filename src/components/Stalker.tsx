@@ -15,6 +15,7 @@ export default function Stalker() {
         y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0,
     });
     const [visible, setVisible] = useState(true);
+    const [mouseMoved, setMouseMoved] = useState(false);
 
     useEffect(() => {
         // ポインタが「細かい操作に対応（マウス等）」か判定し、非対応なら機能を停止
@@ -34,6 +35,7 @@ export default function Stalker() {
 
         // マウス位置を更新
         const onPointerMove = (e: PointerEvent) => {
+            if (!mouseMoved) setMouseMoved(true);
             mousePos.current.x = e.clientX;
             mousePos.current.y = e.clientY;
             setVar('--mx', `${e.clientX}px`);
@@ -168,7 +170,10 @@ export default function Stalker() {
                 id="stalker"
                 ref={stalkerRef}
                 className="stalker"
-                style={{ display: visible ? undefined : 'none' }}
+                style={{
+                    display: visible ? undefined : 'none',
+                    opacity: mouseMoved ? 1 : 0
+                }}
             >
                 <div className="stalker-item"></div>
             </div>

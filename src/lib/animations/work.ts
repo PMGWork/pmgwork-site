@@ -1,7 +1,7 @@
 import { gsap, SplitText, easings } from '../utils/gsap';
 
 export function animateWork() {
-    // トップコンテンツ
+    // タイトルアニメーション
     const wrapper = document.getElementById("work-wrapper");
     if (!wrapper) return;
 
@@ -66,7 +66,7 @@ export function animateWork() {
         "-=0.6"
     );
 
-    // 情報ブロック
+    // 作品情報
     const workInfo = document.querySelector("#work-wrapper .work-info");
     if (workInfo) {
         gsap.from(workInfo, {
@@ -83,7 +83,7 @@ export function animateWork() {
         });
     }
 
-    // 画像ブロック群
+    // ブロック画像
     const blockImages = document.querySelectorAll("#work-wrapper1 .work-block .block-image");
     blockImages.forEach((mask) => {
         const img = mask.querySelector("img");

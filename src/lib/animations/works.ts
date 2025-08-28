@@ -1,6 +1,7 @@
 import { gsap, SplitText, easings } from '../utils/gsap';
 
 export function animateWorks() {
+    // タイトルアニメーション
     const works = document.querySelectorAll(".works-article");
 
     works.forEach((work) => {
