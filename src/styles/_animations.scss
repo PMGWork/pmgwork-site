@@ -1,62 +1,5 @@
 @use 'variables' as *;
 
-// Animation classes
-.title span, .main-title span {
-    animation: title-animation $ease-out .8s both;
-    @for $i from 1 through 10 {
-        &:nth-child(#{$i}) {
-            animation-delay: 0.06s * $i + .2s;
-        }
-    }
-}
-
-.subtitle span, .main-subtitle span {
-    animation: subtitle-animation $ease-out .8s both;
-    @for $i from 1 through 50 {
-        &:nth-child(#{$i}) {
-            animation-delay: 0.01s * $i + .5s;
-        }
-    }
-}
-
-.works-title span, .about-title span {
-    opacity: 0;
-}
-
-.works-title.in-view span, .about-title.in-view span {
-    animation: works-title-animation $ease-out .8s both;
-    @for $i from 1 through 50 {
-        &:nth-child(#{$i}) {
-            animation-delay: 0.03s * $i + .3s;
-        }
-    }
-}
-
-.works-subtitle span, .about-subtitle span {
-    opacity: 0;
-}
-
-.works-subtitle.in-view span, .about-subtitle.in-view span {
-    animation: works-title-animation $ease-out .8s both;
-    @for $i from 1 through 50 {
-        &:nth-child(#{$i}) {
-            animation-delay: 0.01s * $i + .7s;
-        }
-    }
-}
-
-.heading span {
-    opacity: 0;
-}
-
-.heading.in-view span {
-    animation: title-animation $ease-out .8s both;
-    @for $i from 1 through 50 {
-        &:nth-child(#{$i}) {
-            animation-delay: 0.03s * $i;
-        }
-    }
-}
 
 .subheading span {
     opacity: 0;
@@ -110,40 +53,6 @@
 
 
 // Keyframes
-@keyframes title-animation {
-    0% {
-        top: 100px;
-        opacity: 0;
-    }
-    100% {
-        top: 0;
-        opacity: 1;
-    }
-}
-
-@keyframes subtitle-animation {
-    0% {
-        top: 50px;
-        opacity: 0;
-    }
-    100% {
-        top: 0;
-        opacity: 1;
-    }
-}
-
-@keyframes works-title-animation {
-    0% {
-        top: 50px;
-        opacity: 0;
-    }
-    100% {
-        top: 0;
-        opacity: 1;
-    }
-}
-
-
 @keyframes subheading-animation{
     0% {
         top: 30px;

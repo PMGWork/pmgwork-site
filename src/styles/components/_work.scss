@@ -1,26 +1,25 @@
 @use '../variables' as *;
 
-.pages {
+.work {
     background: $background;
 }
 
-#pages-wrapper {
+#work-wrapper {
     padding: 160px 60px 500px;
     margin: 0 auto;
     max-width: 1366px;
+    animation: bgw-animation $ease-in-out 1.2s both;
     @include md {
         padding: 90px 60px 400px;
     }
     @include sm {
         padding: 90px 30px 400px;
     }
-
-    animation: bgw-animation $ease-in-out 1.2s both;
     @include pc {
         animation: bgw-animation1 $ease-in-out 1.2s both;
     }
 
-    .pages-image {
+    .work-image {
         overflow: hidden;
         border-radius: $radius-md;
         opacity: 0;
@@ -47,7 +46,7 @@
         }
     }
 
-    .pages-heading-wrapper {
+    .work-title-wrapper {
         h2 {
             margin-top: 60px;
             @include sm {
@@ -63,7 +62,7 @@
         }
     }
 
-    .pages-info {
+    .work-info {
         margin-top: 60px;
         padding: 20px 40px;
         display: flex;
@@ -111,7 +110,7 @@
     }
 }
 
-#pages-wrapper1 {
+#work-wrapper1 {
     color: $foreground;
     padding: 60px;
     margin: -120px auto 0;
@@ -121,7 +120,7 @@
         margin: -200px 0 0;
     }
 
-    .pages-about {
+    .work-about {
         padding-bottom: 150px;
         border-bottom: solid 1px #DCDCDC;
         @include md {
@@ -149,7 +148,7 @@
         }
     }
 
-    .pages-block {
+    .work-block {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -200,7 +199,7 @@
         }
     }
 
-    .pages-share {
+    .work-share {
         padding: 150px 0;
         border-top: solid 1px #DCDCDC;
         @include md {

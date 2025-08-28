@@ -21,7 +21,7 @@ Inside of your Astro project, you'll see the following folders and files:
 │   │   └── Welcome.astro
 │   ├── layouts
 │   │   └── Layout.astro
-│   └── pages
+│   └── work
 │       └── index.astro
 └── package.json
 ```

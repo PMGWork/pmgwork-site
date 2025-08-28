@@ -36,14 +36,10 @@
         z-index: $z-content;
         .about-title {
             background-repeat: no-repeat;
-            background-size: 0% 30%;
+            background-size: 100% 30%;
             background-position: 10px bottom;
             background-image: linear-gradient(135deg, #8DD1FF, #2A5CC1);
             display: inline;
-            transition: background-size $ease-out 1.2s;
-            &.in-view {
-                background-size: 100% 30%;
-            }
             @include md {
                 font-size: 60px;
             }

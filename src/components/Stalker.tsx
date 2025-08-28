@@ -134,7 +134,7 @@ export default function Stalker() {
         // 監視対象を最新化
         const observeColorTargets = () => {
             colorObserver.disconnect();
-            ['#bg-item', '#pages-wrapper', '#scene'].forEach(sel => {
+            ['#bg-item', '#work-wrapper', '#scene'].forEach(sel => {
                 const el = document.querySelector(sel);
                 if (el) colorObserver.observe(el);
             });

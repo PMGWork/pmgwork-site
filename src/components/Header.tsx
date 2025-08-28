@@ -10,7 +10,7 @@ export default function Header() {
     const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
-        const targets = ['#bg-item', '#pages-wrapper', '#scene'];
+        const targets = ['#bg-item', '#work-wrapper', '#scene'];
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

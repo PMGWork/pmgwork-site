@@ -29,16 +29,12 @@
 
     .works-title {
         background-repeat: no-repeat;
-        background-size: 0% 30%;
+        background-size: 100% 30%;
         background-position: 10px bottom;
         padding-right: 10px;
         display: inline;
         font-size: 4vw;
         line-height: 1.5;
-        transition: background-size $ease-out 1.2s;
-        &.in-view {
-            background-size: 100% 30%;
-        }
         @include md {
             margin-bottom: 5.5%;
             font-size: 6vw;

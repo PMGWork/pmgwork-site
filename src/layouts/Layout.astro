@@ -77,6 +77,36 @@ const isTop = Astro.url.pathname === "/";
                     bg.style.background = '';
                 }
             });
+
+            import { animateTitle, animateHeading, animateWorks, animateAbout, animateWork } from "../lib/animations/animations";
+
+            function initPageAnimations() {
+                const currentPath = window.location.pathname;
+
+                // 全ページ共通
+                animateTitle();
+                animateHeading();
+
+                // ページ固有のアニメーション
+                if (currentPath === '/works' || currentPath === '/works/') {
+                    animateWorks();
+                }
+
+                if (currentPath === '/about' || currentPath === '/about/') {
+                    animateAbout();
+                }
+
+                if (currentPath.startsWith('/works/') && currentPath !== '/works/') {
+                    animateWork();
+                }
+            }
+
+            initPageAnimations();
+
+            // ページ遷移後にも再適用
+            swup.hooks.on('page:view', () => {
+                initPageAnimations();
+            });
         </script>
     </head>
     <body class:list={{ "is-top": isTop }}>

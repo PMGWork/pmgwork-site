@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SplitText from '../../components/SplitText.astro';
 import type { WorksResponse, Work } from '../../types/global';
 import { formatDate } from '../../lib/utils/date';
 import { Icon } from 'astro-icon/components';
@@ -89,11 +88,11 @@ const { work, next } = Astro.props as Props;
 ---
 
 <Layout title={`${work.title} | Pixel`}>
-    <div class="pages">
+    <div class="work">
         <div class="bg-white"></div>
         <div>
-            <div id="pages-wrapper" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} >
-                <div class="pages-image scroll">
+            <div id="work-wrapper" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} >
+                <div class="work-image scroll">
                     <picture>
                         {work.thumbnail.webp && (
                             <source srcset={work.thumbnail.webp} type="image/webp" />
@@ -110,15 +109,15 @@ const { work, next } = Astro.props as Props;
                         />
                     </picture>
                 </div>
-                <div class="pages-heading-wrapper">
-                    <SplitText as="h2" class="heading ts" text={work.title} />
+                <div class="work-title-wrapper">
+                    <h2 class="title">{work.title}</h2>
                     {work.isClient ? (
-                        <SplitText as="p" class="subheading ts" text={`Client Work - ${formatDate(work.date)}`} />
+                        <p class="subtitle">Client Work - {formatDate(work.date)}</p>
                     ) : (
-                        <SplitText as="p" class="subheading ts" text={`Personal Work - ${formatDate(work.date)}`} />
+                        <p class="subtitle">Personal Work - {formatDate(work.date)}</p>
                     )}
                 </div>
-                <div class="pages-info scroll">
+                <div class="work-info scroll">
                     {work.credits?.map((item) => (
                         <div class="info-item">
                             <h5>{item.title}</h5>
@@ -133,17 +132,17 @@ const { work, next } = Astro.props as Props;
                 </div>
             </div>
 
-            <div id="pages-wrapper1">
+            <div id="work-wrapper1">
                 {/** About */}
                 {work.body && (
-                    <div class="pages-about">
-                        <SplitText as="h2" class="heading ts" text="About" />
+                    <div class="work-about">
+                        <h2 class="heading">About</h2>
                         <div class="block font" set:html={work.body.html}></div>
                     </div>
                 )}
 
                 {/** Images */}
-                <div class="pages-block">
+                <div class="work-block">
                     {work.images?.map((img) => (
                         <div class="block-image scroll">
                             <picture>
@@ -164,8 +163,8 @@ const { work, next } = Astro.props as Props;
                 </div>
 
                 {/** Share */}
-                <div class="pages-share">
-                    <h2 class="heading ts">Share!</h2>
+                <div class="work-share">
+                    <h2 class="heading">Share!</h2>
                     <div class="share-link list">
                         <a class="dl" href={`https://twitter.com/share?text=${work.title}&hashtags=pmgwork&url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="twitter" rel="nofollow noopener noreferrer">
                             <div class="twi">
@@ -192,8 +191,8 @@ const { work, next } = Astro.props as Props;
             {next && (
                 <a id="next-link" class="view" aria-label="next" href={`/works/${next.slug}/`}>
                     <div style={`background-image: linear-gradient(135deg, ${next.color.hex}, ${next.color1.hex});`} class="next">
-                        <SplitText as="h5" class="subheading ts" text="Next Project" />
-                        <SplitText as="h2" class="next-heading ts" text={next.title} />
+                        <h5 class="subheading">Next Project</h5>
+                        <h2 class="next-heading">{next.title}</h2>
                     </div>
                 </a>
             )}
@@ -205,7 +204,7 @@ const { work, next } = Astro.props as Props;
 const pageInit = () => {
     function bgSize() {
         const bg = document.getElementById('bg-item1');
-        const wrap = document.getElementById('pages-wrapper');
+        const wrap = document.getElementById('work-wrapper');
         if (bg && wrap) {
             bg.style.height = `${wrap.clientHeight}px`;
         }
