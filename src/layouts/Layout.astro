@@ -20,7 +20,6 @@ const isTop = Astro.url.pathname === "/";
         <title>{Astro.props.title || 'Pixel'}</title>
         <script>
             import swup from '../lib/utils/swup';
-            import '../lib/utils/lenis';
 
             // ページ遷移時にページビューイベントを発火させる
             window.dispatchEvent(new CustomEvent('swup:page:view'));
@@ -42,8 +41,15 @@ const isTop = Astro.url.pathname === "/";
                 }
             });
 
-            // アニメーションのインポート
+            // GSAPとアニメーション関数のインポート
+            import { ScrollSmoother } from '../lib/utils/gsap';
             import { animate, animateAbout, animateWork, animateWorks } from '../lib/animations/';
+
+            // スクロールスムーザーの初期化
+            ScrollSmoother.create({
+                smooth: 0.6,
+                smoothTouch: 0.1,
+            });
 
             // アニメーションの初期化
             function initPageAnimations() {
@@ -53,23 +59,15 @@ const isTop = Astro.url.pathname === "/";
                 animate();
 
                 // ページ固有のアニメーション
-                if (currentPath === '/works' || currentPath === '/works/') {
-                    animateWorks();
-                }
-
-                if (currentPath === '/about' || currentPath === '/about/') {
-                    animateAbout();
-                }
-
-                if (currentPath.startsWith('/works/') && currentPath !== '/works/') {
-                    animateWork();
-                }
+                if (currentPath === '/works' || currentPath === '/works/') animateWorks();
+                if (currentPath === '/about' || currentPath === '/about/') animateAbout();
+                if (currentPath.startsWith('/works/') && currentPath !== '/works/') animateWork();
             }
 
             initPageAnimations();
 
-            // ページ遷移後にも再適用
-            swup.hooks.on('page:view', () => {
+            // 差し替え直後に初期化
+            swup.hooks.on('content:replace', () => {
                 initPageAnimations();
             });
         </script>
@@ -79,7 +77,9 @@ const isTop = Astro.url.pathname === "/";
         <Header client:load />
         <div id="background"></div>
         <div id="swup" class="transition-fade">
-            <slot />
+            <div id="smooth-content">
+                <slot />
+            </div>
         </div>
     </body>
 </html>

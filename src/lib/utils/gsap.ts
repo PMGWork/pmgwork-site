@@ -10,4 +10,4 @@ const easeOut = CustomEase.create("easeOut", "M0,0 C0,0.7 0.3,1 1,1");
 const easeInOut = CustomEase.create("easeInOut", "M0,0 C0.5,0 0.2,1 1,1");
 const easings = { easeOut, easeInOut };
 
-export { gsap, ScrollTrigger, SplitText, CustomEase, easings, easeOut, easeInOut };
+export { gsap, ScrollTrigger, SplitText, ScrollSmoother, easings};
