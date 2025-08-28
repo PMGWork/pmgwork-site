@@ -1,6 +1,6 @@
 import { gsap, SplitText, easings } from '../utils/gsap';
 
-export function animate() {
+export function animateShared() {
     // メインタイトルアニメーション（.title, .subtitle）
     const titleWrapper = document.querySelector(".title-wrapper, .main-title-wrapper");
     const title = titleWrapper?.querySelector(".title")

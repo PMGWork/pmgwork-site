@@ -67,7 +67,7 @@ export function animateWork() {
     );
 
     // 作品情報
-    const workInfo = document.querySelector("#work-wrapper .work-info");
+    const workInfo = document.querySelector(".work-info");
     if (workInfo) {
         gsap.from(workInfo, {
             scrollTrigger: {

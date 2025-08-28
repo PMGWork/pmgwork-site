@@ -20,6 +20,8 @@ const isTop = Astro.url.pathname === "/";
         <title>{Astro.props.title || 'Pixel'}</title>
         <script>
             import swup from '../lib/utils/swup';
+            import { ScrollSmoother, ScrollTrigger } from '../lib/utils/gsap';
+            import { animateShared, animateAbout, animateWork, animateWorks } from '../lib/animations/';
 
             // ページ遷移時にページビューイベントを発火させる
             window.dispatchEvent(new CustomEvent('swup:page:view'));
@@ -41,34 +43,44 @@ const isTop = Astro.url.pathname === "/";
                 }
             });
 
-            // GSAPとアニメーション関数のインポート
-            import { ScrollSmoother } from '../lib/utils/gsap';
-            import { animate, animateAbout, animateWork, animateWorks } from '../lib/animations/';
-
-            // スクロールスムーザーの初期化
-            ScrollSmoother.create({
-                smooth: 0.6,
-                smoothTouch: 0.1,
-            });
+            // Smoother の初期化
+            function initSmoother() {
+                ScrollSmoother.create({
+                    wrapper: '#swup',
+                    content: '#smooth-content',
+                    smooth: 0.6,
+                    smoothTouch: 0.1,
+                });
+            }
+            initSmoother();
 
             // アニメーションの初期化
-            function initPageAnimations() {
+            function initAnimations() {
                 const currentPath = window.location.pathname;
 
                 // 全ページ共通
-                animate();
+                animateShared();
 
                 // ページ固有のアニメーション
                 if (currentPath === '/works' || currentPath === '/works/') animateWorks();
                 if (currentPath === '/about' || currentPath === '/about/') animateAbout();
                 if (currentPath.startsWith('/works/') && currentPath !== '/works/') animateWork();
             }
-
-            initPageAnimations();
+            initAnimations();
 
             // 差し替え直後に初期化
             swup.hooks.on('content:replace', () => {
-                initPageAnimations();
+                // 新しいコンテンツに対して初期化
+                initSmoother();
+                const smoother = ScrollSmoother.get();
+                if (smoother) smoother.scrollTo(0, false);
+
+                // 次フレームでアニメ初期化し、その直後と少し後にrefresh
+                requestAnimationFrame(() => {
+                    initAnimations();
+                    ScrollTrigger.refresh();
+                    setTimeout(() => ScrollTrigger.refresh(), 250);
+                });
             });
         </script>
     </head>
