@@ -20,7 +20,7 @@ const isTop = Astro.url.pathname === "/";
         <title>{Astro.props.title || 'Pixel'}</title>
         <script>
             import swup from '../lib/utils/swup';
-            import { ScrollSmoother, ScrollTrigger } from '../lib/utils/gsap';
+            import { ScrollSmoother } from '../lib/utils/gsap';
             import { animateShared, animateAbout, animateWork, animateWorks } from '../lib/animations/';
 
             // ページ遷移時にページビューイベントを発火させる
@@ -45,7 +45,7 @@ const isTop = Astro.url.pathname === "/";
 
             // Smoother の初期化
             function initSmoother() {
-                ScrollSmoother.create({
+                return ScrollSmoother.create({
                     wrapper: '#swup',
                     content: '#smooth-content',
                     smooth: 0.6,
@@ -70,17 +70,8 @@ const isTop = Astro.url.pathname === "/";
 
             // 差し替え直後に初期化
             swup.hooks.on('content:replace', () => {
-                // 新しいコンテンツに対して初期化
-                initSmoother();
-                const smoother = ScrollSmoother.get();
-                if (smoother) smoother.scrollTo(0, false);
-
-                // 次フレームでアニメ初期化し、その直後と少し後にrefresh
-                requestAnimationFrame(() => {
-                    initAnimations();
-                    ScrollTrigger.refresh();
-                    setTimeout(() => ScrollTrigger.refresh(), 250);
-                });
+                initSmoother()?.scrollTo(0, false);
+                initAnimations();
             });
         </script>
     </head>
