@@ -53,12 +53,12 @@ const isTop = Astro.url.pathname === "/";
             }
 
             addAnimationClasses();
-            observe('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading,.works-title,.works-subtitle,.about-title,.about-subtitle');
+            observe('.list,.anm,.scroll');
 
             // ページ遷移時にアニメーションを設定
             swup.hooks.on('page:view', () => {
                 addAnimationClasses();
-                observe('.list,.anm,.scroll,.title,.heading,.subheading,.next-heading,.works-title,.works-subtitle,.about-title,.about-subtitle');
+                observe('.list,.anm,.scroll');
             });
 
             // ページ遷移時に背景色を変更
@@ -78,14 +78,14 @@ const isTop = Astro.url.pathname === "/";
                 }
             });
 
-            import { animateTitle, animateHeading, animateWorks, animateAbout, animateWork } from "../lib/animations/animations";
+            import { animate, animateWorks, animateAbout, animateWork } from "../lib/animations";
 
+            // アニメーションの初期化
             function initPageAnimations() {
                 const currentPath = window.location.pathname;
 
                 // 全ページ共通
-                animateTitle();
-                animateHeading();
+                animate();
 
                 // ページ固有のアニメーション
                 if (currentPath === '/works' || currentPath === '/works/') {

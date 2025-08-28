@@ -1,32 +1,5 @@
 @use 'variables' as *;
 
-
-.subheading span {
-    opacity: 0;
-}
-
-.subheading.in-view span {
-    animation: subheading-animation $ease-out .8s both;
-    @for $i from 1 through 50 {
-        &:nth-child(#{$i}) {
-            animation-delay: 0.01s * $i + .3s;
-        }
-    }
-}
-
-.next-heading span {
-    opacity: 0;
-}
-
-.next-heading.in-view span {
-    animation: subtitle-animation $ease-out .8s both;
-    @for $i from 1 through 50 {
-        &:nth-child(#{$i}) {
-            animation-delay: 0.03s * $i + .4s;
-        }
-    }
-}
-
 .list {
     .anm {
         opacity: 0;
@@ -53,17 +26,6 @@
 
 
 // Keyframes
-@keyframes subheading-animation{
-    0% {
-        top: 30px;
-        opacity: 0;
-    }
-    100% {
-        top: 0;
-        opacity: 1;
-    }
-}
-
 @keyframes block-animation {
     0% {
         transform: translate3d(0,50px,0);

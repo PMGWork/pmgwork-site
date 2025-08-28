@@ -49,7 +49,7 @@ const { works } = await graphcmsClient.request<WorksResponse>(
             <div class="works-wrapper">
                 {works.map((work) => (
                     <div class="works-article" id={work.slug}>
-                        <div class="works-image scroll view">
+                        <div class="works-image view">
                             <a href={`/works/${work.slug}/`}>
                                 <picture>
                                     {work.thumbnail.webp && (
