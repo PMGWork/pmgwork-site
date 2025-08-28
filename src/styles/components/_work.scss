@@ -54,16 +54,9 @@
         display: flex;
         background: rgba($white, .1);
         border-radius: $radius-xl;
-        opacity: 0;
-        transform: translateY(150px);
-        transition: $ease-out 1s;
         @include sm {
             padding: 20px;
             flex-direction: column;
-        }
-        &.in-view {
-            opacity: 1;
-            transform: translateY(0px);
         }
         .info-item {
             margin: 15px 40px 0 0;
@@ -150,8 +143,6 @@
             height: 48%;
             border-radius: $radius-sm;
             overflow: hidden;
-            transform: translateY(150px);
-            transition: $ease-out 1s;
             &:nth-child(2n) {
                 margin-top: 10%;
                 margin-bottom: -5%;
@@ -169,18 +160,7 @@
             img {
                 width: 100%;
                 height: 100%;
-                opacity: 0;
                 vertical-align: bottom;
-                transform: scale(1.2);
-                transition: transform $ease-out 1s;
-            }
-            &.in-view {
-                opacity: 1;
-                transform: translateY(0px);
-                img {
-                    opacity: 1;
-                    transform: scale(1);
-                }
             }
         }
     }

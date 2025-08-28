@@ -92,7 +92,7 @@ const { work, next } = Astro.props as Props;
         <div class="bg-white"></div>
         <div>
             <div id="work-wrapper" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`} >
-                <div class="work-image scroll">
+                <div class="work-image">
                     <picture>
                         {work.thumbnail.webp && (
                             <source srcset={work.thumbnail.webp} type="image/webp" />
@@ -117,7 +117,7 @@ const { work, next } = Astro.props as Props;
                         <p class="subtitle">Personal Work - {formatDate(work.date)}</p>
                     )}
                 </div>
-                <div class="work-info scroll">
+                <div class="work-info">
                     {work.credits?.map((item) => (
                         <div class="info-item">
                             <h5>{item.title}</h5>
@@ -144,7 +144,7 @@ const { work, next } = Astro.props as Props;
                 {/** Images */}
                 <div class="work-block">
                     {work.images?.map((img) => (
-                        <div class="block-image scroll">
+                        <div class="block-image">
                             <picture>
                                 {img.webp && <source srcset={img.webp} type="image/webp" />}
                                 <img
@@ -218,4 +218,3 @@ pageInit();
 
 window.addEventListener('swup:page:view', pageInit);
 </script>
-

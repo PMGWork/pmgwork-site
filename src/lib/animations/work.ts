@@ -65,4 +65,39 @@ export function animateWork() {
         },
         "-=0.6"
     );
+
+    // 情報ブロック
+    const workInfo = document.querySelector("#work-wrapper .work-info");
+    if (workInfo) {
+        gsap.from(workInfo, {
+            scrollTrigger: {
+                trigger: workInfo,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                once: true,
+            },
+            y: 150,
+            autoAlpha: 0,
+            duration: 1.0,
+            ease: easings.easeOut,
+        });
+    }
+
+    // 画像ブロック群
+    const blockImages = document.querySelectorAll("#work-wrapper1 .work-block .block-image");
+    blockImages.forEach((mask) => {
+        const img = mask.querySelector("img");
+        if (!img) return;
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: mask,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                once: true,
+            }
+        })
+        .from(mask, { y: 150, autoAlpha: 0, duration: 1.0, ease: easings.easeOut })
+        .from(img, { scale: 1.2, autoAlpha: 0, duration: 1.2, ease: easings.easeOut }, "<");
+    });
 }

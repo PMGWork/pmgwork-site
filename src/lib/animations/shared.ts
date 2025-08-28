@@ -62,4 +62,62 @@ export function animate() {
             );
         });
     }
+
+    // リスト（.list）とブロック（.block）の子要素をスクロールで出現
+    const lists = document.querySelectorAll(".list");
+    lists.forEach((list) => {
+        const children = Array.from(list.children) as HTMLElement[];
+        if (children.length === 0) return;
+
+        gsap.from(children, {
+            scrollTrigger: {
+                trigger: list,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                once: true,
+            },
+            duration: 0.8,
+            y: 50,
+            autoAlpha: 0,
+            ease: easings.easeOut,
+            stagger: 0.08,
+        });
+    });
+
+    const blocks = document.querySelectorAll(".block");
+    blocks.forEach((block) => {
+        const children = Array.from(block.children) as HTMLElement[];
+        if (children.length === 0) return;
+
+        gsap.from(children, {
+            scrollTrigger: {
+                trigger: block,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                once: true,
+            },
+            duration: 0.8,
+            y: 50,
+            autoAlpha: 0,
+            ease: easings.easeOut,
+            stagger: 0.08,
+        });
+    });
+
+    // 単発のスクロール要素（.scroll）
+    const scrollElems = document.querySelectorAll(".scroll");
+    scrollElems.forEach((el) => {
+        gsap.from(el, {
+            scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                once: true,
+            },
+            duration: 0.8,
+            y: 50,
+            autoAlpha: 0,
+            ease: easings.easeOut,
+        });
+    });
 }

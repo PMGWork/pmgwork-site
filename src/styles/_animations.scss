@@ -1,43 +1,5 @@
 @use 'variables' as *;
 
-.list {
-    .anm {
-        opacity: 0;
-        &.in-view{
-            animation: block-animation $ease-out .8s both;
-            @for $i from 1 through 50 {
-                &:nth-child(#{$i}) {
-                    animation-delay: 0.08s * $i + .3s;
-                }
-            }
-        }
-    }
-}
-
-.block {
-    .anm {
-        opacity: 0;
-        &.in-view {
-            animation: block-animation $ease-out .8s both;
-            animation-delay: .3s
-        }
-    }
-}
-
-
-// Keyframes
-@keyframes block-animation {
-    0% {
-        transform: translate3d(0,50px,0);
-        opacity: 0;
-    }
-    100% {
-        transform: translate3d(0,0,0);
-        opacity: 1;
-    }
-}
-
-
 @keyframes bg-animation {
     0% {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
