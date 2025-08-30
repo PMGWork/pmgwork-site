@@ -1,5 +1,6 @@
-@use 'variables' as *;
+@use '../settings/variables' as *;
 
+// アニメーション定義
 @keyframes bg-animation {
     0% {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -45,6 +46,7 @@
     }
 }
 
+// Swup のフェード制御用状態
 html {
     &.is-changing {
         .transition-fade {

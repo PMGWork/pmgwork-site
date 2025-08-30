@@ -1,6 +1,6 @@
-@use 'variables' as *;
+@use '../settings/variables' as *;
 
-// Reset and base styles
+// ベーススタイル
 * {
     scrollbar-width: none;
     &::-webkit-scrollbar {
@@ -25,21 +25,7 @@ body {
     user-select: none;
 }
 
-// Lenis recommendations
-html.lenis, html.lenis body {
-    height: auto;
-}
-.lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-    overflow: clip;
-}
-
-// Typography
+// タイポグラフィ
 h1 {
     margin: 0 auto;
     font-size: 120px;
@@ -147,7 +133,7 @@ li {
     }
 }
 
-// Form elements
+// フォーム要素
 input, textarea {
     color: $foreground;
     border: none;
@@ -186,7 +172,6 @@ button {
     appearance: none;
 }
 
-// Utility classes
 .font {
     font-family: inter, "Noto Sans JP", sans-serif;
 }

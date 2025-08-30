@@ -1,9 +1,9 @@
-// Breakpoints
+// ブレークポイント
 $media-pc: 1486px;
 $media-md: 960px;
 $media-sm: 560px;
 
-// Colors
+// カラー
 $foreground: #202020;
 $background: #f6f6f6;
 $white: #fff;
@@ -11,33 +11,33 @@ $gray: #969696;
 $blue-gradient-start: #102050;
 $blue-gradient-end: #203080;
 
-// Social colors
+// SNSカラー
 $x-color: #000000;
 $facebook-color: #1778F2;
 $line-color: #2CCF6F;
 
-// Border radius
+// 角丸
 $radius-sm: 4px;
 $radius-md: 8px;
 $radius-lg: 16px;
 $radius-xl: 20px;
 $radius-pill: 100px;
 
-// Z-index layers
+// Z-indexの層
 $z-background: -99;
 $z-title: 5;
 $z-content: 10;
 $z-header: 20;
 $z-cursor: 9000;
 
-// Transitions
+// トランジション
 $transition-fast: 0.2s;
 $transition-normal: 0.3s;
 $transition-slow: 0.5s;
 $ease-out: cubic-bezier(0, 0.7, 0.3, 1);
 $ease-in-out: cubic-bezier(.5,0,.2,1);
 
-// Mixins for breakpoints
+// ブレークポイント用ミックスイン
 @mixin pc {
     @media only screen and (min-width: $media-pc) {
         @content;

@@ -1,11 +1,16 @@
-// Import order: variables -> base -> layout -> components -> animations
-@use 'variables';
-@use 'base';
-@use 'layout';
-@use 'animations';
+// 読み込み順: 設定 → ベース（ユーティリティ含む）→ レイアウト → コンポーネント → ページ → アニメーション
+@use 'settings/variables';
+@use 'base/base';
+@use 'layout/layout';
 
-// Components
-@use 'components/works';
-@use 'components/about';
-@use 'components/work';
-@use 'components/ui';
+// コンポーネント
+@use 'components/social-icons';
+@use 'components/stalker';
+
+// ページ
+@use 'pages/works';
+@use 'pages/about';
+@use 'pages/work';
+
+// アニメーション
+@use 'animations/animations';

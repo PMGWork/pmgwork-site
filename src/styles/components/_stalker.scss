@@ -1,32 +1,6 @@
-@use '../variables' as *;
+@use '../settings/variables' as *;
 
-// Background
-#bg-item {
-    position: absolute;
-    z-index: $z-title;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
-    animation: bg-animation $ease-in-out 1.2s both;
-    @include md {
-        animation: bg-animation1 $ease-in-out 1.2s both;
-    }
-    @include sm {
-        animation: bg-animation2 $ease-in-out 1.2s both;
-    }
-}
-
-// Social icons
-.social-icon {
-    width: 100%;
-    height: 100%;
-    display: block;
-    fill: currentColor;
-    color: currentColor;
-    transition: all ease $transition-fast;
-}
-
-// Cursor
+// ストーカー
 .stalker {
     position: fixed;
     top: 0;
@@ -72,7 +46,7 @@
     }
 }
 
-// Stick to cursor on hover (CSS variables driven)
+// ホバー時にカーソルへ吸着
 .range:hover > :first-child {
     transform: translate3d(
         calc((var(--mx, 0px) - var(--cx, var(--mx, 0px))) / 2),

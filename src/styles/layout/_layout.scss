@@ -1,6 +1,6 @@
-@use 'variables' as *;
+@use '../settings/variables' as *;
 
-// Background elements
+// 背景要素
 #background {
     position: fixed;
     width: 100vw;
@@ -9,15 +9,41 @@
     z-index: $z-background;
 }
 
-// Work background
+#bg-item {
+    position: absolute;
+    z-index: $z-title;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
+    animation: bg-animation $ease-in-out 1.2s both;
+    @include md {
+        animation: bg-animation1 $ease-in-out 1.2s both;
+    }
+    @include sm {
+        animation: bg-animation2 $ease-in-out 1.2s both;
+    }
+}
+
+// 作品ページ用の背景切り替え
 body.is-work #background {
     background: $background;
 }
 
-// Header
+// トップページ用のホームアイコン非表示
+body.is-top .header a[aria-label="home"] {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+// ヘッダー
 .header {
     position: relative;
     z-index: $z-header;
+
+    a {
+        pointer-events: all;
+        transition: all $transition-normal;
+    }
 
     a.range {
         position: fixed;
@@ -38,7 +64,6 @@ body.is-work #background {
         left: 55px;
         width: 50px;
         height: 50px;
-        transition: all $transition-normal;
         @include md {
             top: 20px;
             left: 20px;
@@ -91,25 +116,25 @@ body.is-work #background {
     }
 }
 
-// Swup
-body.is-top #header-logo {
-    opacity: 0 !important;
-}
-
-// On top page, disable interactions with hidden header logo link
-body.is-top .header a[aria-label="home"] {
+// タイトルラッパー
+.title-wrapper {
     pointer-events: none;
+    text-align: center;
+    padding-top: 180px;
+    position: relative;
+    z-index: $z-title;
+    @include md {
+        padding-top: 130px;
+    }
+    @include sm {
+        padding-top: 100px;
+    }
 }
 
-// Main layout
+// メインレイアウト
 .main {
     position: relative;
     overflow: hidden;
-
-    #background {
-        height: 100vh;
-        height: 100dvh;
-    }
 
     #scene {
         width: 1100px;
@@ -204,7 +229,7 @@ body.is-top .header a[aria-label="home"] {
     }
 }
 
-// Footer
+// フッター
 .footer {
     height: 100px;
     display: flex;
@@ -273,20 +298,5 @@ body.is-top .header a[aria-label="home"] {
             color: $foreground;
             transition: all $transition-fast;
         }
-    }
-}
-
-// Title wrapper
-.title-wrapper {
-    pointer-events: none;
-    text-align: center;
-    padding-top: 180px;
-    position: relative;
-    z-index: $z-title;
-    @include md {
-        padding-top: 130px;
-    }
-    @include sm {
-        padding-top: 100px;
     }
 }
