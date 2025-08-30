@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import type { WorksResponse, Work } from '../../types/global';
 import { formatDate } from '../../lib/utils/date';
+import sanitize from 'sanitize-html';
 import { Icon } from 'astro-icon/components';
 import { gql } from 'graphql-request';
 import { graphcmsClient } from '../../lib/clients/graphcms';
@@ -136,7 +137,7 @@ const { work, next } = Astro.props as Props;
                 {work.body && (
                     <div class="work-about">
                         <h2 class="heading">About</h2>
-                        <div class="block font" set:html={work.body.html}></div>
+                        <div class="block font" set:html={sanitize(work.body.html)}></div>
                     </div>
                 )}
 
@@ -171,16 +172,16 @@ const { work, next } = Astro.props as Props;
                                 <h5>Twitter</h5>
                             </div>
                         </a>
-                        <a class="dl" href={`http://www.facebook.com/share.php?u=https://pmgwork.com/works/${work.slug}/&t=${work.title}`} target="_blank" aria-label="facebook" rel="nofollow noopener noreferrer">
-                            <div class="face">
-                                <Icon name="simple-icons:facebook" class="social-icon" />
-                                <h5>Facebook</h5>
-                            </div>
-                        </a>
                         <a class="dl" href={`https://social-plugins.line.me/lineit/share?url=https://pmgwork.com/works/${work.slug}/`} target="_blank" aria-label="line" rel="nofollow noopener noreferrer">
                             <div class="line">
                                 <Icon name="simple-icons:line" class="social-icon" />
                                 <h5>LINE</h5>
+                            </div>
+                        </a>
+                        <a class="dl" href="#" role="button" aria-label="URLをコピー" data-copy-url data-url={`https://pmgwork.com/works/${work.slug}/`}>
+                            <div class="copy">
+                                <Icon name="mdi:content-copy" class="social-icon" />
+                                <h5>URLをコピー</h5>
                             </div>
                         </a>
                     </div>

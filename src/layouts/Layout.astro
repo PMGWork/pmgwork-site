@@ -4,6 +4,9 @@ import Stalker from '../components/Stalker.tsx';
 import Header from '../components/Header.tsx';
 
 const isTop = Astro.url.pathname === "/";
+const isWork = /^\/works\/.+/.test(Astro.url.pathname);
+const title = (Astro.props.title as string) || 'Pixel';
+const description = (Astro.props.description as string) || 'Pixel | Motion Graphic Designer';
 ---
 
 <!doctype html>
@@ -17,7 +20,15 @@ const isTop = Astro.url.pathname === "/";
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet" />
-        <title>{Astro.props.title || 'Pixel'}</title>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="robots" content="index,follow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content="/logo.svg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@pmgwork" />
         <script>
             import swup from '../lib/utils/swup';
             import { ScrollSmoother } from '../lib/utils/gsap';
@@ -25,23 +36,6 @@ const isTop = Astro.url.pathname === "/";
 
             // ページ遷移時にページビューイベントを発火させる
             window.dispatchEvent(new CustomEvent('swup:page:view'));
-
-            // ページ遷移時に背景色を変更
-            swup.hooks.on('visit:start', (visit) => {
-                const bg = document.getElementById('background');
-                if (!bg) return;
-
-                const nextUrl = visit?.to?.url ? new URL(visit.to.url, location.origin) : null;
-                const nextPath = nextUrl ? nextUrl.pathname : '';
-
-                const isWork = (p: string) => /^\/works\/.+/.test(p);
-
-                if (isWork(nextPath)) {
-                    bg.style.background = '#f6f6f6';
-                } else {
-                    bg.style.background = '';
-                }
-            });
 
             // Smoother の初期化
             function initSmoother() {
@@ -68,14 +62,49 @@ const isTop = Astro.url.pathname === "/";
             }
             initAnimations();
 
+            // 背景用の body クラスを更新（CSS駆動に移行）
+            function updateBackgroundClass(pathname: string) {
+                const isWorkPath = /^\/works\/.+/.test(pathname);
+                document.body.classList.toggle('is-work', isWorkPath);
+            }
+            // 初期適用
+            updateBackgroundClass(window.location.pathname);
+
+            // 共有: URLをクリップボードにコピー
+            document.addEventListener('click', (ev) => {
+                const t = ev.target as HTMLElement | null;
+                const btn = t?.closest('[data-copy-url]') as HTMLElement | null;
+                if (!btn) return;
+                ev.preventDefault();
+                const url = (btn as HTMLAnchorElement).dataset.url || window.location.href;
+                const done = () => {
+                    alert('コピーしました');
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(done).catch(() => {
+                        window.prompt('Copy URL', url);
+                    });
+                } else {
+                    window.prompt('Copy URL', url);
+                }
+            });
+
+            // 遷移開始時に次ページに合わせて更新
+            swup.hooks.on('visit:start', (visit) => {
+                const nextUrl = visit?.to?.url ? new URL(visit.to.url, location.origin) : null;
+                const nextPath = nextUrl ? nextUrl.pathname : '';
+                updateBackgroundClass(nextPath);
+            });
+
             // 差し替え直後に初期化
             swup.hooks.on('content:replace', () => {
                 initSmoother()?.scrollTo(0, false);
                 initAnimations();
+                updateBackgroundClass(window.location.pathname);
             });
         </script>
     </head>
-    <body class:list={{ "is-top": isTop }}>
+    <body class:list={{ "is-top": isTop, "is-work": isWork }}>
         <Stalker client:load />
         <Header client:load />
         <div id="background"></div>

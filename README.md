@@ -37,4 +37,4 @@ const routes = [
 Swup のフックで `body.is-work-detail` クラスを付け替え、CSS 側（`src/styles/_layout.scss`）で `#background` の背景色を切替えます。インラインの `style` 変更は行いません。
 
 ### セキュリティ（set:html）
-`src/pages/works/[slug].astro` では CMS 出力の HTML を挿入するため、`src/lib/utils/sanitize.ts` で簡易サニタイズを適用しています。厳密な要件がある場合は DOMPurify や sanitize-html の採用を推奨します。
+`src/pages/works/[slug].astro` で CMS 出力の HTML を挿入するにあたり、`sanitize-html` をページ内で直接呼び出してサニタイズしています（ユーティリティ分割はしていません）。要件に応じて許可タグ/属性は調整できます。
