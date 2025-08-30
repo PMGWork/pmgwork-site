@@ -203,10 +203,11 @@
         }
 
         &.twi {
-            background: $twitter-color;
-            border: solid 2px $twitter-color;
+            background: $x-color;
+            border: solid 2px $x-color;
+            color: $white;
             &:hover {
-                color: $twitter-color;
+                color: $x-color;
             }
         }
         &.face {
