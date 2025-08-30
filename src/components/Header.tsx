@@ -38,28 +38,22 @@ export default function Header() {
     }, []);
 
     return (
-        <header className="header">
+        <header className={`header${isDark ? ' is-dark' : ''}`}>
             <a className="range" href="/" aria-label="home">
                 <RivePlayer
                     src="/animation/logomotion.riv"
                     id="header-logo"
-                    style={isDark ? { filter: "brightness(0.1)" } : undefined}
                 />
             </a>
-            {(() => {
-                const linkStyle = isDark ? { color: '#202020' } : undefined;
-                return (
-                    <nav aria-label="Primary">
-                        <ul>
-                            {navItems.map(({ href, aria, label }) => (
-                                <li key={href} className="range">
-                                    <a href={href} aria-label={aria} style={linkStyle}>{label}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
-                );
-            })()}
+            <nav aria-label="Primary">
+                <ul>
+                    {navItems.map(({ href, aria, label }) => (
+                        <li key={href} className="range">
+                            <a href={href} aria-label={aria}>{label}</a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
         </header>
     );
 }

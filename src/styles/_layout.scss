@@ -49,6 +49,15 @@ body.is-work #background {
         }
     }
 
+    &.is-dark {
+        #header-logo {
+            filter: brightness(0.1);
+        }
+        ul li a {
+            color: $foreground;
+        }
+    }
+
     ul {
         position: fixed;
         margin: 0 auto;
@@ -85,6 +94,11 @@ body.is-work #background {
 // Swup
 body.is-top #header-logo {
     opacity: 0 !important;
+}
+
+// On top page, disable interactions with hidden header logo link
+body.is-top .header a[aria-label="home"] {
+    pointer-events: none;
 }
 
 // Main layout
