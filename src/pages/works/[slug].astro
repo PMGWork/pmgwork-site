@@ -143,7 +143,7 @@ const { work, next } = Astro.props as Props;
 
                 {/** Images */}
                 <div class="work-block">
-                    {work.images?.map((img) => (
+                    {work.images?.map((img, idx) => (
                         <div class="block-image">
                             <picture>
                                 {img.webp && <source srcset={img.webp} type="image/webp" />}
@@ -151,7 +151,7 @@ const { work, next } = Astro.props as Props;
                                     src={img.url}
                                     width={img.width}
                                     height={img.height}
-                                    alt="image"
+                                    alt={`「${work.title}」の作品画像${idx + 1}`}
                                     loading="lazy"
                                     oncontextmenu="return false;"
                                     onselectstart="return false;"
