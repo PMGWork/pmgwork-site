@@ -198,4 +198,21 @@ const { work, next } = Astro.props as Props;
             )}
         </div>
     </div>
+    <script is:inline data-swup-reload-script>
+        addEventListener('click', (e) => {
+            const target = e.target;
+            if (!(target instanceof Element)) return;
+
+            const trigger = target.closest('[data-copy-url]');
+            if (!trigger) return;
+
+            e.preventDefault();
+            
+            const url = trigger.dataset?.url || location.href;
+            const notify = () => alert('コピーしました');
+            navigator.clipboard?.writeText
+                ? navigator.clipboard.writeText(url).then(notify).catch(() => prompt('Copy URL', url))
+                : prompt('Copy URL', url);
+        });
+    </script>
 </Layout>

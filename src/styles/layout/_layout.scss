@@ -31,7 +31,7 @@ body.is-work #background {
 
 // トップページ用のホームアイコン非表示
 body.is-top .header a[aria-label="home"] {
-    opacity: 0 !important;
+    opacity: 0;
     pointer-events: none;
 }
 

@@ -72,30 +72,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             }
             updateBackgroundClass(window.location.pathname);
 
-            // 共有: URLをクリップボードにコピー
-            document.addEventListener('click', (ev) => {
-                const t = ev.target as HTMLElement | null;
-                const btn = t?.closest('[data-copy-url]') as HTMLElement | null;
-                if (!btn) return;
-                ev.preventDefault();
-                const url = (btn as HTMLAnchorElement).dataset.url || window.location.href;
-                const done = () => {
-                    alert('コピーしました');
-                };
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(url).then(done).catch(() => {
-                        window.prompt('Copy URL', url);
-                    });
-                } else {
-                    window.prompt('Copy URL', url);
-                }
-            });
-
             // 遷移開始時に次ページに合わせて更新
             swup.hooks.on('visit:start', (visit) => {
                 const nextUrl = visit?.to?.url ? new URL(visit.to.url, location.origin) : null;
                 const nextPath = nextUrl ? nextUrl.pathname : '';
                 updateBackgroundClass(nextPath);
+                // ヘッダー等に次ページ情報を通知
+                const isWorkPath = /^\/works\/.+/.test(nextPath);
+                window.dispatchEvent(new CustomEvent('swup:visit:start', { detail: { nextPath, isWork: isWorkPath } }));
             });
 
             // 差し替え直後に初期化
