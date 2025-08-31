@@ -9,6 +9,7 @@
     margin: 0 auto;
     max-width: 1366px;
     animation: bg-animation2 $ease-in-out 1.2s both;
+    will-change: clip-path;
     @include md {
         padding: 90px 60px 400px;
     }
@@ -31,13 +32,9 @@
 
     .work-title-wrapper {
         margin-top: 60px;
+        
         @include sm {
             margin-top: 40px;
-        }
-        h2 {
-            @include sm {
-                font-size: 40px;
-            }
         }
     }
 
@@ -135,7 +132,7 @@
         a {
             color: $foreground;
             transition: all $transition-normal;
-            
+
             &:hover {
                 opacity: .5;
             }

@@ -9,6 +9,7 @@
     transform: translate3d(var(--sx, 50vw), var(--sy, 50vh), 0);
     pointer-events: none;
     transition: all $transition-slow cubic-bezier(.2,.6,.5,1);
+    will-change: transform;
 }
 
 .stalker-item {
@@ -18,6 +19,7 @@
     border-radius: $radius-pill;
     background: $background;
     transition: all $transition-normal ease;
+    will-change: transform, opacity;
 
     .color & {
         background: $foreground;

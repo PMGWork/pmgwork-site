@@ -63,6 +63,7 @@ header {
                 filter $transition-normal,
                 transform $transition-fast ease,
                 opacity $transition-fast;
+            will-change: transform, opacity, filter;
 
             @include sm {
                 width: 40px;
@@ -76,7 +77,7 @@ header {
             transition:
                 color $transition-normal,
                 transform $transition-fast ease;
+            will-change: transform;
         }
     }
 }
-

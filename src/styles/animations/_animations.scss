@@ -43,6 +43,7 @@ html {
     &.is-changing {
         .transition-fade {
             transition: all 0.5s ease;
+            will-change: opacity, filter;
         }
     }
 
@@ -50,6 +51,7 @@ html {
         .transition-fade {
             opacity: 0;
             filter: blur(3px);
+            will-change: opacity, filter;
         }
     }
 
@@ -63,6 +65,7 @@ html {
         .transition-fade, header {
             opacity: 0;
             filter: blur(3px);
+            will-change: opacity, filter;
         }
     }
 }
