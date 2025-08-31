@@ -2,7 +2,12 @@
 
 :root {
     --header-logo-filter: invert(0);
+    --header-logo-opacity: 1;
     --header-link-color: #{$background};
+}
+
+body.is-top {
+    --header-logo-opacity: 0;
 }
 
 html.is-animating body:not(.is-work) {
@@ -52,8 +57,12 @@ header {
         #header-logo {
             width: 50px;
             height: 50px;
+            opacity: var(--header-logo-opacity);
             filter: var(--header-logo-filter);
-            transition: filter $transition-normal, transform $transition-fast ease;
+            transition:
+                filter $transition-normal,
+                transform $transition-fast ease,
+                opacity $transition-fast;
 
             @include sm {
                 width: 40px;
@@ -64,7 +73,10 @@ header {
         span {
             display: inline-block;
             color: var(--header-link-color);
-            transition: color $transition-normal, transform $transition-fast ease;
+            transition:
+                color $transition-normal,
+                transform $transition-fast ease;
         }
     }
 }
+

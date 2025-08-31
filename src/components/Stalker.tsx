@@ -20,6 +20,7 @@ export default function Stalker() {
     useEffect(() => {
         // ポインタが「細かい操作に対応（マウス等）」か判定し、非対応なら機能を停止
         const hasFinePointer = typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches;
+        const isTop = () => typeof document !== 'undefined' && document.body.classList.contains('is-top');
         setVisible(hasFinePointer);
         if (!hasFinePointer) return;
 
@@ -81,14 +82,25 @@ export default function Stalker() {
             const stalker = stalkerElement();
             if (!stalker) return;
 
+            // ヘッダーロゴ上でのスティックはトップでは無効
+            const isHeaderLogoRange = (el: HTMLElement | null) => {
+                if (!el) return false;
+                const logo = document.getElementById('header-logo');
+                return !!logo && el.contains(logo);
+            };
+
+            const canStick = !!(range || linkish) && !(isTop() && range && isHeaderLogoRange(range));
+
             // ストーカー要素にクラスを付与
             stalker.classList.toggle('hover_view', !!view);
-            stalker.classList.toggle('hover_stick', !!(range || linkish));
+            stalker.classList.toggle('hover_stick', canStick);
 
             // 吸いつき中心を更新
-            if (range && range !== activeStickElement) {
+            if (canStick && range && range !== activeStickElement) {
                 activeStickElement = range;
                 updateCenter(activeStickElement);
+            } else if (!canStick && activeStickElement && range && activeStickElement === range) {
+                activeStickElement = null;
             }
         };
 
@@ -142,7 +154,11 @@ export default function Stalker() {
             });
         };
         observeColorTargets();
-        window.addEventListener('swup:page:view', observeColorTargets);
+        const onPageView = () => {
+            // 監視対象の更新
+            observeColorTargets();
+        };
+        window.addEventListener('swup:page:view', onPageView);
 
         // リスナー登録
         document.addEventListener('pointermove', onPointerMove, { passive: true });
@@ -158,7 +174,7 @@ export default function Stalker() {
             document.removeEventListener('pointerout', onPointerOut);
             window.removeEventListener('scroll', onScrollOrResize);
             window.removeEventListener('resize', onScrollOrResize);
-            window.removeEventListener('swup:page:view', observeColorTargets);
+            window.removeEventListener('swup:page:view', onPageView);
             colorObserver.disconnect();
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
         };
