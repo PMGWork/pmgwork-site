@@ -49,7 +49,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                     smoothTouch: 0.1,
                 });
             }
-            initSmoother();
 
             // アニメーションの初期化
             function initAnimations() {
@@ -63,30 +62,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                 if (currentPath === '/about' || currentPath === '/about/') animateAbout();
                 if (currentPath.startsWith('/works/') && currentPath !== '/works/') animateWork();
             }
-            initAnimations();
 
-            // 背景用の body クラスを更新
-            function updateBackgroundClass(pathname: string) {
+            // クラスを更新
+            function updateClass(pathname: string) {
                 const isWorkPath = /^\/works\/.+/.test(pathname);
                 document.body.classList.toggle('is-work', isWorkPath);
             }
-            updateBackgroundClass(window.location.pathname);
+
+            // 初期化
+            initSmoother();
+            initAnimations();
+            updateClass(window.location.pathname);
 
             // 遷移開始時に次ページに合わせて更新
             swup.hooks.on('visit:start', (visit) => {
                 const nextUrl = visit?.to?.url ? new URL(visit.to.url, location.origin) : null;
                 const nextPath = nextUrl ? nextUrl.pathname : '';
-                updateBackgroundClass(nextPath);
-                // ヘッダー等に次ページ情報を通知
-                const isWorkPath = /^\/works\/.+/.test(nextPath);
-                window.dispatchEvent(new CustomEvent('swup:visit:start', { detail: { nextPath, isWork: isWorkPath } }));
+                updateClass(nextPath);
             });
 
             // 差し替え直後に初期化
             swup.hooks.on('content:replace', () => {
                 initSmoother()?.scrollTo(0, false);
                 initAnimations();
-                updateBackgroundClass(window.location.pathname);
             });
         </script>
     </head>

@@ -1,5 +1,25 @@
 @use '../settings/variables' as *;
 
+:root {
+    --header-logo-filter: invert(0);
+    --header-link-color: #{$background};
+}
+
+html.is-animating body:not(.is-work) {
+    --header-logo-filter: invert(0);
+    --header-link-color: #{$background};
+}
+
+html.is-animating body.is-work {
+    --header-logo-filter: invert(1);
+    --header-link-color: #{$foreground};
+}
+
+html:not(.is-animating) header.is-dark {
+    --header-logo-filter: invert(1);
+    --header-link-color: #{$foreground};
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -21,16 +41,6 @@ header {
         padding: 0 15px;
     }
 
-    &.is-dark {
-        #header-logo {
-            filter: brightness(0.1);
-        }
-
-        nav a {
-            color: $foreground;
-        }
-    }
-
     .range {
         padding: 15px;
         border-radius: 50%;
@@ -42,6 +52,7 @@ header {
         #header-logo {
             width: 50px;
             height: 50px;
+            filter: var(--header-logo-filter);
             transition: filter $transition-normal, transform $transition-fast ease;
 
             @include sm {
@@ -52,6 +63,7 @@ header {
 
         span {
             display: inline-block;
+            color: var(--header-link-color);
             transition: color $transition-normal, transform $transition-fast ease;
         }
     }

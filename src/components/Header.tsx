@@ -8,50 +8,33 @@ const navItems = [
 
 export default function Header() {
     const [isDark, setIsDark] = useState(false);
-    const transitionLock = useRef(false);
 
     useEffect(() => {
-        const targets = ['#hero-background', '#work-wrapper', '#parallax-layers', '#next-link'];
+        const selectors = '#hero-background, #work-wrapper, #parallax-layers, #next-link';
+        const state = new Map<Element, boolean>();
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (targets.some(selector => entry.target.matches(selector))) {
-                    if (!transitionLock.current) {
-                        setIsDark(!entry.isIntersecting);
-                    }
-                }
-            });
+            entries.forEach(entry => state.set(entry.target, entry.isIntersecting));
+            const anyVisible = Array.from(state.values()).some(Boolean);
+            setIsDark(!anyVisible);
         }, { threshold: 0.1, rootMargin: '-50px 0px' });
 
         const observe = () => {
             observer.disconnect();
-            targets.forEach(selector => {
-                const el = document.querySelector(selector);
-                if (el) observer.observe(el);
-            });
+            state.clear();
+
+            const elements = document.querySelectorAll(selectors);
+            if (elements.length === 0) setIsDark(true);
+
+            elements.forEach(el => observer.observe(el));
         };
 
         observe();
 
-        // 次ページ遷移開始時にヘッダー色を先行反映
-        const onVisitStart = (e: Event) => {
-            transitionLock.current = true;
-            const detail = (e as CustomEvent).detail as { isWork?: boolean } | undefined;
-            const nextIsWork = typeof detail?.isWork === 'boolean' ? detail.isWork : document.body.classList.contains('is-work');
-            setIsDark(nextIsWork);
-        };
-
-        // 差し替え後にオブザーバーを再適用して通常制御に戻す
-        const onPageView = () => {
-            transitionLock.current = false;
-            observe();
-        };
-
-        window.addEventListener('swup:visit:start', onVisitStart as EventListener);
+        const onPageView = () => observe();
         window.addEventListener('swup:page:view', onPageView);
 
         return () => {
-            window.removeEventListener('swup:visit:start', onVisitStart as EventListener);
             window.removeEventListener('swup:page:view', onPageView);
             observer.disconnect();
         };
@@ -69,7 +52,7 @@ export default function Header() {
                 <ul>
                     {navItems.map(({ href, aria, label }) => (
                         <li key={href}>
-                            <a className="range" href={href} aria-label={aria} key={href}>
+                            <a className="range" href={href} aria-label={aria}>
                                 <span>{label}</span>
                             </a>
                         </li>
