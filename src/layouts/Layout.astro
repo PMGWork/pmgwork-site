@@ -3,7 +3,7 @@ import '../styles/global.scss';
 import Stalker from '../components/Stalker.tsx';
 import Header from '../components/Header.tsx';
 
-const isTop = Astro.url.pathname === "/";
+const isHome = Astro.url.pathname === "/";
 const isWork = /^\/works\/.+/.test(Astro.url.pathname);
 const title = (Astro.props.title as string) || 'Pixel';
 const description = (Astro.props.description as string) || 'Pixel | Motion Graphic Designer';
@@ -88,7 +88,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             });
         </script>
     </head>
-    <body class:list={{ "is-top": isTop, "is-work": isWork }}>
+    <body class:list={{ "is-top": isHome, "is-work": isWork }}>
         <Stalker client:load />
         <Header client:load />
         <div id="site-background"></div>

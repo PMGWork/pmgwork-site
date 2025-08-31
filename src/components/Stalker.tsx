@@ -20,7 +20,7 @@ export default function Stalker() {
     useEffect(() => {
         // ポインタが「細かい操作に対応（マウス等）」か判定し、非対応なら機能を停止
         const hasFinePointer = typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches;
-        const isTop = () => typeof document !== 'undefined' && document.body.classList.contains('is-top');
+        const isHome = () => typeof document !== 'undefined' && document.body.classList.contains('is-top');
         setVisible(hasFinePointer);
         if (!hasFinePointer) return;
 
@@ -89,7 +89,7 @@ export default function Stalker() {
                 return !!logo && el.contains(logo);
             };
 
-            const canStick = !!(range || linkish) && !(isTop() && range && isHeaderLogoRange(range));
+            const canStick = !!(range || linkish) && !(isHome() && range && isHeaderLogoRange(range));
 
             // ストーカー要素にクラスを付与
             stalker.classList.toggle('hover_view', !!view);
