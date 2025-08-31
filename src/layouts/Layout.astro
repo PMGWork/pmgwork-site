@@ -40,7 +40,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             // ページ遷移時にページビューイベントを発火させる
             window.dispatchEvent(new CustomEvent('swup:page:view'));
 
-            // Smoother の初期化
+            // 慣性スクロールの初期化
             function initSmoother() {
                 return ScrollSmoother.create({
                     wrapper: '#swup',
