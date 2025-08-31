@@ -36,7 +36,7 @@ body.is-top .header a[aria-label="home"] {
 }
 
 // ヘッダー
-.header {
+header {
     position: relative;
     z-index: $z-header;
 
@@ -108,9 +108,6 @@ body.is-top .header a[aria-label="home"] {
             a {
                 display: inline-block;
                 transition: all $transition-normal;
-                &.header-color {
-                    color: $foreground;
-                }
             }
         }
     }
@@ -230,7 +227,7 @@ body.is-top .header a[aria-label="home"] {
 }
 
 // フッター
-.footer {
+footer {
     height: 100px;
     display: flex;
     align-items: center;
