@@ -4,10 +4,12 @@
 @use 'layout/layout';
 
 // コンポーネント
-@use 'components/social-icons';
 @use 'components/stalker';
+@use 'components/header';
+@use 'components/footer';
 
 // ページ
+@use 'pages/home';
 @use 'pages/works';
 @use 'pages/about';
 @use 'pages/work';

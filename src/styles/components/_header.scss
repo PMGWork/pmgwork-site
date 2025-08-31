@@ -1,0 +1,78 @@
+@use '../settings/variables' as *;
+
+header {
+    position: relative;
+    z-index: $z-header;
+
+    &.is-dark {
+        #header-logo {
+            filter: brightness(0.1);
+        }
+        ul li a {
+            color: $foreground;
+        }
+    }
+
+    a {
+        pointer-events: all;
+        transition: color $transition-normal;
+    }
+
+    a.range {
+        position: fixed;
+        top: 20px;
+        left: 30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        @include md {
+            top: -5px;
+            left: -5px;
+        }
+    }
+
+    #header-logo {
+        position: fixed;
+        top: 45px;
+        left: 55px;
+        width: 50px;
+        height: 50px;
+        transition: color $transition-normal;
+        @include md {
+            top: 20px;
+            left: 20px;
+        }
+        @include sm {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    ul {
+        position: fixed;
+        margin: 0 auto;
+        top: 60px;
+        right: 60px;
+        font-size: 18px;
+        font-weight: 500;
+        @include md {
+            top: 30px;
+            right: 30px;
+        }
+        @include sm {
+            right: 20px;
+            font-size: 15px;
+        }
+
+        li {
+            padding: 30px 15px;
+            margin: -30px -15px -30px 15px;
+            @include sm {
+                margin-left: 0;
+            }
+            a {
+                display: inline-block;
+            }
+        }
+    }
+}

@@ -11,7 +11,7 @@ export default function Header() {
     const transitionLock = useRef(false);
 
     useEffect(() => {
-        const targets = ['#bg-item', '#work-wrapper', '#scene', '#next-link'];
+        const targets = ['#bg-item', '#work-wrapper', '#parallax-layers', '#next-link'];
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
