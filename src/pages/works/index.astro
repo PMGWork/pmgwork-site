@@ -41,15 +41,15 @@ const { works } = await graphcmsClient.request<WorksResponse>(
 <Layout title="Works | Pixel">
     <div class="works">
         <div>
-            <div id="bg-item"></div>
+            <div id="hero-background"></div>
             <div class="title-wrapper">
                 <h1 class="title">Works</h1>
                 <p class="subtitle">Motion Graphics ・ Design ・ 3DCG</p>
             </div>
-            <div class="works-wrapper">
+            <div class="works-list">
                 {works.map((work) => (
-                    <div class="works-article" id={work.slug}>
-                        <div class="works-image view">
+                    <div class="work-card" id={work.slug}>
+                        <div class="card-image view">
                             <a href={`/works/${work.slug}/`}>
                                 <picture>
                                     {work.thumbnail.webp && (
@@ -68,14 +68,14 @@ const { works } = await graphcmsClient.request<WorksResponse>(
                                 </picture>
                             </a>
                         </div>
-                        <div class="works-title-wrapper">
-                            <h3 class="works-title" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`}>
+                        <div class="card-title-wrapper">
+                            <h3 class="card-title" style={`background-image: linear-gradient(135deg, ${work.color.hex}, ${work.color1.hex});`}>
                                 {work.title}
                             </h3>
                             {work.isClient ? (
-                                <p class="works-subtitle">{`Client Work - ${formatDate(work.date)}`}</p>
+                                <p class="card-subtitle">{`Client Work - ${formatDate(work.date)}`}</p>
                             ) : (
-                                <p class="works-subtitle">{`Personal Work - ${formatDate(work.date)}`}</p>
+                                <p class="card-subtitle">{`Personal Work - ${formatDate(work.date)}`}</p>
                             )}
                         </div>
                     </div>

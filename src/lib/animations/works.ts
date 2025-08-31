@@ -2,13 +2,13 @@ import { gsap, SplitText, easings } from '../utils/gsap';
 
 export function animateWorks() {
     // タイトルアニメーション
-    const works = document.querySelectorAll(".works-article");
+    const works = document.querySelectorAll(".work-card");
 
     works.forEach((work) => {
-        const imgMask = work.querySelector(".works-image");
+        const imgMask = work.querySelector(".card-image");
         const img = imgMask?.querySelector("img");
-        const title = work.querySelector(".works-title");
-        const subtitle = work.querySelector(".works-subtitle");
+        const title = work.querySelector(".card-title");
+        const subtitle = work.querySelector(".card-subtitle");
         if (!imgMask || !img || !title || !subtitle) return;
 
         const splitTitle = SplitText.create(title, { type: "chars", tag: "span" });

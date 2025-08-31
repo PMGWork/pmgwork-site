@@ -60,8 +60,8 @@ export default function Stalker() {
         const updateCenter = (el: HTMLElement | null) => {
             if (!el) return;
             const r = el.getBoundingClientRect();
-            const cx = r.left + el.clientWidth / 2;
-            const cy = r.top + el.clientHeight / 2;
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
             el.style.setProperty('--cx', `${cx}px`);
             el.style.setProperty('--cy', `${cy}px`);
         };
@@ -136,7 +136,7 @@ export default function Stalker() {
         // 監視対象を最新化
         const observeColorTargets = () => {
             colorObserver.disconnect();
-            ['#bg-item', '#work-wrapper', '#parallax-layers'].forEach(sel => {
+            ['#hero-background', '#work-wrapper', '#parallax-layers'].forEach(sel => {
                 const el = document.querySelector(sel);
                 if (el) colorObserver.observe(el);
             });

@@ -5,11 +5,12 @@
 }
 
 .about-wrapper {
-    pointer-events: none;
+    max-width: 1366px;
     margin: 240px auto 60px;
     padding: 60px;
-    max-width: 1366px;
     color: $foreground;
+    pointer-events: none;
+
     @include sm {
         margin: 150px 0 0;
         padding: 30px;
@@ -17,13 +18,15 @@
 
     .about-logo img {
         position: absolute;
+        z-index: 1;
         width: 800px;
         margin: -300px -150px;
-        z-index: 1;
+
         @include md {
             width: 500px;
             margin: -180px -100px;
         }
+
         @include sm {
             width: 300px;
             margin: -120px -50px;
@@ -31,27 +34,33 @@
     }
 
     .about-title-wrapper {
-        text-align: end;
         position: relative;
         z-index: $z-content;
+        text-align: end;
+
         .about-title {
             background-repeat: no-repeat;
             background-size: 100% 30%;
             background-position: 10px bottom;
             background-image: linear-gradient(135deg, #8DD1FF, #2A5CC1);
             display: inline;
+
             @include md {
                 font-size: 60px;
             }
+
             @include sm {
                 font-size: 48px;
             }
         }
+
         h4 {
             margin-top: 40px;
+
             @include md {
                 font-size: 28px;
             }
+
             @include sm {
                 font-size: 20px;
                 margin-top: 30px;
@@ -60,22 +69,27 @@
     }
 
     .about-content {
-        text-align: center;
-        margin: 300px 0 150px;
         position: relative;
         z-index: $z-content;
+        margin: 300px 0 150px;
+        text-align: center;
+
         @include md {
             margin: 240px 0 120px;
         }
+
         @include sm {
             margin: 150px 0 70px;
         }
+
         h2 {
             margin-bottom: 60px;
+
             @include md {
                 margin-bottom: 40px;
             }
         }
+
         a {
             color: $foreground;
             transition: all $transition-normal;
@@ -89,32 +103,44 @@
         display: flex;
         position: relative;
         z-index: $z-content;
+
         @include md {
             display: inline;
         }
+
         .about-tools {
+            width: 100%;
             padding: 150px 0;
             border-top: solid 1px #DCDCDC;
             border-bottom: solid 1px #DCDCDC;
-            width: 100%;
             transition: background-size $ease-out 1.2s;
+
             @include md {
                 padding: 100px 0;
             }
+
             @include sm {
                 padding: 50px 0;
             }
+
             h2 {
                 margin-bottom: 60px;
+
                 @include md {
                     margin-bottom: 40px;
                 }
             }
-            li {
-                background: $white;
-                padding: .4em .6em;
-                margin: 6px;
-                border-radius: 6px;
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+
+                li {
+                    background: $white;
+                    padding: .4em .6em;
+                    border-radius: 6px;
+                }
             }
         }
     }
@@ -123,21 +149,27 @@
 .contact {
     padding: 150px 0 0;
     border-top: solid 1px #DCDCDC;
+
     @include md {
         padding: 100px 0 0;
     }
+
     @include sm {
         padding: 50px 0 0;
     }
+
     h2 {
         margin-bottom: 60px;
+
         @include md {
             margin-bottom: 40px;
         }
     }
+
     p {
         margin-top: 20px;
     }
+
     .required::after {
         content: "*";
         position: absolute;
@@ -145,9 +177,11 @@
         font-weight: 700;
         color: #c5614f;
     }
+
     input,textarea {
         margin: 5px 0;
     }
+
     .contact-button {
         margin-top: 60px;
         text-align: right;
@@ -156,6 +190,7 @@
             text-align: center;
         }
     }
+
     button {
         color: $white;
         background: $foreground;
@@ -165,10 +200,12 @@
         padding: 20px 60px;
         border-radius: $radius-pill;
         transition: $transition-normal;
+
         @include md {
             font-size: 15px;
             padding: 15px 40px;
         }
+        
         &:hover {
             color: $foreground;
             background: $white;

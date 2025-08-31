@@ -1,78 +1,57 @@
 @use '../settings/variables' as *;
 
 header {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
     z-index: $z-header;
+    width: 100%;
+    height: 100px;
+    padding: 0 45px;
+    box-sizing: border-box;
+
+    @include md {
+        padding: 0 20px;
+    }
+
+    @include sm {
+        height: 80px;
+        padding: 0 15px;
+    }
 
     &.is-dark {
         #header-logo {
             filter: brightness(0.1);
         }
-        ul li a {
+
+        nav a {
             color: $foreground;
         }
     }
 
-    a {
-        pointer-events: all;
-        transition: color $transition-normal;
-    }
-
-    a.range {
-        position: fixed;
-        top: 20px;
-        left: 30px;
-        width: 100px;
-        height: 100px;
+    .range {
+        padding: 15px;
         border-radius: 50%;
-        @include md {
-            top: -5px;
-            left: -5px;
-        }
-    }
 
-    #header-logo {
-        position: fixed;
-        top: 45px;
-        left: 55px;
-        width: 50px;
-        height: 50px;
-        transition: color $transition-normal;
-        @include md {
-            top: 20px;
-            left: 20px;
-        }
         @include sm {
-            width: 40px;
-            height: 40px;
-        }
-    }
-
-    ul {
-        position: fixed;
-        margin: 0 auto;
-        top: 60px;
-        right: 60px;
-        font-size: 18px;
-        font-weight: 500;
-        @include md {
-            top: 30px;
-            right: 30px;
-        }
-        @include sm {
-            right: 20px;
-            font-size: 15px;
+            padding: 10px;
         }
 
-        li {
-            padding: 30px 15px;
-            margin: -30px -15px -30px 15px;
+        #header-logo {
+            width: 50px;
+            height: 50px;
+            transition: filter $transition-normal, transform $transition-fast ease;
+
             @include sm {
-                margin-left: 0;
+                width: 40px;
+                height: 40px;
             }
-            a {
-                display: inline-block;
-            }
+        }
+
+        span {
+            display: inline-block;
+            transition: color $transition-normal, transform $transition-fast ease;
         }
     }
 }

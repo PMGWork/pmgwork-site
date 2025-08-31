@@ -5,8 +5,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    transform: translate3d(var(--sx, 50vw), var(--sy, 50vh), 0);
     z-index: $z-cursor;
+    transform: translate3d(var(--sx, 50vw), var(--sy, 50vh), 0);
     pointer-events: none;
     transition: all $transition-slow cubic-bezier(.2,.6,.5,1);
 }
@@ -27,6 +27,7 @@
         scale: 2;
         opacity: 0.5;
     }
+
     .hover_view & {
         scale: 4;
         opacity: 1;
@@ -41,6 +42,7 @@
             color: $background;
         }
     }
+    
     .hover_view &::after {
         content: "View";
     }
@@ -53,9 +55,4 @@
         calc((var(--my, 0px) - var(--cy, var(--my, 0px))) / 2),
         0
     );
-}
-
-.range > :first-child {
-    transition: transform $transition-fast ease;
-    will-change: transform;
 }

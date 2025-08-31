@@ -93,7 +93,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <body class:list={{ "is-top": isTop, "is-work": isWork }}>
         <Stalker client:load />
         <Header client:load />
-        <div id="background"></div>
+        <div id="site-background"></div>
         <div id="swup" class="transition-fade">
             <div id="smooth-content">
                 <slot />

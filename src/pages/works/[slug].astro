@@ -118,12 +118,14 @@ const { work, next } = Astro.props as Props;
                     )}
                 </div>
                 <div class="work-info">
-                    {work.credits?.map((item) => (
-                        <div class="info-item">
-                            <h5>{item.title}</h5>
-                            <p>{item.name}</p>
-                        </div>
-                    ))}
+                    <div class="info-items">
+                        {work.credits?.map((item) => (
+                            <div class="info-item">
+                                <h5>{item.title}</h5>
+                                <p>{item.name}</p>
+                            </div>
+                        ))}
+                    </div>
                     {work.link && (
                         <a href={work.link} target="_blank" rel="noopener noreferrer" aria-label="play" class="info-play">
                             <h5>Play</h5>

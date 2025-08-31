@@ -11,7 +11,7 @@ export default function Header() {
     const transitionLock = useRef(false);
 
     useEffect(() => {
-        const targets = ['#bg-item', '#work-wrapper', '#parallax-layers', '#next-link'];
+        const targets = ['#hero-background', '#work-wrapper', '#parallax-layers', '#next-link'];
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -58,7 +58,7 @@ export default function Header() {
     }, []);
 
     return (
-        <header className={`header${isDark ? ' is-dark' : ''}`}>
+        <header className={isDark ? 'is-dark' : undefined}>
             <a className="range" href="/" aria-label="home">
                 <RivePlayer
                     src="/animation/logomotion.riv"
@@ -68,8 +68,10 @@ export default function Header() {
             <nav aria-label="Primary">
                 <ul>
                     {navItems.map(({ href, aria, label }) => (
-                        <li key={href} className="range">
-                            <a href={href} aria-label={aria}>{label}</a>
+                        <li key={href}>
+                            <a className="range" href={href} aria-label={aria} key={href}>
+                                <span>{label}</span>
+                            </a>
                         </li>
                     ))}
                 </ul>

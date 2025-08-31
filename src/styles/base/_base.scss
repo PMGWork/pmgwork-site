@@ -31,9 +31,11 @@ h1 {
     font-size: 120px;
     font-weight: 600;
     letter-spacing: -0.01em;
+
     @include md {
         font-size: 90px;
     }
+
     @include sm {
         font-size: 60px;
     }
@@ -43,9 +45,11 @@ h2 {
     margin: 0 auto;
     font-size: 72px;
     font-weight: 600;
+
     @include md {
         font-size: 64px;
     }
+
     @include sm {
         font-size: 48px;
     }
@@ -56,9 +60,11 @@ h3 {
     font-size: 60px;
     font-weight: 600;
     letter-spacing: .01em;
+
     @include md {
         font-size: 54px;
     }
+
     @include sm {
         font-size: 36px;
     }
@@ -69,10 +75,12 @@ h4 {
     font-size: 28px;
     font-weight: 600;
     letter-spacing: .02em;
+
     @include md {
         font-weight: 500;
         font-size: 24px;
     }
+
     @include sm {
         font-size: 18px;
     }
@@ -83,9 +91,11 @@ h5 {
     font-size: 24px;
     font-weight: 500;
     letter-spacing: .03em;
+
     @include md {
         font-size: 20px;
     }
+
     @include sm {
         font-size: 16px;
     }
@@ -97,11 +107,28 @@ p {
     margin: 0;
     letter-spacing: .03em;
     line-height: 2.5;
+
     @include md {
         font-size: 15px;
     }
+
     @include sm {
         font-size: 14px;
+    }
+}
+
+caption {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .03em;
+    line-height: 1.5;
+
+    @include md {
+        font-size: 14px;
+    }
+
+    @include sm {
+        font-size: 13px;
     }
 }
 
@@ -125,9 +152,11 @@ li {
     display: inline-block;
     text-decoration: none;
     font-size: 17px;
+
     @include md {
         font-size: 16px;
     }
+
     @include sm {
         font-size: 15px;
     }
@@ -145,6 +174,7 @@ input, textarea {
     font-family: inter, "Noto Sans JP", sans-serif;
     font-size: 17px;
     transition: ease $transition-normal;
+    
     @include md {
         font-size: 15px;
     }

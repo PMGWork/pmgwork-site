@@ -1,18 +1,33 @@
 @use '../settings/variables' as *;
 
 // アニメーション定義
+// CSS変数でレスポンシブ対応
+:root {
+    --clip-height-1: 450px;
+    --clip-height-2: 750px;
+    --circle-radius: 100%;
+
+    @include pc {
+        --circle-radius: 1670px;
+    }
+
+    @include md {
+        --clip-height-1: 420px;
+        --clip-height-2: 600px;
+    }
+
+    @include sm {
+        --clip-height-1: 300px;
+        --clip-height-2: 400px;
+    }
+}
+
 @keyframes bg-animation1 {
     0% {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
     100% {
-        clip-path: polygon(0 0, 100% 0, 100% 450px, 0 750px);
-        @include md {
-            clip-path: polygon(0 0, 100% 0, 100% 420px, 0 600px);
-        }
-        @include sm {
-            clip-path: polygon(0 0, 100% 0, 100% 300px, 0 400px);
-        }
+        clip-path: polygon(0 0, 100% 0, 100% var(--clip-height-1), 0 var(--clip-height-2));
     }
 }
 
@@ -21,10 +36,7 @@
         clip-path: circle(0% at 50% 0);
     }
     100% {
-        clip-path: circle(100% at 50% 0);
-        @include pc {
-            clip-path: circle(1670px at 50% 0);
-        }
+        clip-path: circle(var(--circle-radius) at 50% 0);
     }
 }
 
