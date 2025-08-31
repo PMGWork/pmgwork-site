@@ -1,7 +1,7 @@
 @use '../settings/variables' as *;
 
 // アニメーション定義
-@keyframes bg-animation {
+@keyframes bg-animation1 {
     0% {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
@@ -16,7 +16,7 @@
     }
 }
 
-@keyframes bgw-animation {
+@keyframes bg-animation2 {
     0% {
         clip-path: circle(0% at 50% 0);
     }
