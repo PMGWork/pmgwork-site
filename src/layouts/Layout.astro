@@ -3,6 +3,9 @@ import '../styles/global.scss';
 import Stalker from '../components/Stalker.tsx';
 import Header from '../components/Header.tsx';
 
+import Analytics from '@vercel/analytics/astro'
+import SpeedInsights  from "@vercel/speed-insights/astro"
+
 const isHome = Astro.url.pathname === "/";
 const isWork = /^\/works\/.+/.test(Astro.url.pathname);
 const title = (Astro.props.title as string) || 'Pixel';
@@ -32,6 +35,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <meta property="og:image" content="/logo.svg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@pmgwork" />
+        <Analytics />
+        <SpeedInsights />
         <script>
             import swup from '../lib/utils/swup';
             import { ScrollSmoother } from '../lib/utils/gsap';
