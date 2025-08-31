@@ -16,12 +16,6 @@
     height: 100vh;
     background: linear-gradient(-45deg, $blue-gradient-start, $blue-gradient-end);
     animation: bg-animation $ease-in-out 1.2s both;
-    @include md {
-        animation: bg-animation1 $ease-in-out 1.2s both;
-    }
-    @include sm {
-        animation: bg-animation2 $ease-in-out 1.2s both;
-    }
 }
 
 // 作品ページ用の背景切り替え

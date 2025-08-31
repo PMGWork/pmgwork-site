@@ -7,24 +7,12 @@
     }
     100% {
         clip-path: polygon(0 0, 100% 0, 100% 450px, 0 750px);
-    }
-}
-
-@keyframes bg-animation1 {
-    0% {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-    100% {
-        clip-path: polygon(0 0, 100% 0, 100% 420px, 0 600px);
-    }
-}
-
-@keyframes bg-animation2 {
-    0% {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-    100% {
-        clip-path: polygon(0 0, 100% 0, 100% 300px, 0 400px);
+        @include md {
+            clip-path: polygon(0 0, 100% 0, 100% 420px, 0 600px);
+        }
+        @include sm {
+            clip-path: polygon(0 0, 100% 0, 100% 300px, 0 400px);
+        }
     }
 }
 
@@ -34,15 +22,9 @@
     }
     100% {
         clip-path: circle(100% at 50% 0);
-    }
-}
-
-@keyframes bgw-animation1 {
-    0% {
-        clip-path: circle(0px at 50% 0);
-    }
-    100% {
-        clip-path: circle(1670px at 50% 0);
+        @include pc {
+            clip-path: circle(1670px at 50% 0);
+        }
     }
 }
 

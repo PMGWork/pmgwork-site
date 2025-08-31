@@ -11,7 +11,7 @@ export default function Header() {
     const transitionLock = useRef(false);
 
     useEffect(() => {
-        const targets = ['#bg-item', '#work-wrapper', '#scene'];
+        const targets = ['#bg-item', '#work-wrapper', '#scene', '#next-link'];
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -32,7 +32,7 @@ export default function Header() {
         };
 
         observe();
-        
+
         // 次ページ遷移開始時にヘッダー色を先行反映
         const onVisitStart = (e: Event) => {
             transitionLock.current = true;

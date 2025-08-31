@@ -207,7 +207,7 @@ const { work, next } = Astro.props as Props;
             if (!trigger) return;
 
             e.preventDefault();
-            
+
             const url = trigger.dataset?.url || location.href;
             const notify = () => alert('コピーしました');
             navigator.clipboard?.writeText

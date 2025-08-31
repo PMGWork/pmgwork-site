@@ -15,9 +15,6 @@
     @include sm {
         padding: 90px 30px 400px;
     }
-    @include pc {
-        animation: bgw-animation1 $ease-in-out 1.2s both;
-    }
 
     .work-image {
         overflow: hidden;
