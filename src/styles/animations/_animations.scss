@@ -52,4 +52,17 @@ html {
             filter: blur(3px);
         }
     }
+
+    &:not(.is-initial-loading) {
+        .transition-fade, header {
+            transition: all 0.6s ease;
+        }
+    }
+
+    &.is-initial-loading {
+        .transition-fade, header {
+            opacity: 0;
+            filter: blur(3px);
+        }
+    }
 }

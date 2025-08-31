@@ -12,7 +12,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang="ja" class="is-initial-loading">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -36,6 +36,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             import swup from '../lib/utils/swup';
             import { ScrollSmoother } from '../lib/utils/gsap';
             import { animateShared, animateAbout, animateWork, animateWorks } from '../lib/animations/';
+
+            // 初期ロード時のフェードイン制御
+            document.documentElement.classList.remove('is-initial-loading');
 
             // ページ遷移時にページビューイベントを発火させる
             window.dispatchEvent(new CustomEvent('swup:page:view'));
@@ -97,5 +100,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                 <slot />
             </div>
         </div>
+        <noscript>
+            <style>
+                html.is-initial-loading .transition-fade { opacity: 1 !important; filter: none !important; }
+                html.is-initial-loading header { opacity: 1 !important; filter: none !important; }
+            </style>
+        </noscript>
     </body>
 </html>
