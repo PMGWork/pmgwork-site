@@ -21,6 +21,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <!-- Preconnect to critical origins -->
+        <link rel="preconnect" href="https://ap-northeast-1.graphassets.com" crossorigin />
+        <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+        <link rel="preconnect" href="https://p.typekit.net" crossorigin />
+        <link rel="preconnect" href="https://unpkg.com" crossorigin />
         <link rel="stylesheet" href="https://use.typekit.net/wvf5bje.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,6 +42,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <meta name="twitter:site" content="@pmgwork" />
         <Analytics />
         <SpeedInsights />
+    </head>
+    <body class:list={{ "is-top": isHome, "is-work": isWork }}>
+        <Stalker client:idle />
+        <Header client:idle />
+        <div id="site-background"></div>
+        <div id="swup" class="transition-fade">
+            <div id="smooth-content">
+                <slot />
+            </div>
+        </div>
         <script>
             import swup from '../lib/utils/swup';
             import { ScrollSmoother } from '../lib/utils/gsap';
@@ -77,10 +92,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                 document.body.classList.toggle('is-work', isWorkPath);
             }
 
-            // 初期化
-            initSmoother();
-            initAnimations();
-            updateClass(window.location.pathname);
+            // 初期化（次のフレームで実行して初回のレイアウトをブロックしない）
+            requestAnimationFrame(() => {
+                initSmoother();
+                initAnimations();
+                updateClass(window.location.pathname);
+            });
 
             // 遷移開始時に次ページに合わせて更新
             swup.hooks.on('visit:start', (visit) => {
@@ -95,16 +112,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                 initAnimations();
             });
         </script>
-    </head>
-    <body class:list={{ "is-top": isHome, "is-work": isWork }}>
-        <Stalker client:load />
-        <Header client:load />
-        <div id="site-background"></div>
-        <div id="swup" class="transition-fade">
-            <div id="smooth-content">
-                <slot />
-            </div>
-        </div>
         <noscript>
             <style>
                 html.is-initial-loading .transition-fade { opacity: 1 !important; filter: none !important; }
