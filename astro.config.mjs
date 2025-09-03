@@ -7,5 +7,8 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://pmgwork.com',
-    integrations: [icon(), react(), sitemap()]
+    integrations: [icon(), react(), sitemap()],
+    build: {
+        inlineStylesheets: 'always',
+    },
 });
